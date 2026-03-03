@@ -12,14 +12,9 @@ public class Location : GraphWrapperNode
 
     internal static Location Create(string uri, IGraph g) => Wrap(g.CreateUriNode(g.UriFactory.Create(Vocabulary.InstanceBaseUri, uri)), g);
 
-    //TODO: Rename
-    internal string? Type { set => this.Overwrite(Vocabulary.LocationType, value); }
-
-    internal string? Label { set => this.Overwrite(Vocabulary.LocationLabel, value); }
+    internal string? Name { set => this.Overwrite(Vocabulary.Name, value); }
 
     internal string? Address { set => this.Overwrite(Vocabulary.Address, value); }
-
-    // internal string? RelatedTo { set => this.OverwriteNullable(Vocabulary.RegionRelatedTo, value); }
 
     internal double? Latitude { set => this.OverwriteNullable(Vocabulary.Latitude, value); }
 

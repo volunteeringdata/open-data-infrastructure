@@ -7,83 +7,21 @@ internal class Vocabulary
 
     private static readonly NodeFactory Factory = new();
 
-    // Activity
-    internal static IUriNode ActivityApp { get; } = Node("activityApp");
-    internal static IUriNode ActivityAttendees { get; } = Node("activityAttendees");
-    internal static IUriNode ActivityBookings { get; } = Node("activityBookings");
-    internal static IUriNode ActivityCause { get; } = Node("activityCause");
-    internal static IUriNode ActivityDeleted { get; } = Node("activityDeleted");
-    internal static IUriNode ActivityDue { get; } = Node("activityDue");
-    internal static IUriNode ActivityEcosystem { get; } = Node("activityEcosystem");
-    internal static IUriNode ActivityEnd { get; } = Node("activityEnd");
-    internal static IUriNode ActivityExternalApplyLink { get; } = Node("activityApplyLink");
-    internal static IUriNode ActivityIsOnline { get; } = Node("allowsRemoteParticipation");
-    internal static IUriNode ActivityIsVolunteerNumberLimited { get; } = Node("activityIsVolunteerNumberLimited");
-    internal static IUriNode ActivityMeeting { get; } = Node("activityMeeting");
-    internal static IUriNode ActivityOrganisation { get; } = Node("activityOrganisation");
-    internal static IUriNode ActivityPublishedApps { get; } = Node("activityPublishedApps");
-    internal static IUriNode ActivityRequirement { get; } = Node("activityRequirement");
-    internal static IUriNode ActivityReward { get; } = Node("activityReward");
-    internal static IUriNode ActivityStart { get; } = Node("activityStart");
-    internal static IUriNode ActivityVolunteers { get; } = Node("activityVolunteers");
-    internal static IUriNode ActivityTitle { get; } = Node("activityLabel");
-    internal static IUriNode ActivityDescription { get; } = Node("activityDescription");
-    internal static IUriNode ActivityType { get; } = Node("activityType");
-    internal static IUriNode ActivityEventType { get; } = Node("activityEventType");
-    internal static IUriNode ActivityLocation { get; } = Node("activityLocation");
-    internal static IUriNode ActivityLocationOption { get; } = Node("activityLocationOption");
-    internal static IUriNode ActivityMeasurementUnit { get; } = Node("activityMeasurementUnit");
-    internal static IUriNode ActivityRegion { get; } = Node("activityRegion");
-
-    // Application
-    internal static IUriNode AppBrandColor { get; } = Node("appBrandColor");
-    internal static IUriNode AppEcosystem { get; } = Node("appEcosystem");
-    internal static IUriNode AppDescription { get; } = Node("appDescription");
-    internal static IUriNode AppLogo { get; } = Node("appLogo");
-    internal static IUriNode AppName { get; } = Node("appName");
-    internal static IUriNode AppOrganization { get; } = Node("appOrganisation");
-
-    // Location
-    internal static IUriNode LocationLabel { get; } = Node("locationLabel");
-    internal static IUriNode LocationType { get; } = Node("locationType");
+    internal static INode Location { get; } = Node("location");
+    internal static INode SessionActivity { get; } = Node("sessionActivity");
     internal static IUriNode Address { get; } = Node("address");
+    internal static IUriNode AllowsRemoteParticipation { get; } = Node("allowsRemoteParticipation");
+    internal static IUriNode ApplyLink { get; } = Node("applyLink");
+    internal static IUriNode Description { get; } = Node("description");
+    internal static IUriNode Label { get; } = Node("label");
     internal static IUriNode Latitude { get; } = Node("latitude");
     internal static IUriNode Longitude { get; } = Node("longitude");
-
-    // Contact
-    internal static IUriNode Email { get; } = Node("email");
-    internal static IUriNode Phone { get; } = Node("contact");
-
-    internal static IUriNode MeasurementUnitCategory { get; } = Node("measurementUnitCategory");
-    internal static IUriNode MeasurementUnitPluralLabel { get; } = Node("measurementUnitPluralLabel");
-    internal static IUriNode MeasurementUnitSingularLabel { get; } = Node("measurementUnitSingularLabel");
-
-    internal static IUriNode OptionDisplayName { get; } = Node("label");
-    internal static IUriNode OptionIcon { get; } = Node("optionIcon");
-    internal static IUriNode OptionApp { get; } = Node("optionApp");
-
-    // Organisation
-    internal static IUriNode OrganizationLocation { get; } = Node("organisationLocation");
-    internal static IUriNode OrganizationLogo { get; } = Node("organisationLogo");
-    internal static IUriNode OrganizationEmail { get; } = Node("email");
-    internal static IUriNode OrganizationPhone { get; } = Node("phone");
-    internal static IUriNode OrganizationDeleted { get; } = Node("organisationDeleted");
-    internal static IUriNode OrganizationDescription { get; } = Node("organisationDescription");
-    internal static IUriNode OrganizationName { get; } = Node("organisationLabel");
-    internal static IUriNode OrganizationPurpose { get; } = Node("purpose");
-    internal static IUriNode OrganizationTos { get; } = Node("organisationTos");
-    internal static IUriNode OrganizationType { get; } = Node("organisationType");
-    internal static IUriNode OrganizationWebsite { get; } = Node("website");
-    internal static IUriNode OrganizationCause { get; } = Node("organisationCause");
-    internal static IUriNode OrganizationContact { get; } = Node("organisationContact");
-
-    // Session
-    internal static INode SessionActivity { get; } = Node("sessionActivity");
-    internal static INode SessionStart{ get; } = Node("sessionStart");
-    internal static INode SessionDue{ get; } = Node("sessionDue");
-    internal static INode SessionEnd{ get; } = Node("sessionEnd");
-    internal static INode SessionApplyLink{ get; } = Node("sessionApplyLink");
-    internal static INode SessionLocation{ get; } = Node("sessionLocation");
+    internal static IUriNode Name { get; } = Node("name");
+    internal static IUriNode Organisation { get; } = Node("organisation");
+    internal static IUriNode OrganizationCause { get; } = Node("cause");
+    internal static IUriNode Requirement { get; } = Node("requirement");
+    internal static IUriNode RoleActivity { get; } = Node("roleActivity");
+    internal static IUriNode Title { get; } = Node("title");
 
     private static IUriNode Node(string name) => AnyNode($"{VocabularyBaseUri}{name}");
 
