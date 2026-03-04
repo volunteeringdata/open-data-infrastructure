@@ -113,6 +113,13 @@ id:schema
     rdfs:label "has organisation"@en ;
 .
 
+:role
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy id:schema ;
+    rdfs:range :Role ;
+    rdfs:label "has role"@en ;
+.
+
 :session
     a owl:ObjectProperty ;
     rdfs:isDefinedBy id:schema ;
@@ -137,6 +144,16 @@ id:schema
     rdfs:domain :Activity ;
     rdfs:range :Organisation ;
     rdfs:label "activity has organisation"@en ;
+.
+
+:activityRole
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy id:schema ;
+    rdfs:subPropertyOf :role ;
+    owl:inverseOf :roleActivity ;
+    rdfs:domain :Activity ;
+    rdfs:range :Role ;
+    rdfs:label "activity has role"@en ;
 .
 
 :activitySession
@@ -187,6 +204,16 @@ id:schema
     rdfs:domain :Organisation ;
     rdfs:range :OrganisationLocation ;
     rdfs:label "organisation has location"@en ;
+.
+
+:roleActivity
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf :role ;
+    rdfs:isDefinedBy id:schema ;
+    owl:inverseOf :activityRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Activity ;
+    rdfs:label "role has activity"@en ;
 .
 
 :sessionActivity
