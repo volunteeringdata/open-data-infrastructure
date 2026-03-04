@@ -9,7 +9,7 @@ prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
 
 
 CONSTRUCT {
-    <Activities> :activities ?activity .
+    <Activities> :activities ?activity_id .
 
     ?activity_id
         :distanceFromSearchLocation ?activity_distance_from_search_location ;
