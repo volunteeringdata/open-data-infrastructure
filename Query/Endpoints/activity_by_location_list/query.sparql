@@ -7,28 +7,7 @@ PREFIX units:           <http://www.opengis.net/def/uom/OGC/1.0/>
 PREFIX spatialF:        <http://jena.apache.org/function/spatial#>
 prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
 
-
-CONSTRUCT {
-    ?activity_id
-        :distanceFromSearchLocation ?activity_distance_from_search_location ;
-        :title ?activity_name ;
-        :description ?activity_description ;
-        :session ?session ;
-        :organisation ?organisation_id ;
-    .
-
-    ?organisation_id
-        :name ?organisation_name ;
-        :description ?organisation_description ;
-        :cause ?cause_id ;
-    .
-
-    ?cause_id
-        :name ?cause_name ;
-    .
-}
-WHERE
-{
+SELECT ?activity_id ?activity_name ?activity_latitude ?activity_longitude ?activity_description ?organisation_name ?organisation_description (xsd:integer(?activity_distance_from_search_location) as ?activity_distance_from_search_location_in_metres) {
     ?session
         :location ?location ;
     .
@@ -46,18 +25,12 @@ WHERE
     BIND(spatialF:distance(?activity_location, ?search_location, units:metre) as ?activity_distance_from_search_location)
 
     ?activity_id
+        :session ?session ;
         :title ?activity_name ;
         :description ?activity_description ;
-        :organisation ?organisation_id ;
-        :session ?session ;
+        :organisation/:name ?organisation_name ;
     .
 
-    ?organisation_id :name ?organisation_name .
-
-    OPTIONAL { ?organisation_id :description ?organisation_description . }
-
-    OPTIONAL {
-        ?organisation_id :cause ?cause_id .
-        OPTIONAL { ?cause_id :name ?cause_name . }
-    }
+    OPTIONAL { ?activity_id :organisation/:description ?organisation_description . }
 }
+ORDER BY ?activity_distance_from_search_location
