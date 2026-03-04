@@ -9,7 +9,7 @@ prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?activity_id ?activity_name ?activity_latitude ?activity_longitude ?activity_description ?organisation_name ?organisation_description (xsd:integer(?activity_distance_from_search_location) as ?activity_distance_from_search_location_in_metres) {
     ?session
-        :sessionLocation ?location ;
+        :location ?location ;
     .
 
     ?location 
@@ -25,11 +25,11 @@ SELECT ?activity_id ?activity_name ?activity_latitude ?activity_longitude ?activ
     BIND(spatialF:distance(?activity_location, ?search_location, units:metre) as ?activity_distance_from_search_location)
 
     ?activity_id
-        :activitySession ?session ;
-        :label ?activity_name ;
-        :activityDescription ?activity_description ;
-        :activityOrganisation/:label ?organisation_name ;
-        :activityOrganisation/:organisationDescription ?organisation_description ;
+        :session ?session ;
+        :title ?activity_name ;
+        :description ?activity_description ;
+        :organisation/:name ?organisation_name ;
+        :organisation/:description ?organisation_description ;
     .
 }
 ORDER BY ?activity_distance_from_search_location
