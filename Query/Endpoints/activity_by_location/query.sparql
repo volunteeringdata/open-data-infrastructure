@@ -13,8 +13,9 @@ CONSTRUCT {
         :distanceFromSearchLocation ?activity_distance_from_search_location ;
         :title ?activity_name ;
         :description ?activity_description ;
-        :session ?session ;
         :organisation ?organisation_id ;
+        :session ?session ;
+        :role ?role_id ;
     .
 
     ?organisation_id
@@ -25,6 +26,26 @@ CONSTRUCT {
 
     ?cause_id
         :name ?cause_name ;
+    .
+
+    ?session
+        :location ?location ;
+    .
+
+    ?location 
+        :latitude ?activity_latitude ;
+        :longitude ?activity_longitude ;
+    .
+
+    ?role_id
+        :title ?role_title ;
+        :description ?role_description ;
+        :applyLink ?role_apply_link ;
+        :requirement ?requirement_id ;
+    .
+
+    ?requirement_id
+        :label ?requirement_label ;
     .
 }
 WHERE
@@ -50,6 +71,7 @@ WHERE
         :description ?activity_description ;
         :organisation ?organisation_id ;
         :session ?session ;
+        :role ?role_id ;
     .
 
     ?organisation_id :name ?organisation_name .
@@ -59,5 +81,13 @@ WHERE
     OPTIONAL {
         ?organisation_id :cause ?cause_id .
         OPTIONAL { ?cause_id :name ?cause_name . }
+    }
+
+    OPTIONAL { ?role_id :title ?role_title . }
+    OPTIONAL { ?role_id :description ?role_description . }
+    OPTIONAL { ?role_id :applyLink ?role_apply_link . }
+    OPTIONAL {
+        ?role_id :requirement ?requirement_id .
+        OPTIONAL { ?requirement_id :label ?requirement_label . }
     }
 }
