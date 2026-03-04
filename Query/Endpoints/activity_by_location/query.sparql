@@ -27,7 +27,7 @@ CONSTRUCT {
     .
 
     ?cause_id
-        :name ?cause_name ;
+        :label ?cause_label ;
     .
 
     ?session
@@ -82,7 +82,7 @@ WHERE
 
     OPTIONAL {
         ?organisation_id :cause ?cause_id .
-        OPTIONAL { ?cause_id :name ?cause_name . }
+        ?cause_id :label ?cause_label .
     }
 
     OPTIONAL { ?role_id :title ?role_title . }
