@@ -93,3 +93,4 @@ WHERE
         OPTIONAL { ?requirement_id :label ?requirement_label . }
     }
 }
+ORDER BY ?activity_distance_from_search_location
