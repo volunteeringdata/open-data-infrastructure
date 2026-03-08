@@ -20,7 +20,7 @@ prefix vann:            <http://purl.org/vocab/vann/>
 
 
 ## Ontology
-id:schema
+<https://ns.volunteeringdata.io/>
     a owl:Ontology ;
     rdfs:isDefinedBy id:schema ;
     dc:issued "2025-11-20"^^xsd:date ;
