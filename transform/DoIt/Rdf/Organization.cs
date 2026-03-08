@@ -16,5 +16,7 @@ public class Organization : GraphWrapperNode
 
     internal string Name { set => this.Overwrite(Vocabulary.Name, value); }
 
+    internal Uri? Website { set => this.Overwrite(Vocabulary.Website, value); }
+
     internal ISet<Concept> Cause { get => this.Objects(Vocabulary.OrganizationCause, Concept.Wrap, Concept.Wrap); }
 }

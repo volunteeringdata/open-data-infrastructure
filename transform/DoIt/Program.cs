@@ -20,6 +20,7 @@ foreach (var source in activities!)
     activity.Organization = Organization.Create(source.Details.Organization.Id.Value, targetGraph);
     activity.Organization.Name = source.Details.Organization.Name;
     activity.Organization.Description = source.Details.Organization.Description;
+    activity.Organization.Website = source.Details.Organization.WebsiteLink;
     activity.Organization.Cause.UnionWith(source.Details.Organization.Causes.Select(c =>
     {
         var option = Concept.Create(c.Id.Value, targetGraph);

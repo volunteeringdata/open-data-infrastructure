@@ -22,6 +22,7 @@ internal class Vocabulary
     internal static IUriNode Requirement { get; } = Node("requirement");
     internal static IUriNode RoleActivity { get; } = Node("roleActivity");
     internal static IUriNode Title { get; } = Node("title");
+    internal static IUriNode Website { get; } = Node("website");
 
     private static IUriNode Node(string name) => AnyNode($"{VocabularyBaseUri}{name}");
 

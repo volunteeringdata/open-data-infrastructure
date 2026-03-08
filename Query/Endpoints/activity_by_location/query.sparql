@@ -23,6 +23,8 @@ CONSTRUCT {
     ?organisation_id
         :name ?organisation_name ;
         :description ?organisation_description ;
+        :website ?organisation_website ;
+        :charityNumber ?organisation_charity_number ;
         :cause ?cause_id ;
     .
 
@@ -79,6 +81,8 @@ WHERE
     ?organisation_id :name ?organisation_name .
 
     OPTIONAL { ?organisation_id :description ?organisation_description . }
+    OPTIONAL { ?organisation_id :website ?organisation_website . }
+    OPTIONAL { ?organisation_id :charityNumber ?organisation_charity_number . }
 
     OPTIONAL {
         ?organisation_id :cause ?cause_id .
