@@ -1,4 +1,4 @@
 ﻿BASE <https://id.volunteeringdata.io/>
-PREFIX : <https://id.volunteeringdata.io/schema/>
+PREFIX : <https://ns.volunteeringdata.io/>
 
 SELECT * { ?organisation_id a :Organisation . }

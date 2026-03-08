@@ -2,7 +2,7 @@
 
 internal class Vocabulary
 {
-    internal const string VocabularyBaseUri = "https://id.volunteeringdata.io/schema/";
+    internal const string VocabularyBaseUri = "https://ns.volunteeringdata.io/";
     internal static Uri InstanceBaseUri => new("https://id.volunteeringdata.io/");
 
     private static readonly NodeFactory Factory = new();

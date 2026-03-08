@@ -1,4 +1,4 @@
-PREFIX : <https://id.volunteeringdata.io/schema/>
+PREFIX : <https://ns.volunteeringdata.io/>
 PREFIX text: <http://jena.apache.org/text#>
 
 CONSTRUCT {

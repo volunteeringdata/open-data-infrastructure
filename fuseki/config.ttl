@@ -1,5 +1,5 @@
 PREFIX : <http://jena.apache.org/fuseki#>
-PREFIX schema: <https://id.volunteeringdata.io/schema/>
+PREFIX schema: <https://ns.volunteeringdata.io/>
 PREFIX ja: <http://jena.hpl.hp.com/2005/11/Assembler#>
 PREFIX tdb2: <http://jena.apache.org/2016/tdb#>
 PREFIX text: <http://jena.apache.org/text#>

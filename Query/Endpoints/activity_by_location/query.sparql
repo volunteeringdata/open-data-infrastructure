@@ -1,7 +1,7 @@
 BASE                    <https://id.volunteeringdata.io/>
 
 PREFIX id:              <https://id.volunteeringdata.io/>
-PREFIX :                <https://id.volunteeringdata.io/schema/>
+PREFIX :                <https://ns.volunteeringdata.io/>
 
 PREFIX units:           <http://www.opengis.net/def/uom/OGC/1.0/>
 PREFIX spatialF:        <http://jena.apache.org/function/spatial#>
