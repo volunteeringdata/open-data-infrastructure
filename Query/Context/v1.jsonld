@@ -13,7 +13,7 @@
         "activity": { "@container": "@set", "@type": "@id" },
         "contact": { "@container": "@set" },
         "location": { "@container": "@set" },
-        "cause": { "@container": "@set", "@embed": "@always" },
-        "requirement": { "@container": "@set", "@embed": "@always" }
+        "cause": { "@embed": "@always" },
+        "requirement": { "@embed": "@always" }
     }
 }
