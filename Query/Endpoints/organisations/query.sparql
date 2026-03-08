@@ -3,8 +3,8 @@ PREFIX : <https://ns.volunteeringdata.io/>
 PREFIX id: <https://id.volunteeringdata.io/>
 
 CONSTRUCT {
+    <Organisations> :organisations ?organisation .
     ?organisation
-        a :Organisation ;
         :name ?organisationLabel ;
         :description ?organisation_description ;
         :website ?organisation_website ;
@@ -19,7 +19,6 @@ CONSTRUCT {
 }
 WHERE {
     ?organisation
-        a :Organisation ;
         :name ?organisation_name ;
         :activity ?activity ;
     .
