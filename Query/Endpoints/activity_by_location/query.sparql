@@ -15,42 +15,36 @@ CONSTRUCT {
         :distanceFromSearchLocation ?activity_distance_from_search_location ;
         :title ?activity_name ;
         :description ?activity_description ;
-        :organisation ?organisation_id ;
+        :organisation ?organisation ;
         :session ?session ;
-        :role ?role_id ;
+        :role ?role ;
     .
 
-    ?organisation_id
+    ?organisation
         :name ?organisation_name ;
         :description ?organisation_description ;
         :website ?organisation_website ;
         :charityNumber ?organisation_charity_number ;
-        :cause ?cause_id ;
+        :cause ?cause ;
     .
 
-    ?cause_id
-        :label ?cause_label ;
-    .
+    ?cause :label ?cause_label .
 
-    ?session
-        :location ?location ;
-    .
+    ?session :location ?location .
 
     ?location 
         :latitude ?activity_latitude ;
         :longitude ?activity_longitude ;
     .
 
-    ?role_id
+    ?role
         :title ?role_title ;
         :description ?role_description ;
         :applyLink ?role_apply_link ;
-        :requirement ?requirement_id ;
+        :requirement ?requirement ;
     .
 
-    ?requirement_id
-        :label ?requirement_label ;
-    .
+    ?requirement :label ?requirement_label .
 }
 WHERE
 {
@@ -73,28 +67,28 @@ WHERE
     ?activity_id
         :title ?activity_name ;
         :description ?activity_description ;
-        :organisation ?organisation_id ;
+        :organisation ?organisation ;
         :session ?session ;
-        :role ?role_id ;
+        :role ?role ;
     .
 
-    ?organisation_id :name ?organisation_name .
+    ?organisation :name ?organisation_name .
 
-    OPTIONAL { ?organisation_id :description ?organisation_description . }
-    OPTIONAL { ?organisation_id :website ?organisation_website . }
-    OPTIONAL { ?organisation_id :charityNumber ?organisation_charity_number . }
+    OPTIONAL { ?organisation :description ?organisation_description . }
+    OPTIONAL { ?organisation :website ?organisation_website . }
+    OPTIONAL { ?organisation :charityNumber ?organisation_charity_number . }
 
     OPTIONAL {
-        ?organisation_id :cause ?cause_id .
-        ?cause_id :label ?cause_label .
+        ?organisation :cause ?cause .
+        ?cause :label ?cause_label .
     }
 
-    OPTIONAL { ?role_id :title ?role_title . }
-    OPTIONAL { ?role_id :description ?role_description . }
-    OPTIONAL { ?role_id :applyLink ?role_apply_link . }
+    OPTIONAL { ?role :title ?role_title . }
+    OPTIONAL { ?role :description ?role_description . }
+    OPTIONAL { ?role :applyLink ?role_apply_link . }
     OPTIONAL {
-        ?role_id :requirement ?requirement_id .
-        OPTIONAL { ?requirement_id :label ?requirement_label . }
+        ?role :requirement ?requirement .
+        ?requirement :label ?requirement_label .
     }
 }
 ORDER BY ?activity_distance_from_search_location

@@ -5,6 +5,7 @@
         "id": "@id",
         "type": "@type",
         "value": "@value",
+        "applyLink": { "@type": "@id" },
         "latitude": { "@type": "http://www.w3.org/2001/XMLSchema#double" },
         "longitude": { "@type": "http://www.w3.org/2001/XMLSchema#double" },
         "organisation": { "@type": "@id" },
