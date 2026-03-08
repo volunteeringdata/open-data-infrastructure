@@ -13,7 +13,7 @@
         "activity": { "@container": "@set", "@type": "@id" },
         "contact": { "@container": "@set" },
         "location": { "@container": "@set" },
-        "cause": { "@container": "@set" },
-        "requirement": { "@container": "@set" }
+        "cause": { "@container": "@set", "label": "" },
+        "requirement": { "@container": "@set", "label": "" }
     }
 }
