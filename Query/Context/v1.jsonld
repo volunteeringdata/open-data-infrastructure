@@ -15,5 +15,7 @@
         "location": { "@container": "@set" },
         "cause": { "@container": "@set" },
         "requirement": { "@container": "@set" }
-    }
+    },
+    "cause": { "@embed": "@always" },
+    "requirement": { "@embed": "@always" }
 }
