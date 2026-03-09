@@ -9,9 +9,9 @@ prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
 
 
 CONSTRUCT {
-    <Activities> :activities ?activity_id .
+    <Activities> :activities ?activity .
 
-    ?activity_id
+    ?activity
         :distanceFromSearchLocation ?activity_distance_from_search_location ;
         :title ?activity_title ;
         :description ?activity_description ;
@@ -68,32 +68,32 @@ WHERE
 
     OPTIONAL { ?location :name ?location_name . }
     OPTIONAL { ?location :address ?location_address . }
-    
-    ?activity_id
-        :title ?activity_title ;
-        :description ?activity_description ;
-        :organisation ?organisation ;
-        :session ?session ;
-        :role ?role ;
-    .
 
-    ?organisation :name ?organisation_name .
+    ?activity :session ?session .
 
-    OPTIONAL { ?organisation :description ?organisation_description . }
-    OPTIONAL { ?organisation :website ?organisation_website . }
-    OPTIONAL { ?organisation :charityNumber ?organisation_charity_number . }
+    OPTIONAL { ?activity :title ?activity_title . }
+
+    OPTIONAL { ?activity :description ?activity_description . }
+
+
+    OPTIONAL { ?location :name ?location_name . }
+    OPTIONAL { ?location :address ?location_address . }
 
     OPTIONAL {
-        ?organisation :cause ?cause .
-        ?cause :label ?cause_label .
+        ?session :time ?time .
+
+        OPTIONAL { ?time :label ?time_label . }
     }
 
-    OPTIONAL { ?role :title ?role_title . }
-    OPTIONAL { ?role :description ?role_description . }
-    OPTIONAL { ?role :applyLink ?role_apply_link . }
     OPTIONAL {
-        ?role :requirement ?requirement .
-        ?requirement :label ?requirement_label .
+        ?activity :role ?role .
+        OPTIONAL { ?role :title ?role_title . }
+        OPTIONAL { ?role :description ?role_description . }
+        OPTIONAL { ?role :applyLink ?role_apply_link . }
+        OPTIONAL {
+            ?role :requirement ?requirement .
+            ?requirement :label ?requirement_label .
+        }
     }
 }
 ORDER BY ?activity_distance_from_search_location
