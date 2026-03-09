@@ -63,10 +63,9 @@ WHERE {
         ?cause :label ?cause_label .
     }
 
-    ?activity
-        :title ?activity_title ;
-        :description ?activity_description ;
-    .
+    ?activity :title ?activity_title .
+
+    OPTIONAL { ?activity :description ?activity_description . }
 
     OPTIONAL {
         ?activity :session ?session .
