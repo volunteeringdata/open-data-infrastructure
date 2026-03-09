@@ -59,6 +59,7 @@ CONSTRUCT {
         a :Role ;
         :title ?role_title ;
         :description ?role_description ;
+        :allowsRemoteParticipation ?role_allows_remote_participation ;
         :applyLink ?role_apply_link ;
         :requirement ?requirement ;
     .
@@ -128,6 +129,7 @@ WHERE
         ?activity :role ?role .
         OPTIONAL { ?role :title ?role_title . }
         OPTIONAL { ?role :description ?role_description . }
+        OPTIONAL { ?role :allowsRemoteParticipation ?role_allows_remote_participation . }
         OPTIONAL { ?role :applyLink ?role_apply_link . }
         OPTIONAL {
             ?role :requirement ?requirement .
