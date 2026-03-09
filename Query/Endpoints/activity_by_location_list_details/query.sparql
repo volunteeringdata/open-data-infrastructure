@@ -20,7 +20,7 @@ SELECT ?activity_id ?activity_name ?activity_latitude ?activity_longitude ?activ
     BIND(spatialF:convertLatLon(?activity_latitude, ?activity_longitude) as ?activity_location)
     BIND(spatialF:convertLatLon($lat, $lon) as ?search_location)
 
-    FILTER(spatialF:nearby(?activity_location, ?search_location, $within, units:metre))
+    FILTER(spatialF:nearby(?activity_location, ?search_location, $distance, units:metre))
 
     BIND(spatialF:distance(?activity_location, ?search_location, units:metre) as ?activity_distance_from_search_location)
 

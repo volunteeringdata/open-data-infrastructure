@@ -16,7 +16,7 @@ SELECT ?label ?distance {
     BIND(spatialF:convertLatLon(?orgLat, ?orgLon) as ?orgLocation)
     BIND(spatialF:convertLatLon($lat, $lon) as ?myLocation)
 
-    FILTER(spatialF:nearby(?orgLocation, ?myLocation, $within, units:kilometer))
+    FILTER(spatialF:nearby(?orgLocation, ?myLocation, $distance, units:kilometer))
 
     BIND(spatialF:distance(?orgLocation, ?myLocation, units:kilometer) as ?distance)
 }

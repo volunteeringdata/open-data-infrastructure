@@ -41,8 +41,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		:example "-0.118"
 	] ;
 	:parameter [
-		:parameterName "within" ;
-		:parameterDescription "The distance in metres within which to search" ;
+		:parameterName "distance" ;
+		:parameterDescription "The distance radius from the search location in which to search (in metres)" ;
 		:datatype xsd:integer ;
 		:example "1000"
 	] ;
@@ -124,12 +124,6 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 ] .
 
 [
-	:path "organisations" ;
-	:endpointName "All organisations" ;
-	:endpointDescription "List of volunteer-involving organisations identifiers and their activities identifier and title" ;
-] .
-
-[
 	:path "organisation" ;
 	:endpointName "Organisation by identifier" ;
 	:endpointDescription "" ;
@@ -138,6 +132,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		:parameterDescription "The identifier of the organisation to retrieve. Can be the local part or the full URI of the organisation. E.g. for an organisation with URI http://example.com/1234, use just the last part: 1234" ;
 		:example "68f53f8346b712131f0148e8"
 	] ;
+] .
+
+[
+	:path "organisations" ;
+	:endpointName "All organisations" ;
+	:endpointDescription "List of volunteer-involving organisations identifiers and their activities identifier and title" ;
 ] .
 
 [
@@ -157,8 +157,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		:example "-0.118"
 	] ;
 	:parameter [
-		:parameterName "within" ;
-		:parameterDescription "The distance in metres within which to search" ;
+		:parameterName "distance" ;
+		:parameterDescription "The distance radius from the search location in which to search (in metres)" ;
 		:datatype xsd:integer ;
 		:example "1000"
 	] ;
