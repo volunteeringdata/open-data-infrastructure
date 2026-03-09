@@ -13,7 +13,7 @@ CONSTRUCT {
 
     ?activity_id
         :distanceFromSearchLocation ?activity_distance_from_search_location ;
-        :title ?activity_name ;
+        :title ?activity_title ;
         :description ?activity_description ;
         :organisation ?organisation ;
         :session ?session ;
@@ -70,7 +70,7 @@ WHERE
     OPTIONAL { ?location :address ?location_address . }
     
     ?activity_id
-        :title ?activity_name ;
+        :title ?activity_title ;
         :description ?activity_description ;
         :organisation ?organisation ;
         :session ?session ;

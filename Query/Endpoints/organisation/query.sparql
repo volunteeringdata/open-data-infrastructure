@@ -15,7 +15,35 @@ CONSTRUCT {
 
     ?cause :label ?cause_label .
 
-    ?activity :title ?activity_title .
+    ?activity
+        :title ?activity_title ;
+        :description ?activity_description ;
+        :session ?session ;
+        :role ?role ;
+    .
+
+    ?session
+        :location ?location ;
+        :time ?time ;
+    .
+
+    ?location
+        :name ?location_name ;
+        :address ?location_address ;
+        :latitude ?activity_latitude ;
+        :longitude ?activity_longitude ;
+    .
+
+    ?time :label ?time_label .
+
+    ?role
+        :title ?role_title ;
+        :description ?role_description ;
+        :applyLink ?role_apply_link ;
+        :requirement ?requirement ;
+    .
+
+    ?requirement :label ?requirement_label .
 }
 WHERE {
     FILTER(?organisation = IRI($id))
@@ -35,5 +63,39 @@ WHERE {
         ?cause :label ?cause_label .
     }
 
-    ?activity :title ?activity_title .
+    ?activity
+        :title ?activity_title ;
+        :description ?activity_description ;
+    .
+
+    OPTIONAL {
+        ?activity :session ?session .
+        OPTIONAL {
+            ?session :location ?location .
+
+            ?location 
+                :latitude ?activity_latitude ;
+                :longitude ?activity_longitude ;
+            .
+
+            OPTIONAL { ?location :name ?location_name . }
+            OPTIONAL { ?location :address ?location_address . }
+        }
+        OPTIONAL {
+            ?session :time ?time .
+
+            OPTIONAL { ?time :label ?time_label . }
+        }
+    }
+
+    OPTIONAL {
+        ?activity :role ?role .
+        OPTIONAL { ?role :title ?role_title . }
+        OPTIONAL { ?role :description ?role_description . }
+        OPTIONAL { ?role :applyLink ?role_apply_link . }
+        OPTIONAL {
+            ?role :requirement ?requirement .
+            ?requirement :label ?requirement_label .
+        }
+    }
 }
