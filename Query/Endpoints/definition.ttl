@@ -124,24 +124,18 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 ] .
 
 [
-	:path "organisation" ;
+	:path "organisations" ;
 	:endpointName "All organisations" ;
-	:endpointDescription "List of volunteering involving organisations identifiers and their labels" ;
+	:endpointDescription "List of volunteer-involving organisations identifiers and their activities identifier and title" ;
 ] .
 
 [
-	:path "organisation_all" ;
-	:endpointName "All organisations data" ;
-	:endpointDescription "All volunteering involving organisations with details, that is, all the data associated with VIOs" ;
-] .
-
-[
-	:path "organisation_by_id" ;
+	:path "organisation" ;
 	:endpointName "Organisation by identifier" ;
 	:endpointDescription "" ;
 	:parameter [
 		:parameterName "id" ;
-		:parameterDescription "The identifier of the activity to retrieve. Should be the local part of the full URI of the activity. E.g. for an activity with URI http://example.com/1234, use just the last part: 1234" ;
+		:parameterDescription "The identifier of the organisation to retrieve. Can be the local part or the full URI of the organisation. E.g. for an organisation with URI http://example.com/1234, use just the last part: 1234" ;
 		:example "68f53f8346b712131f0148e8"
 	] ;
 ] .

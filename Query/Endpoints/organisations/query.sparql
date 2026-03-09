@@ -4,8 +4,10 @@ PREFIX id: <https://id.volunteeringdata.io/>
 
 CONSTRUCT {
     <Organisations> :organisations ?organisation .
+
     ?organisation
-        :name ?organisationLabel ;
+        a :Organisation ;
+        :name ?organisation_name ;
         :description ?organisation_description ;
         :website ?organisation_website ;
         :charityNumber ?organisation_charity_number ;
@@ -19,11 +21,9 @@ CONSTRUCT {
 }
 WHERE {
     ?organisation
+        a :Organisation ;
         :name ?organisation_name ;
-        :activity ?activity ;
     .
-
-    ?activity :title ?activity_title .
 
     OPTIONAL { ?organisation :description ?organisation_description . }
     OPTIONAL { ?organisation :website ?organisation_website . }
@@ -33,4 +33,6 @@ WHERE {
         ?organisation :cause ?cause .
         ?cause :label ?cause_label .
     }
+
+    ?activity :title ?activity_title .
 }
