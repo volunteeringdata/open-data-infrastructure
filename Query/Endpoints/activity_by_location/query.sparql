@@ -75,11 +75,6 @@ WHERE
         :organisation ?organisation ;
     .
 
-    ?activity
-        :title ?activity_title ;
-        :organisation ?organisation ;
-    .
-
     ?organisation :name ?organisation_name .
 
     OPTIONAL { ?organisation :description ?organisation_description . }
