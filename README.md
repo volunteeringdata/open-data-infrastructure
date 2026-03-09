@@ -135,14 +135,14 @@ Organisations:
 - https://api.volunteeringdata.io/organisation_by_name?name=green~
 - https://api.volunteeringdata.io/organisation_by_id?id=68764a5c8e328c6f50449046
 - https://api.volunteeringdata.io/organisation_list.html
-- https://api.volunteeringdata.io/organisation_by_location.html?lat=51.509&lon=-0.118&within=10
+- https://api.volunteeringdata.io/organisation_by_location.html?lat=51.509&lon=-0.118&distance=10
 - https://api.volunteeringdata.io/organisation_search.html?query=technology
 
 Activities:
 - https://api.volunteeringdata.io/activity_count.html
 - https://api.volunteeringdata.io/activity_by_name?name=green~
 - https://api.volunteeringdata.io/activity_by_id?id=670d3d31919ca4dbd11aa03d
-- https://api.volunteeringdata.io/activity_by_location.html?lat=51.509&lon=-0.118&within=10
+- https://api.volunteeringdata.io/activity_by_location.html?lat=51.509&lon=-0.118&distance=10
 - https://api.volunteeringdata.io/activity_search.html?query=technology
 
 Taxonomy:

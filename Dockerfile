@@ -145,13 +145,15 @@ ADD ./data/doit/data.ttl .
 
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE data.ttl
 
-ADD ./vocabulary/vocabulary.ttl .
+ADD ./vocabulary/activity.ttl .
 ADD ./vocabulary/organisation.ttl .
 ADD ./vocabulary/time.ttl .
+ADD ./vocabulary/vocabulary.ttl .
 
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE vocabulary.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE activity.ttl
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE organisation.ttl
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE time.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE vocabulary.ttl
 
 ADD ./fuseki/config.ttl .
 

@@ -69,9 +69,27 @@ WHERE
     OPTIONAL { ?location :name ?location_name . }
     OPTIONAL { ?location :address ?location_address . }
 
-    ?activity :session ?session .
+    ?activity
+        :session ?session ;
+        :title ?activity_title ;
+        :organisation ?organisation ;
+    .
 
-    OPTIONAL { ?activity :title ?activity_title . }
+    ?activity
+        :title ?activity_title ;
+        :organisation ?organisation ;
+    .
+
+    ?organisation :name ?organisation_name .
+
+    OPTIONAL { ?organisation :description ?organisation_description . }
+    OPTIONAL { ?organisation :website ?organisation_website . }
+    OPTIONAL { ?organisation :charityNumber ?organisation_charity_number . }
+
+    OPTIONAL {
+        ?organisation :cause ?cause .
+        ?cause :label ?cause_label .
+    }
 
     OPTIONAL { ?activity :description ?activity_description . }
 
