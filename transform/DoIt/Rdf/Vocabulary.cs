@@ -14,14 +14,18 @@ internal class Vocabulary
     internal static IUriNode ApplyLink { get; } = Node("applyLink");
     internal static IUriNode Description { get; } = Node("description");
     internal static IUriNode Label { get; } = Node("label");
+    internal static IUriNode Name { get; } = Node("name");
+    internal static IUriNode Title { get; } = Node("title");
     internal static IUriNode Latitude { get; } = Node("latitude");
     internal static IUriNode Longitude { get; } = Node("longitude");
-    internal static IUriNode Name { get; } = Node("name");
     internal static IUriNode Organisation { get; } = Node("activityOrganisation");
-    internal static IUriNode OrganizationCause { get; } = Node("cause");
+    internal static IUriNode OrganisationName { get; } = Node("organisationName");
+    internal static IUriNode OrganisationDescription { get; } = Node("organisationDescription");
+    internal static IUriNode OrganisationCause { get; } = Node("cause");
     internal static IUriNode Requirement { get; } = Node("requirement");
     internal static IUriNode RoleActivity { get; } = Node("roleActivity");
-    internal static IUriNode Title { get; } = Node("title");
+    internal static IUriNode ActivityTitle { get; } = Node("activityTitle");
+    internal static IUriNode ActivityDescription { get; } = Node("activityDescription");
     internal static IUriNode Website { get; } = Node("website");
 
     private static IUriNode Node(string name) => AnyNode($"{VocabularyBaseUri}{name}");

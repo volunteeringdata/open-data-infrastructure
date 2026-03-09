@@ -3,28 +3,28 @@ PREFIX text: <http://jena.apache.org/text#>
 
 CONSTRUCT {
 	?activity
-		:activityLabel ?activityLabel ;
+		:activityTitle ?activityTitle ;
 		:activityDescription ?activityDescription ;
 		:activityOrganisation ?organisation ;
 	.
 
 	?organisation 
-		:organisationLabel ?organisationLabel ;
+		:organisationName ?organisationName ;
 		:organisationDescription ?organisationDescription ;
 	.
 }
 WHERE {
-	(?activity ?activity_search_score) text:query (:activityDescription :activityLabel $activityQuery) .
-	(?organisation ?organisation_search_score) text:query (:organisationDescription :organisationLabel $organisationQuery) .
+	(?activity ?activity_search_score) text:query (:activityDescription :activityTitle $activityQuery) .
+	(?organisation ?organisation_search_score) text:query (:organisationDescription :organisationName $organisationQuery) .
 
 	?activity
-		:activityLabel ?activityLabel ;
+		:activityTitle ?activityTitle ;
 		:activityDescription ?activityDescription ;
 		:activityOrganisation ?organisation ;
 	.
 
 	?organisation 
-		:organisationLabel ?organisationLabel ;
+		:organisationName ?organisationName ;
 		:organisationDescription ?organisationDescription ;
 	.
 }

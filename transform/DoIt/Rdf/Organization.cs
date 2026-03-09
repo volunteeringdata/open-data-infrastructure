@@ -12,11 +12,11 @@ public class Organization : GraphWrapperNode
 
     internal static Organization Create(string uri, IGraph g) => Wrap(g.CreateUriNode(g.UriFactory.Create(Vocabulary.InstanceBaseUri, uri)), g);
 
-    internal string? Description { set => this.OverwriteNullable(Vocabulary.Description, value); }
+    internal string Name { set => this.Overwrite(Vocabulary.OrganisationName, value); }
 
-    internal string Name { set => this.Overwrite(Vocabulary.Name, value); }
+    internal string? Description { set => this.OverwriteNullable(Vocabulary.OrganisationDescription, value); }
 
     internal Uri? Website { set => this.Overwrite(Vocabulary.Website, value); }
 
-    internal ISet<Concept> Cause { get => this.Objects(Vocabulary.OrganizationCause, Concept.Wrap, Concept.Wrap); }
+    internal ISet<Concept> Cause { get => this.Objects(Vocabulary.OrganisationCause, Concept.Wrap, Concept.Wrap); }
 }

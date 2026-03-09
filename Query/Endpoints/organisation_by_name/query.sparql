@@ -6,11 +6,11 @@ CONSTRUCT {
     <Organisations> :organisations ?organisation .
 
     ?organisation
-        :label ?label ;
+        :organisationName ?name ;
         :indexMatchingScore ?score ;
     .
 }
 WHERE {
-    (?organisation ?score ?value) text:query (:organisationLabel $name) .
-    ?organisation :label ?label .
+    (?organisation ?score ?value) text:query (:organisationName $name) .
+    ?organisation :organisationName ?name .
 }

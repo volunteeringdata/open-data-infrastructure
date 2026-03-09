@@ -20,7 +20,7 @@ public class Activity : GraphWrapperNode
         set => this.Overwrite(Vocabulary.Organisation, value, Organization.Wrap);
     }
 
-    internal string Title { set => this.Overwrite(Vocabulary.Title, value); }
+    internal string Title { set => this.Overwrite(Vocabulary.ActivityTitle, value); }
 
-    internal string? Description { set => this.OverwriteNullable(Vocabulary.Description, value); }
+    internal string? Description { set => this.OverwriteNullable(Vocabulary.ActivityDescription, value); }
 }

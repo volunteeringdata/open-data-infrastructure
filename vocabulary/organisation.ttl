@@ -1,0 +1,91 @@
+# Volunteering vocabulary
+
+## Namespaces
+### Ontology Base URI
+prefix id:              <https://id.volunteeringdata.io/>
+prefix :                <https://ns.volunteeringdata.io/>
+
+### Core W3C ontologies (OWL 2 reserved vocabulary)
+prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#>
+prefix owl:             <http://www.w3.org/2002/07/owl#>
+prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
+
+### Other namespaces used
+prefix dc:              <http://purl.org/dc/terms/>
+prefix skos:            <http://www.w3.org/2004/02/skos/core#>
+prefix time:            <http://www.w3.org/2006/time#>
+prefix vcard:           <http://www.w3.org/2006/vcard/ns#>
+prefix vann:            <http://purl.org/vocab/vann/>
+
+
+# Class
+:Organisation
+    a owl:Class ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Volunteer-Involving Organisation"@en ;
+    rdfs:label "Organisation"@en ;
+    rdfs:comment "Any organisation running activities that involve volunteers."@en ;
+.
+
+# Object Properties
+:organisation
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:range :Organisation ;
+    rdfs:label "has organisation"@en ;
+.
+
+:organisationActivity
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :activity ;
+    owl:inverseOf :activityOrganisation ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Activity ;
+    rdfs:label "organisation has activity"@en ;
+.
+
+:organisationCause
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :cause ;
+    owl:inverseOf :causeOrganisation ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Cause ;
+    rdfs:label "organisation has charitable cause"@en ;
+.
+
+
+# Datatype Properties
+:organisationName
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :name ;
+    rdfs:domain :Organisation ;
+    rdfs:label "organisation has name"@en ;
+.
+
+:organisationDescription
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :description ;
+    rdfs:domain :Organisation ;
+    rdfs:label "organisation has description"@en ;
+.
+
+:organisationWebsite
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :website ;
+    rdfs:domain :Organisation ;
+    rdfs:label "organisation has website"@en ;
+.
+
+:organisationCharityNumber
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :charityNumber ;
+    rdfs:domain :Organisation ;
+    rdfs:label "organisation has charity number"@en ;
+.
