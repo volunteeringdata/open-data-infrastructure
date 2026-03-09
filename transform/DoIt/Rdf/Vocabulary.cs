@@ -17,7 +17,7 @@ internal class Vocabulary
     internal static IUriNode Latitude { get; } = Node("latitude");
     internal static IUriNode Longitude { get; } = Node("longitude");
     internal static IUriNode Name { get; } = Node("name");
-    internal static IUriNode Organisation { get; } = Node("organisation");
+    internal static IUriNode Organisation { get; } = Node("activityOrganisation");
     internal static IUriNode OrganizationCause { get; } = Node("cause");
     internal static IUriNode Requirement { get; } = Node("requirement");
     internal static IUriNode RoleActivity { get; } = Node("roleActivity");

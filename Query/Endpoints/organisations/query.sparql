@@ -23,6 +23,7 @@ WHERE {
     ?organisation
         a :Organisation ;
         :name ?organisation_name ;
+        :activity ?activity ;
     .
 
     OPTIONAL { ?organisation :description ?organisation_description . }
