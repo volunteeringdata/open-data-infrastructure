@@ -12,15 +12,18 @@ CONSTRUCT {
     <Activities> :activities ?activity .
 
     ?activity
+        a :Activity ;
         :distanceFromSearchLocation ?activity_distance_from_search_location ;
         :title ?activity_title ;
         :description ?activity_description ;
+        :requiresEmergencyParticipation ?activity_requires_emergency_participation ;
         :organisation ?organisation ;
         :session ?session ;
         :role ?role ;
     .
 
     ?organisation
+        a :Organisation ;
         :name ?organisation_name ;
         :description ?organisation_description ;
         :website ?organisation_website ;
@@ -28,25 +31,47 @@ CONSTRUCT {
         :cause ?cause ;
     .
 
-    ?cause :label ?cause_label .
+    ?cause
+        a :Cause ;
+        :label ?cause_label ;
+    .
 
-    ?session :location ?location .
+    ?session
+        a :Session ;
+        :location ?location ;
+        :time ?time ;
+    .
 
     ?location
+        a :Location ;
         :name ?location_name ;
         :address ?location_address ;
         :latitude ?activity_latitude ;
         :longitude ?activity_longitude ;
     .
 
+    ?time 
+        a :Time ;
+        :label ?time_label ;
+    .
+
     ?role
+        a :Role ;
         :title ?role_title ;
         :description ?role_description ;
         :applyLink ?role_apply_link ;
         :requirement ?requirement ;
     .
 
-    ?requirement :label ?requirement_label .
+    ?requirement
+        a :Requirement ;
+        :label ?requirement_label ;
+    .
+
+    ?skill
+         a :Skill ;
+         :label ?skill_label ;
+    .
 }
 WHERE
 {
@@ -88,6 +113,7 @@ WHERE
 
     OPTIONAL { ?activity :description ?activity_description . }
 
+    OPTIONAL { ?activity :requiresEmergencyParticipation ?activity_requires_emergency_participation . }
 
     OPTIONAL { ?location :name ?location_name . }
     OPTIONAL { ?location :address ?location_address . }
@@ -106,6 +132,10 @@ WHERE
         OPTIONAL {
             ?role :requirement ?requirement .
             ?requirement :label ?requirement_label .
+        }
+        OPTIONAL {
+            ?role :skill ?skill .
+            ?skill :label ?skill_label .
         }
     }
 }
