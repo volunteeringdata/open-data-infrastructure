@@ -78,7 +78,7 @@ SPARQL endpoint accessible at http://localhost:3030/sparql.
 Example Query (URI encode the query and use it as parameter to http://localhost:3030/sparql?query=):
 - Get all activities `CONSTRUCT { ?s <https://ns.volunteeringdata.io/activityTitle> ?o } WHERE { ?s <https://ns.volunteeringdata.io/activityTitle> ?o }`
 - Get all statements `CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }`
-- Get the vocabulary `CONSTRUCT { ?s ?p ?o . } WHERE { ?s ?p ?o ; <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://id.volunteeringdata.io/schema> . }`
+- Get the vocabulary `CONSTRUCT { ?s ?p ?o . } WHERE { ?s ?p ?o ; <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://ns.volunteeringdata.io/> . }`
 
 
 ### Run the API Locally
