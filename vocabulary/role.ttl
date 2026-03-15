@@ -1,0 +1,138 @@
+# Volunteering vocabulary
+
+## Namespaces
+### Ontology Base URI
+prefix :                <https://ns.volunteeringdata.io/>
+
+### Core W3C ontologies (OWL 2 reserved vocabulary)
+prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#>
+prefix owl:             <http://www.w3.org/2002/07/owl#>
+prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
+
+### Other namespaces used
+prefix dc:              <http://purl.org/dc/terms/>
+prefix skos:            <http://www.w3.org/2004/02/skos/core#>
+prefix time:            <http://www.w3.org/2006/time#>
+prefix vcard:           <http://www.w3.org/2006/vcard/ns#>
+prefix vann:            <http://purl.org/vocab/vann/>
+
+
+## Role Class
+:Role
+    a owl:Class ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Role"@en ;
+    rdfs:comment "Any kind of role related to a volunteering activity."@en ;
+    dc:description "Volunteering Role"@en ;
+.
+
+### Object Properties
+:roleAccessibility
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :accessibility ;
+    owl:inverseOf :accessibilityRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Accessibility ;
+    rdfs:label "role has accessibility"@en ;
+.
+
+:roleActivity
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :activity ;
+    owl:inverseOf :activityRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Activity ;
+    rdfs:label "role has activity"@en ;
+.
+
+:roleRequirement
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :requirement ;
+    owl:inverseOf :requirementRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Requirement ;
+    rdfs:label "role has requirement"@en ;
+.
+
+:roleReward
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :reward ;
+    owl:inverseOf :rewardRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Reward ;
+    rdfs:label "role has reward"@en ;
+.
+
+:roleSkill
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :skill ;
+    owl:inverseOf :skillRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Skill ;
+    rdfs:label "role has skill"@en ;
+.
+
+
+### Datatype Properties
+:roleAllowsRemoteParticipation
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :allowsRemoteParticipation ; 
+    rdfs:domain :Role ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "role allows remote participation"@en ;
+.
+
+:roleApplyLink
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :applyLink ;
+    rdfs:domain :Role ;
+    rdfs:label "role has apply link"@en ;
+.
+
+:roleCommitment
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :commitment ;
+    rdfs:domain :Role ;
+    rdfs:label "role has commitment"@en ;
+.
+
+:roleDescription
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :description ;
+    rdfs:domain :Role ;
+    rdfs:label "role has description"@en ;
+.
+
+:roleMaximumAge
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :maximumAge ;
+    rdfs:domain :Role ;
+    rdfs:label "role has maximum age"@en ;
+.
+
+:roleMinimumAge
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :minimumAge ;
+    rdfs:domain :Role ;
+    rdfs:label "role has minimum age"@en ;
+.
+
+:roleTitle
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :title ;
+    rdfs:domain :Role ;
+    rdfs:label "role has title"@en ;
+.

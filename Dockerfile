@@ -145,15 +145,35 @@ ADD ./data/doit/data.ttl .
 
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE data.ttl
 
+ADD ./vocabulary/accessibility.ttl .
 ADD ./vocabulary/activity.ttl .
+ADD ./vocabulary/cause.ttl .
+ADD ./vocabulary/location.ttl .
+ADD ./vocabulary/ontology.ttl .
 ADD ./vocabulary/organisation.ttl .
+ADD ./vocabulary/requirement.ttl .
+ADD ./vocabulary/reward.ttl .
+ADD ./vocabulary/role.ttl .
+ADD ./vocabulary/session.ttl .
+ADD ./vocabulary/shapes.ttl .
+ADD ./vocabulary/skill.ttl .
+ADD ./vocabulary/taxonomy.ttl .
 ADD ./vocabulary/time.ttl .
-ADD ./vocabulary/vocabulary.ttl .
 
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE accessibility.ttl
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE activity.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE cause.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE location.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE ontology.ttl
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE organisation.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE requirement.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE reward.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE role.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE session.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE shapes.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE skill.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE taxonomy.ttl
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE time.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE vocabulary.ttl
 
 ADD ./fuseki/config.ttl .
 

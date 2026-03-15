@@ -1,0 +1,60 @@
+# Volunteering vocabulary
+
+## Namespaces
+### Ontology Base URI
+prefix :                <https://ns.volunteeringdata.io/>
+
+### Core W3C ontologies (OWL 2 reserved vocabulary)
+prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#>
+prefix owl:             <http://www.w3.org/2002/07/owl#>
+prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
+
+### Other namespaces used
+prefix dc:              <http://purl.org/dc/terms/>
+prefix skos:            <http://www.w3.org/2004/02/skos/core#>
+prefix time:            <http://www.w3.org/2006/time#>
+prefix vcard:           <http://www.w3.org/2006/vcard/ns#>
+prefix vann:            <http://purl.org/vocab/vann/>
+
+
+## Class
+:Session
+    a owl:Class ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Session"@en ;
+    rdfs:comment "A session describes a time and place for an activity that involves volunteers."@en ;
+    dc:description "Volunteering Activity Session"@en ;
+.
+
+### Object Properties
+:sessionActivity
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :activity ;
+    owl:inverseOf :activitySession ;
+    rdfs:domain :Session ;
+    rdfs:range :Activity ;
+    rdfs:label "session has activity"@en ;
+.
+
+:sessionLocation
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :location ;
+    owl:inverseOf :locationSession ;
+    rdfs:domain :Session ;
+    rdfs:range :Location ;
+    rdfs:label "session has location"@en ;
+.
+
+:sessionTime
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :time ;
+    owl:inverseOf :timeSession ;
+    rdfs:domain :Session ;
+    rdfs:range :Time ;
+    rdfs:label "session has time"@en ;
+.
+

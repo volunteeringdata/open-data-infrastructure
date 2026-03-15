@@ -2,7 +2,6 @@
 
 ## Namespaces
 ### Ontology Base URI
-prefix id:              <https://id.volunteeringdata.io/>
 prefix :                <https://ns.volunteeringdata.io/>
 
 ### Core W3C ontologies (OWL 2 reserved vocabulary)
@@ -23,19 +22,13 @@ prefix vann:            <http://purl.org/vocab/vann/>
 :Organisation
     a owl:Class ;
     rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
-    rdfs:label "Volunteer-Involving Organisation"@en ;
     rdfs:label "Organisation"@en ;
     rdfs:comment "Any organisation running activities that involve volunteers."@en ;
+    dc:description "Volunteer-Involving Organisation"@en ;
 .
+
 
 # Object Properties
-:organisation
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
-    rdfs:range :Organisation ;
-    rdfs:label "has organisation"@en ;
-.
-
 :organisationActivity
     a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
@@ -72,6 +65,14 @@ prefix vann:            <http://purl.org/vocab/vann/>
     rdfs:subPropertyOf :description ;
     rdfs:domain :Organisation ;
     rdfs:label "organisation has description"@en ;
+.
+
+:organisationImage
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :image ;
+    rdfs:domain :Organisation ;
+    rdfs:label "organisation has image"@en ;
 .
 
 :organisationWebsite

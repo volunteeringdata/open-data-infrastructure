@@ -2,7 +2,6 @@
 
 ## Namespaces
 ### Ontology Base URI
-prefix id:              <https://id.volunteeringdata.io/>
 prefix :                <https://ns.volunteeringdata.io/>
 
 ### Core W3C ontologies (OWL 2 reserved vocabulary)
@@ -19,23 +18,16 @@ prefix vcard:           <http://www.w3.org/2006/vcard/ns#>
 prefix vann:            <http://purl.org/vocab/vann/>
 
 
-# Class
+# Activity Class
 :Activity
     a owl:Class ;
     rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
-    rdfs:label "Volunteering Activity"@en ;
     rdfs:label "Activity"@en ;
     rdfs:comment "Any kind of activity that involves volunteers."@en ;
+    dc:description "Volunteering Activity"@en ;
 .
 
-# Object Properties
-:activity
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
-    rdfs:range :Activity ;
-    rdfs:label "has activity"@en ;
-.
-
+### Object Properties
 :activityOrganisation
     a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
@@ -67,7 +59,7 @@ prefix vann:            <http://purl.org/vocab/vann/>
 .
 
 
-# Datatype Properties
+### Datatype Properties
 :activityTitle
     a owl:DatatypeProperty ;
     rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
@@ -84,10 +76,19 @@ prefix vann:            <http://purl.org/vocab/vann/>
     rdfs:label "activity has description"@en ;
 .
 
-:requiresEmergencyParticipation
+:activityImage
     a owl:DatatypeProperty ;
-    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ; 
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :image ;
+    rdfs:domain :Activity ;
+    rdfs:label "activity has image"@en ;
+.
+
+:activityRequiresEmergencyParticipation
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :requiresEmergencyParticipation ; 
     rdfs:domain :Activity ;
     rdfs:range xsd:boolean ;
-    rdfs:label "requires emergency participation"@en ;
+    rdfs:label "activity requires emergency participation"@en ;
 .
