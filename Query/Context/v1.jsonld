@@ -2,23 +2,27 @@
     "@context": {
         "@base": "https://id.volunteeringdata.io/",
         "@vocab": "https://ns.volunteeringdata.io/",
+        "volunteering": "https://ns.volunteeringdata.io/",
         "id": "@id",
         "type": "@type",
         "value": "@value",
         "applyLink": { "@type": "@id" },
+        "website": { "@type": "@id" },
         "latitude": { "@type": "http://www.w3.org/2001/XMLSchema#double" },
         "longitude": { "@type": "http://www.w3.org/2001/XMLSchema#double" },
         "organisation": { "@type": "@id" },
-        "website": { "@type": "@id" },
         "activity": { "@container": "@set", "@type": "@id" },
-        "contact": { "@container": "@set" },
-        "location": { "@container": "@set" },
+        "session": { "@container": "@set", "@type": "@id" },
+        "location": { "@container": "@set", "@type": "@id" },
         "accessibility": { "@container": "@set", "@type": "@id" },
         "cause": { "@container": "@set", "@type": "@id" },
         "requirement": { "@container": "@set", "@type": "@id" },
         "reward": { "@container": "@set", "@type": "@id" },
         "skill": { "@container": "@set", "@type": "@id" }
     },
+    "accessibility": { "@embed": "@always" },
     "cause": { "@embed": "@always" },
-    "requirement": { "@embed": "@always" }
+    "requirement": { "@embed": "@always" },
+    "reward": { "@embed": "@always" },
+    "skill": { "@embed": "@always" }
 }
