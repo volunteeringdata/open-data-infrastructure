@@ -13,8 +13,11 @@
         "activity": { "@container": "@set", "@type": "@id" },
         "contact": { "@container": "@set" },
         "location": { "@container": "@set" },
-        "cause": { "@container": "@set" },
-        "requirement": { "@container": "@set" }
+        "accessibility": { "@container": "@set", "@type": "@id" },
+        "cause": { "@container": "@set", "@type": "@id" },
+        "requirement": { "@container": "@set", "@type": "@id" },
+        "reward": { "@container": "@set", "@type": "@id" },
+        "skill": { "@container": "@set", "@type": "@id" }
     },
     "cause": { "@embed": "@always" },
     "requirement": { "@embed": "@always" }
