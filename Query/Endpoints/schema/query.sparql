@@ -1,201 +1,214 @@
-BASE <https://id.volunteeringdata.io/>
 # Volunteering vocabulary
 
 ## Namespaces
 ### Ontology Base URI
-prefix id:              <https://id.volunteeringdata.io/>
 prefix :                <https://ns.volunteeringdata.io/>
-
-### Core W3C ontologies (OWL 2 reserved vocabulary)
+prefix dc:              <http://purl.org/dc/terms/>
+prefix geo:             <http://www.w3.org/2003/01/geo/wgs84_pos#>
+prefix geosparql:       <http://www.opengis.net/ont/geosparql#>
+prefix og:              <http://ogp.me/ns#>
+prefix owl:             <http://www.w3.org/2002/07/owl#>
 prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#>
-prefix owl:             <http://www.w3.org/2002/07/owl#>
-prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
-
-### Other namespaces used
-prefix dc:              <http://purl.org/dc/terms/>
 prefix skos:            <http://www.w3.org/2004/02/skos/core#>
 prefix time:            <http://www.w3.org/2006/time#>
 prefix vann:            <http://purl.org/vocab/vann/>
+prefix vcard:           <http://www.w3.org/2006/vcard/ns#>
+prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
+
 
 CONSTRUCT {
-## Ontology
+
 <https://ns.volunteeringdata.io/>
     a owl:Ontology ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Volunteering and Social Action Ontology"@en ;
+    dc:title "Volunteering and Social Action Ontology"@en ;
+    dc:description "Defines a vocabulary to describe volunteering activities, volunteer-involving organisations and volunteering management systems."@en ;
     dc:issued "2025-11-20"^^xsd:date ;
+    owl:versionIRI <https://ns.volunteeringdata.io/> ;
+    owl:versionInfo "2026-03-12" ;
     vann:preferredNamespacePrefix "volunteering" ;
     vann:preferredNamespaceUri "https://ns.volunteeringdata.io/"^^xsd:anyURI ;
-    rdfs:label "Volunteering and Social Action Ontology"@en ;
-    dc:description "Defines a vocabulary to describe volunteering activities, volunteer-involving organisations and volunteering management systems."@en ;
+    rdfs:seeAlso <https://standard.volunteeringdata.io/ontology/> ;
 .
 
 
-## Classes
-:Activity
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:label "Volunteering Activity" ;
-    rdfs:label "Activity"@en ;
-    rdfs:comment "Any kind of activity that involves volunteers."@en ;
-.
-
-:Location
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:label "Volunteering Location" ;
-    rdfs:label "Location"@en ;
-    rdfs:comment "Any location related to volunteering activities."@en ;
-.
-
-:Organisation
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:label "Volunteer-Involving Organisation" ;
-    rdfs:label "Organisation"@en ;
-    rdfs:comment "Any organisation running activities that involve volunteers."@en ;
-.
-
-:Session
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:label "Volunteering Activity Session" ;
-    rdfs:label "Session"@en ;
-    rdfs:comment "A session describes a time and place for an activity that involves volunteers."@en ;
-.
-
-:System
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:label "Volunteering Management System" ;
-    rdfs:label "System"@en ;
-    rdfs:comment "Any system that is used to manage activities that involve volunteers."@en ;
-.
-
-:Time
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:label "Volunteering Time Information" ;
-    rdfs:label "Time"@en ;
-    rdfs:comment "Any time information related to volunteering activities."@en ;
-.
-
-
-## Subclasses
-### Activity Subclasses
-:ActivityThing
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:label "Activity Thing"@en ;
-    rdfs:comment "Any class related to a volunteering activity."@en ;
-.
-
-:ActivitySession
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Session, :ActivityThing ;
-    rdfs:label "Activity Session"@en ;
-    rdfs:comment "Any session related to a volunteering activity."@en ;
-.
-
-### Session Subclasses
-:SessionThing
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:label "Session Thing"@en ;
-    rdfs:comment "Any class related to a volunteering activity session."@en ;
-.
-
-:SessionLocation
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Location, :SessionThing ;
-    rdfs:label "Session Location"@en ;
-    rdfs:comment "Any location information related to a volunteering activity session."@en ;
-.
-
-:SessionTime
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Time, :SessionThing ;
-    rdfs:label "Session Time"@en ;
-    rdfs:comment "Any time information related to a volunteering activity session."@en ;
-.
-
-### Organisation Subclasses
-:OrganisationThing
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:label "Organisation Thing"@en ;
-    rdfs:comment "Any class related to a volunteer involving organisation."@en ;
-.
-
-:OrganisationLocation
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Location, :OrganisationThing ;
-    rdfs:label "Organisation Location"@en ;
-    rdfs:comment "Any location information related to a volunteer involving organisation."@en ;
-.
-
-:OrganisationSystem
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :System, :OrganisationThing ;
-    rdfs:label "Organisation System"@en ;
-    rdfs:comment "Any system related to a volunteer involving organisation."@en ;
-.
-
-
-## Object Properties
+### Object Properties
 :activity
     a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:range :Activity ;
     rdfs:label "has activity"@en ;
 .
 
 :location
     a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf geo:location ;
     rdfs:range :Location ;
     rdfs:label "has location"@en ;
 .
 
 :organisation
     a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:range :Organisation ;
     rdfs:label "has organisation"@en ;
 .
 
+:relatedConcept
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:range skos:Concept ;
+    rdfs:label "has related concept"@en ;
+.
+
+:role
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:range :Role ;
+    rdfs:label "has role"@en ;
+.
+
 :session
     a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:range :Session ;
     rdfs:label "has session"@en ;
 .
 
-:system
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:range :System ;
-    rdfs:label "has system"@en ;
-.
-
 :time
     a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:range :Time ;
     rdfs:label "has time"@en ;
 .
 
 
-## Classification Object Properties
-### Activity
+## Datatype Properties
+:address
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "has address"@en ;
+.
+
+:allowsRemoteParticipation
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "allows remote participation"@en ;
+.
+
+:applyLink
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "has apply link"@en ;
+.
+
+:charityNumber
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "has charity number"@en ;
+.
+
+:commitment
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "has commitment"@en ;
+    rdfs:comment "Free text description of the expected commitment to the role (e.g. 4 hours per week)."@en ;
+.
+
+:description
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf dc:description ;
+    rdfs:label "has description"@en ;
+.
+
+:geometry
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf geosparql:hasGeometry ;
+    rdfs:label "has Geometry"@en ;
+    rdfs:comment "A geometry represents the spatial extent of a location (see OGC GeoSPARQL)."@en ;
+    rdfs:seeAlso <https://opengeospatial.github.io/ogc-geosparql/> ;
+.
+
+:image
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf og:image ;
+    rdfs:label "has Image"@en ;
+    rdfs:comment "An image URL which can be used to present something related to volunteering."@en ;
+    rdfs:seeAlso <https://opengeospatial.github.io/ogc-geosparql/> ;
+.
+
+:latitude
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf geo:lat ;
+    rdfs:label "has latitude"@en ;
+    rdfs:comment "The WGS84 latitude of a SpatialThing in decimal degrees (see WGS84 Geo Positioning)."@en ;
+    rdfs:seeAlso <https://www.w3.org/2003/01/geo/wgs84_pos> ;
+.
+
+:longitude
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf geo:long ;
+    rdfs:label "has longitude"@en ;
+    rdfs:comment "The WGS84 longitude of a SpatialThing in decimal degrees (see WGS84 Geo Positioning)."@en ;
+    rdfs:seeAlso <https://www.w3.org/2003/01/geo/wgs84_pos> ;
+.
+
+:maximumAge
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "has maximum age"@en ;
+.
+
+:minimumAge
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "has minimum age"@en ;
+.
+
+:name
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "has name"@en ;
+.
+
+:requiresEmergencyParticipation
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "requires emergency participation"@en ;
+.
+
+:title
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "has title"@en ;
+.
+
+:website
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "has website"@en ;
+.
+
+:Activity
+    a owl:Class ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Activity"@en ;
+    rdfs:comment "Any kind of activity that involves volunteers."@en ;
+    dc:description "Volunteering Activity"@en ;
+.
+
+### Object Properties
 :activityOrganisation
     a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:subPropertyOf :organisation ;
     owl:inverseOf :organisationActivity ;
     rdfs:domain :Activity ;
@@ -203,19 +216,19 @@ CONSTRUCT {
     rdfs:label "activity has organisation"@en ;
 .
 
-:organisationActivity
+:activityRole
     a owl:ObjectProperty ;
-    rdfs:subPropertyOf :activity ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :activityOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :Activity ;
-    rdfs:label "organisation has activity"@en ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :role ;
+    owl:inverseOf :roleActivity ;
+    rdfs:domain :Activity ;
+    rdfs:range :Role ;
+    rdfs:label "activity has role"@en ;
 .
 
 :activitySession
     a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:subPropertyOf :session ;
     owl:inverseOf :sessionActivity ;
     rdfs:domain :Activity ;
@@ -223,828 +236,1011 @@ CONSTRUCT {
     rdfs:label "activity has session"@en ;
 .
 
+
+### Datatype Properties
+:activityTitle
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :title ;
+    rdfs:domain :Activity ;
+    rdfs:label "activity has title"@en ;
+.
+
+:activityDescription
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :description ;
+    rdfs:domain :Activity ;
+    rdfs:label "activity has description"@en ;
+.
+
+:activityImage
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :image ;
+    rdfs:domain :Activity ;
+    rdfs:label "activity has image"@en ;
+.
+
+:activityRequiresEmergencyParticipation
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :requiresEmergencyParticipation ; 
+    rdfs:domain :Activity ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "activity requires emergency participation"@en ;
+.
+
+:Location
+    a owl:Class ;
+    rdfs:subClassOf geo:SpatialThing, geosparql:SpatialObject ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Location"@en ;
+    rdfs:comment "Any location related to volunteering activities."@en ;
+    dc:description "Volunteering Activity Location"@en ;
+.
+
+
+### Object Properties
+:locationSession
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:domain :Location ;
+    rdfs:range :Session ;
+    rdfs:label "session has location"@en ;
+.
+
+
+### Datatype Properties
+:locationName
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :name ;
+    rdfs:domain :Location ;
+    rdfs:label "location has name"@en ;
+.
+
+:locationAddress
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :address ;
+    rdfs:domain :Location ;
+    rdfs:label "location has address"@en ;
+.
+
+:locationGeometry
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :geometry ;
+    rdfs:domain :Location ;
+    rdfs:label "location has Geometry"@en ;
+.
+
+:locationLatitude
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :latitude ;
+    rdfs:domain :Location ;
+    rdfs:label "location has latitude"@en ;
+.
+
+:locationLongitude
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :longitude ;
+    rdfs:domain :Location ;
+    rdfs:label "location has longitude"@en ;
+.
+
+:Organisation
+    a owl:Class ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Organisation"@en ;
+    rdfs:comment "Any organisation running activities that involve volunteers."@en ;
+    dc:description "Volunteer-Involving Organisation"@en ;
+.
+
+
+# Object Properties
+:organisationActivity
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :activity ;
+    owl:inverseOf :activityOrganisation ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Activity ;
+    rdfs:label "organisation has activity"@en ;
+.
+
+:organisationCause
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :cause ;
+    owl:inverseOf :causeOrganisation ;
+    rdfs:domain :Organisation ;
+    rdfs:range :Cause ;
+    rdfs:label "organisation has charitable cause"@en ;
+.
+
+
+# Datatype Properties
+:organisationName
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :name ;
+    rdfs:domain :Organisation ;
+    rdfs:label "organisation has name"@en ;
+.
+
+:organisationDescription
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :description ;
+    rdfs:domain :Organisation ;
+    rdfs:label "organisation has description"@en ;
+.
+
+:organisationImage
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :image ;
+    rdfs:domain :Organisation ;
+    rdfs:label "organisation has image"@en ;
+.
+
+:organisationWebsite
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :website ;
+    rdfs:domain :Organisation ;
+    rdfs:label "organisation has website"@en ;
+.
+
+:organisationCharityNumber
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :charityNumber ;
+    rdfs:domain :Organisation ;
+    rdfs:label "organisation has charity number"@en ;
+.
+
+:Role
+    a owl:Class ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Role"@en ;
+    rdfs:comment "Any kind of role related to a volunteering activity."@en ;
+    dc:description "Volunteering Role"@en ;
+.
+
+### Object Properties
+:roleAccessibility
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :accessibility ;
+    owl:inverseOf :accessibilityRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Accessibility ;
+    rdfs:label "role has accessibility"@en ;
+.
+
+:roleActivity
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :activity ;
+    owl:inverseOf :activityRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Activity ;
+    rdfs:label "role has activity"@en ;
+.
+
+:roleRequirement
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :requirement ;
+    owl:inverseOf :requirementRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Requirement ;
+    rdfs:label "role has requirement"@en ;
+.
+
+:roleReward
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :reward ;
+    owl:inverseOf :rewardRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Reward ;
+    rdfs:label "role has reward"@en ;
+.
+
+:roleSkill
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :skill ;
+    owl:inverseOf :skillRole ;
+    rdfs:domain :Role ;
+    rdfs:range :Skill ;
+    rdfs:label "role has skill"@en ;
+.
+
+
+### Datatype Properties
+:roleAllowsRemoteParticipation
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :allowsRemoteParticipation ; 
+    rdfs:domain :Role ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "role allows remote participation"@en ;
+.
+
+:roleApplyLink
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :applyLink ;
+    rdfs:domain :Role ;
+    rdfs:label "role has apply link"@en ;
+.
+
+:roleCommitment
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :commitment ;
+    rdfs:domain :Role ;
+    rdfs:label "role has commitment"@en ;
+.
+
+:roleDescription
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :description ;
+    rdfs:domain :Role ;
+    rdfs:label "role has description"@en ;
+.
+
+:roleMaximumAge
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :maximumAge ;
+    rdfs:domain :Role ;
+    rdfs:label "role has maximum age"@en ;
+.
+
+:roleMinimumAge
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :minimumAge ;
+    rdfs:domain :Role ;
+    rdfs:label "role has minimum age"@en ;
+.
+
+:roleTitle
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :title ;
+    rdfs:domain :Role ;
+    rdfs:label "role has title"@en ;
+.
+
+:Session
+    a owl:Class ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Session"@en ;
+    rdfs:comment "A session describes a time and place for an activity that involves volunteers."@en ;
+    dc:description "Volunteering Activity Session"@en ;
+.
+
+### Object Properties
 :sessionActivity
     a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:subPropertyOf :activity ;
-    rdfs:isDefinedBy id:schema ;
     owl:inverseOf :activitySession ;
     rdfs:domain :Session ;
     rdfs:range :Activity ;
     rdfs:label "session has activity"@en ;
 .
 
-### Session
 :sessionLocation
     a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:subPropertyOf :location ;
     owl:inverseOf :locationSession ;
     rdfs:domain :Session ;
-    rdfs:range :SessionLocation ;
+    rdfs:range :Location ;
     rdfs:label "session has location"@en ;
-.
-
-:locationSession
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :session ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :sessionLocation ;
-    rdfs:domain :SessionLocation ;
-    rdfs:range :Session ;
-    rdfs:label "location has session"@en ;
 .
 
 :sessionTime
     a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:subPropertyOf :time ;
     owl:inverseOf :timeSession ;
     rdfs:domain :Session ;
-    rdfs:range :SessionTime ;
+    rdfs:range :Time ;
     rdfs:label "session has time"@en ;
 .
 
+
+:Taxonomy
+    a skos:ConceptScheme ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    skos:hasTopConcept :Accessibility, :Cause, :Requirement, :Reward, :Skill ;
+    rdfs:label "Taxonomy"@en ;
+    dc:title "Volunteering Taxonomy"@en ;
+    dc:description "The taxonomy of concepts related to volunteering activities."@en ;
+.
+
+
+### Super property
+:relatedConcept
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:range :Concept ;
+    rdfs:label "has related concept"@en ;
+.
+
+
+### Object Properties
+:accessbibility
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :relatedConcept ;
+    rdfs:label "has accessibility information"@en ;
+.
+
+:accessibilityRole
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :role ;
+    owl:inverseOf :roleAccessibility ;
+    rdfs:domain :Accessibility ;
+    rdfs:range :Role ;
+    rdfs:label "accessibility information has role"@en ;
+.
+
+:cause
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :relatedConcept ;
+    rdfs:label "has cause"@en ;
+.
+
+:causeOrganisation
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :organisation ;
+    owl:inverseOf :organisationCause ;
+    rdfs:domain :Cause ;
+    rdfs:range :Organisation ;
+    rdfs:label "charitable cause has organisation"@en ;
+.
+
+:requirement
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :relatedConcept ;
+    rdfs:label "has requirement"@en ;
+.
+
+:requirementRole
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :role ;
+    owl:inverseOf :roleRequirement ;
+    rdfs:domain :Requirement ;
+    rdfs:range :Role ;
+    rdfs:label "requirement has role"@en ;
+.
+
+:reward
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :relatedConcept ;
+    rdfs:label "has reward"@en ;
+.
+
+:rewardRole
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :role ;
+    owl:inverseOf :roleReward ;
+    rdfs:domain :Reward ;
+    rdfs:range :Role ;
+    rdfs:label "reward has role"@en ;
+.
+
+:skill
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :relatedConcept ;
+    rdfs:label "has skill"@en ;
+.
+
+:skillRole
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf :role ;
+    owl:inverseOf :roleSkill ;
+    rdfs:domain :Skill ;
+    rdfs:range :Role ;
+    rdfs:label "skill has role"@en ;
+.
+
+:Time
+    a owl:Class ;
+    rdfs:subClassOf time:TemporalEntity ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Time"@en ;
+    rdfs:comment "Any time information related to volunteering activities modeled as a OWL time temporal entity."@en ;
+    dc:description "Volunteering Activity Time Information"@en ;
+.
+
+:WeekdayTimePeriod
+    a owl:Class ;
+    rdfs:subClassOf :Time ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:comment "A predefined time period within a specific day of the week (morning, afternoon or evening)."@en ;
+    rdfs:label "Weekday Time Period"@en ;
+.
+
+### Object Properties
 :timeSession
     a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:subPropertyOf :session ;
-    owl:inverseOf :timeSession ;
-    rdfs:domain :SessionTime ;
+    owl:inverseOf :sessionTime ;
+    rdfs:domain :Time ;
     rdfs:range :Session ;
     rdfs:label "time has session"@en ;
 .
 
-### Organisation
-:organisationLocation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :location ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :locationOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :OrganisationLocation ;
-    rdfs:label "organisation has location"@en ;
+
+## Predefined Temporal Entities
+:MondayMorning
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Monday morning"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Monday ;
+            time:hour "6"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Monday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:locationOrganisation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :organisation ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :organisationLocation ;
-    rdfs:domain :OrganisationLocation ;
-    rdfs:range :Organisation ;
-    rdfs:label "location has organisation"@en ;
+:MondayAfternoon
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Monday afternoon"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Monday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Monday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:organisationSystem
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :system ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :systemOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :OrganisationSystem ;
-    rdfs:label "organisation has system"@en ;
+:MondayEvening
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Monday evening"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Monday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Monday ;
+            time:hour "24"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:systemOrganisation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :organisation ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :organisationSystem ;
-    rdfs:domain :OrganisationSystem ;
-    rdfs:range :Organisation ;
-    rdfs:label "system has organisation"@en ;
+:TuesdayMorning
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Tuesday morning"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Tuesday ;
+            time:hour "6"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Tuesday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-
-## Datatype Properties
-:address
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:domain :Location ;
-    rdfs:label "has address"@en ;
+:TuesdayAfternoon
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Tuesday afternoon"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Tuesday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Tuesday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:allowsRemoteParticipation
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ; 
-    rdfs:domain :Activity ;
-    rdfs:range xsd:boolean ;
-    rdfs:label "allows remote participation" ;
+:TuesdayEvening
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Tuesday evening"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Tuesday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Tuesday ;
+            time:hour "24"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:beginning
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf time:hasBeginning ;
-    rdfs:domain :Time ;
-    rdfs:label "has beginning"@en ;
+:WednesdayMorning
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Wednesday morning"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Wednesday ;
+            time:hour "6"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Wednesday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:description
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf dc:description ;
-    rdfs:label "has description"@en ;
+:WednesdayAfternoon
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Wednesday afternoon"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Wednesday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Wednesday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:activityDescription
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :description ;
-    rdfs:domain :Activity ;
-    rdfs:label "has description"@en ;
+:WednesdayEvening
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Wednesday evening"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Wednesday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Wednesday ;
+            time:hour "24"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:organisationDescription
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :description ;
-    rdfs:domain :Organisation ;
-    rdfs:label "has description"@en ;
+:ThursdayMorning
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Thursday morning"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Thursday ;
+            time:hour "6"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Thursday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:email
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf dc:description ;
-    rdfs:label "has email"@en ;
+:ThursdayAfternoon
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Thursday afternoon"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Thursday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Thursday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:end
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf time:hasEnd ;
-    rdfs:domain :Time ;
-    rdfs:label "has end"@en ;
+:ThursdayEvening
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Thursday evening"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Thursday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Thursday ;
+            time:hour "24"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:label
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf rdfs:label ;
-    rdfs:label "has label"@en ;
+:FridayMorning
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Friday morning"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Friday ;
+            time:hour "6"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Friday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:activityLabel
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :label ;
-    rdfs:domain :Activity ;
-    rdfs:label "has label"@en ;
+:FridayAfternoon
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Friday afternoon"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Friday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Friday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:locationLabel
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :label ;
-    rdfs:domain :Location ;
-    rdfs:label "has label"@en ;
+:FridayEvening
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Friday evening"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Friday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Friday ;
+            time:hour "24"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:organisationLabel
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :label ;
-    rdfs:domain :Organisation ;
-    rdfs:label "has label"@en ;
+:SaturdayMorning
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Saturday morning"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Saturday ;
+            time:hour "6"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Saturday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:latitude
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf rdfs:seeAlso ;
-    rdfs:domain :Location ;
-    rdfs:label "has latitude"@en ;
+:SaturdayAfternoon
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Saturday afternoon"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Saturday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Saturday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:longitude
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:domain :Location ;
-    rdfs:label "has longitude"@en ;
+:SaturdayEvening
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Saturday evening"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Saturday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Saturday ;
+            time:hour "24"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:phone
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:label "has phone number"@en ;
+:SundayMorning
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Sunday morning"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Sunday ;
+            time:hour "6"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Sunday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:purpose
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:domain :Organisation ;
-    rdfs:label "has purpose"@en ;
+:SundayAfternoon
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Sunday afternoon"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Sunday ;
+            time:hour "12"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Sunday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
 
-:requiresEmergencyParticipation
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ; 
-    rdfs:domain :Activity ;
-    rdfs:range xsd:boolean ;
-    rdfs:label "requires emergency participation" ;
+:SundayEvening
+    a time:TemporalEntity, :Time, :WeekdayTimePeriod ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:label "Sunday evening"@en ;
+    time:hasBeginning [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Sunday ;
+            time:hour "18"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
+    time:hasEnd [
+        a time:Instant ;
+        time:inDateTime [
+            a time:GeneralDateTimeDescription ;
+            time:dayOfWeek time:Sunday ;
+            time:hour "24"^^xsd:nonNegativeInteger ;
+            time:minute "0"^^xsd:nonNegativeInteger ;
+            time:second "0"^^xsd:nonNegativeInteger ;
+        ] ;
+    ] ;
 .
-
-:url
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf rdfs:seeAlso ;
-    rdfs:label "has URL"@en ;
-.
-
-:applyLink
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :url ;
-    rdfs:label "has apply link"@en ;
-.
-
-:activityApplyLink
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:domain :Activity ;
-    rdfs:subPropertyOf :applyLink ;
-    rdfs:label "has apply link"@en ;
-.
-
-:organisationApplyLink
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:domain :Organisation ;
-    rdfs:subPropertyOf :applyLink ;
-    rdfs:label "has apply link"@en ;
-.
-
-:sessionApplyLink
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:domain :Session ;
-    rdfs:subPropertyOf :applyLink ;
-    rdfs:label "has apply link"@en ;
-.
-
-:website
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:domain :Organisation ;
-    rdfs:subPropertyOf :url ;
-    rdfs:label "has website"@en ;
-.
-
-
-## Concept Scheme
-### Scheme Properties
-:topConcept
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf skos:hasTopConcept ;
-    rdfs:domain :ConceptScheme ;
-    rdfs:range :Concept ;
-    rdfs:label "has top concept"@en ;
-.
-
-:ConceptScheme
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf skos:ConceptScheme ;
-    :label "Volunteering Concept Scheme"@en ;
-    :description "A taxonomy of concepts related to volunteering activities."@en ;
-    :topConcept :Accessibility, :Cause, :Demography, :Language, :Requirement, :Reward, :Skill ;
-.
-
-:conceptLabel
-    a owl:DatatypeProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :label, skos:prefLabel ;
-    rdfs:domain :Concept ;
-    rdfs:label "concept has preferred label"@en ;
-.
-
-:Concept
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf skos:Concept ;
-    :label "Volunteering Concept"@en ;
-    :description "Any conceptual information related to volunteering activities."@en ;
-.
-
-skos:Concept rdfs:label "SKOS Concept" .
-
-:Accessibility
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Concept ;
-    :conceptLabel "Accessibility"@en ;
-    :description "Any accessibility information related to volunteering activities."@en ;
-.
-
-:Cause
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Concept ;
-    :conceptLabel "Charitable Cause"@en ;
-    :description "Any charitable cause related to volunteering activities."@en ;
-.
-
-:Demography
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Concept ;
-    :conceptLabel "Demographic Target"@en ;
-    :description "Any demographic information related to volunteering activities."@en ;
-.
-
-:Language
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Concept ;
-    :conceptLabel "Language"@en ;
-    :description "Any language related to volunteering activities."@en ;
-.
-
-:Requirement
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Concept ;
-    :conceptLabel "Requirement"@en ;
-    :description "Any requirement related to volunteering activities."@en ;
-.
-
-:Reward
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Concept ;
-    :conceptLabel "Reward"@en ;
-    :description "Any reward related to volunteering activities."@en ;
-.
-
-:Skill
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Concept ;
-    :conceptLabel "Skill"@en ;
-    :description "Any skill related to volunteering activities."@en ;
-.
-
-:ActivityConcept
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Concept ;
-    rdfs:label "Activity Concept"@en ;
-    :description "Any concept related to a volunteering activity."@en ;
-.
-
-:OrganisationConcept
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :Concept ;
-    rdfs:label "Organisation Concept"@en ;
-    rdfs:comment "Any concept related to a volunteer involving organisation."@en .
-
-## Concept Subclasses
-:ActivityAccessibility
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :ActivityConcept ;
-    rdfs:label "Activity Accessibility"@en ;
-.
-
-:ActivityCause
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :ActivityConcept ;
-    rdfs:label "Activity Cause"@en ;
-.
-
-:ActivityDemography
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :ActivityConcept ;
-    rdfs:label "Activity Demography"@en ;
-.
-
-:ActivityLanguage
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :ActivityConcept ;
-    rdfs:label "Activity Language"@en ;
-.
-
-:ActivityRequirement
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :ActivityConcept ;
-    rdfs:label "Activity Requirement"@en ;
-.
-
-:ActivityReward
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :ActivityConcept ;
-    rdfs:label "Activity Reward"@en ;
-.
-
-:ActivitySkill
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :ActivityConcept ;
-    rdfs:label "Activity Skill"@en ;
-.
-
-:OrganisationAccessibility
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :OrganisationConcept ;
-    rdfs:label "Organisation Accessibility"@en ;
-.
-
-:OrganisationCause
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :OrganisationConcept ;
-    rdfs:label "Organisation Cause"@en ;
-.
-
-:OrganisationDemography
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :OrganisationConcept ;
-    rdfs:label "Organisation Demography"@en ;
-.
-
-:OrganisationLanguage
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :OrganisationConcept ;
-    rdfs:label "Organisation Language"@en ;
-.
-
-:OrganisationRequirement
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :OrganisationConcept ;
-    rdfs:label "Organisation Requirement"@en ;
-.
-
-:OrganisationReward
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :OrganisationConcept ;
-    rdfs:label "Organisation Reward"@en ;
-.
-
-:OrganisationSkill
-    a owl:Class ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subClassOf :OrganisationConcept ;
-    rdfs:label "Organisation Skill"@en ;
-.
-
-
-### Concept Object Properties
-:concept
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:range :Concept ;
-    rdfs:label "has concept"@en .
-
-:accessibility
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :concept ;
-    rdfs:range :Accessibility ;
-    rdfs:label "has accessibility information"@en .
-
-:cause
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :concept ;
-    rdfs:range :Cause ;
-    rdfs:label "has charitable cause"@en .
-
-:demography
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :concept ;
-    rdfs:range :Demography ;
-    rdfs:label "has demographic target"@en .
-
-:language
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :concept ;
-    rdfs:range :Language ;
-    rdfs:label "has language"@en .
-
-:requirement
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :concept ;
-    rdfs:range :Requirement ;
-    rdfs:label "has requirement"@en .
-
-:reward
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :concept ;
-    rdfs:range :Reward ;
-    rdfs:label "has reward"@en .
-
-:skill
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :concept ;
-    rdfs:range :Skill ;
-    rdfs:label "has skill"@en .
-
-
-### Concept Classification Object Properties
-:activityConcept
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :concept ;
-    owl:inverseOf :conceptActivity ;
-    rdfs:domain :Activity ;
-    rdfs:range :ActivityConcept ;
-    rdfs:label "activity has concept"@en .
-
-:activityAccessibility
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :activityConcept, :accessibility ;
-    owl:inverseOf :accessibilityActivity ;
-    rdfs:domain :Activity ;
-    rdfs:range :ActivityAccessibility ;
-    rdfs:label "activity has accessibility information"@en .
-
-:activityCause
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :activityConcept, :cause ;
-    owl:inverseOf :causeActivity ;
-    rdfs:domain :Activity ;
-    rdfs:range :ActivityCause ;
-    rdfs:label "activity has cause"@en .
-
-:activityDemography
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :activityConcept, :demography ;
-    owl:inverseOf :demographyActivity ;
-    rdfs:domain :Activity ;
-    rdfs:range :ActivityDemography ;
-    rdfs:label "activity has demography"@en .
-
-:activityLanguage
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :activityConcept, :language ;
-    owl:inverseOf :languageActivity ;
-    rdfs:domain :Activity ;
-    rdfs:range :ActivityLanguage ;
-    rdfs:label "activity has language"@en .
-
-:activityRequirement
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :activityConcept, :requirement ;
-    owl:inverseOf :requirementActivity ;
-    rdfs:domain :Activity ;
-    rdfs:range :ActivityRequirement ;
-    rdfs:label "activity has requirement"@en .
-
-:activityReward
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :activityConcept, :reward ;
-    owl:inverseOf :rewardActivity ;
-    rdfs:domain :Activity ;
-    rdfs:range :ActivityReward ;
-    rdfs:label "activity has reward"@en .
-
-:activitySkill
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :activityConcept, :skill ;
-    owl:inverseOf :skillActivity ;
-    rdfs:domain :Activity ;
-    rdfs:range :ActivitySkill ;
-    rdfs:label "activity has skill"@en .
-
-:conceptActivity
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :activity ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :activityConcept ;
-    rdfs:domain :ActivityConcept ;
-    rdfs:range :Activity ;
-    rdfs:label "concept has activity"@en .
-
-:accessibilityActivity
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :conceptActivity ;
-    owl:inverseOf :activityAccessibility ;
-    rdfs:domain :ActivityAccessibility ;
-    rdfs:range :Activity ;
-    rdfs:label "accessibility information has activity"@en .
-
-:causeActivity
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :conceptActivity ;
-    owl:inverseOf :activityCause ;
-    rdfs:domain :ActivityCause ;
-    rdfs:range :Activity ;
-    rdfs:label "cause has activity"@en .
-
-:demographyActivity
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :conceptActivity ;
-    owl:inverseOf :activityDemography ;
-    rdfs:domain :ActivityDemography ;
-    rdfs:range :Demography ;
-    rdfs:label "demography has activity"@en .
-
-:languageActivity
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :conceptActivity ;
-    owl:inverseOf :activityLanguage ;
-    rdfs:domain :ActivityLanguage ;
-    rdfs:range :Activity ;
-    rdfs:label "language has activity"@en .
-
-:requirementActivity
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :conceptActivity ;
-    owl:inverseOf :activityRequirement ;
-    rdfs:domain :ActivityRequirement ;
-    rdfs:range :Activity ;
-    rdfs:label "requirement has activity"@en .
-
-:rewardActivity
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :conceptActivity ;
-    owl:inverseOf :activityReward ;
-    rdfs:domain :ActivityReward ;
-    rdfs:range :Activity ;
-    rdfs:label "reward has activity"@en .
-
-:skillActivity
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :conceptActivity ;
-    owl:inverseOf :activitySkill ;
-    rdfs:domain :ActivitySkill ;
-    rdfs:range :Activity ;
-    rdfs:label "skill has activity"@en .
-
-:organisationConcept
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :concept ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :conceptOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :OrganisationConcept ;
-    rdfs:label "organisation has concept"@en .
-
-:organisationAccessibility
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :organisationConcept, :accessibility ;
-    owl:inverseOf :accessibilityOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :OrganisationAccessibility ;
-    rdfs:label "organisation has accessibility information"@en .
-
-:organisationCause
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :organisationConcept, :cause ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :causeOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :OrganisationCause ;
-    rdfs:label "organisation has cause"@en .
-
-:organisationDemography
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :organisationConcept, :demography ;
-    owl:inverseOf :demographyOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :OrganisationDemography ;
-    rdfs:label "organisation has demography"@en .
-
-:organisationLanguage
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :organisationConcept, :language ;
-    owl:inverseOf :languageOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :OrganisationLanguage ;
-    rdfs:label "organisation has language"@en .
-
-:organisationRequirement
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :organisationConcept, :requirement ;
-    owl:inverseOf :requirementOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :OrganisationRequirement ;
-    rdfs:label "organisation has requirement"@en .
-
-:organisationReward
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :organisationConcept, :reward ;
-    owl:inverseOf :rewardOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :OrganisationReward ;
-    rdfs:label "organisation has reward"@en .
-
-:organisationSkill
-    a owl:ObjectProperty ;
-    rdfs:isDefinedBy id:schema ;
-    rdfs:subPropertyOf :organisationConcept, :skill ;
-    owl:inverseOf :skillOrganisation ;
-    rdfs:domain :Organisation ;
-    rdfs:range :OrganisationSkill ;
-    rdfs:label "organisation has skill"@en .
-
-:conceptOrganisation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :organisation ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :organisationConcept ;
-    rdfs:domain :OrganisationConcept ;
-    rdfs:range :Organisation ;
-    rdfs:label "concept has organisation"@en .
-
-:accessibilityOrganisation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :conceptOrganisation ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :organisationAccessibility ;
-    rdfs:domain :OrganisationAccessibility ;
-    rdfs:range :Organisation ;
-    rdfs:label "accessibility has organisation"@en .
-
-:causeOrganisation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :conceptOrganisation ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :organisationCause ;
-    rdfs:domain :OrganisationCause ;
-    rdfs:range :Organisation ;
-    rdfs:label "cause has organisation"@en .
-
-:demographyOrganisation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :conceptOrganisation ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :organisationDemography ;
-    rdfs:domain :OrganisationDemography ;
-    rdfs:range :Organisation ;
-    rdfs:label "demography has organisation"@en .
-
-:languageOrganisation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :conceptOrganisation ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :organisationLanguage ;
-    rdfs:domain :OrganisationLanguage ;
-    rdfs:range :Organisation ;
-    rdfs:label "language has organisation"@en .
-
-:requirementOrganisation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :conceptOrganisation ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :organisationRequirement ;
-    rdfs:domain :OrganisationRequirement ;
-    rdfs:range :Organisation ;
-    rdfs:label "requirement has organisation"@en .
-
-:rewardOrganisation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :conceptOrganisation ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :organisationReward ;
-    rdfs:domain :OrganisationReward ;
-    rdfs:range :Organisation ;
-    rdfs:label "reward has organisation"@en .
-
-:skillOrganisation
-    a owl:ObjectProperty ;
-    rdfs:subPropertyOf :conceptOrganisation ;
-    rdfs:isDefinedBy id:schema ;
-    owl:inverseOf :organisationSkill ;
-    rdfs:domain :OrganisationSkill ;
-    rdfs:range :Organisation ;
-    rdfs:label "skill has organisation"@en .
 }
-WHERE {  }
+WHERE {}
