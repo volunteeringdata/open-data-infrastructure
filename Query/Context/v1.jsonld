@@ -4,6 +4,7 @@
         "@vocab": "https://ns.volunteeringdata.io/",
         "volunteering": "https://ns.volunteeringdata.io/",
         "id": "@id",
+        "graph": "@graph",
         "type": "@type",
         "value": "@value",
         "applyLink": { "@type": "@id" },
