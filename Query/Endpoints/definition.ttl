@@ -124,6 +124,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 ] .
 
 [
+	:path "ontology" ;
+	:endpointName "Defined by the volunteering ontology." ;
+	:endpointDescription "All the terms defined by the volunteering ontology." ;
+] .
+
+[
 	:path "organisation" ;
 	:endpointName "Organisation by identifier" ;
 	:endpointDescription "" ;
