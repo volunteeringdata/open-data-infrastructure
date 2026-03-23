@@ -157,6 +157,7 @@ ADD ./vocabulary/role.ttl .
 ADD ./vocabulary/session.ttl .
 ADD ./vocabulary/shapes.ttl .
 ADD ./vocabulary/skill.ttl .
+ADD ./vocabulary/skos.ttl .
 ADD ./vocabulary/taxonomy.ttl .
 ADD ./vocabulary/time.ttl .
 
@@ -172,6 +173,7 @@ RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE role.ttl
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE session.ttl
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE shapes.ttl
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE skill.ttl
+RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE skos.ttl
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE taxonomy.ttl
 RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE time.ttl
 
