@@ -16,6 +16,7 @@ prefix geo:             <http://www.w3.org/2003/01/geo/wgs84_pos#>
 prefix geosparql:       <http://www.opengis.net/ont/geosparql#>
 prefix og:              <http://ogp.me/ns#>
 prefix skos:            <http://www.w3.org/2004/02/skos/core#>
+prefix spdx:            <http://spdx.org/rdf/terms#>
 prefix time:            <http://www.w3.org/2006/time#>
 prefix vcard:           <http://www.w3.org/2006/vcard/ns#>
 prefix vann:            <http://purl.org/vocab/vann/>
@@ -26,11 +27,13 @@ prefix vann:            <http://purl.org/vocab/vann/>
     a owl:Ontology ;
     rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:label "Volunteering and Social Action Ontology"@en ;
+    dc:creator "Matthieu Bosquet" ;
+    dc:contributor "Volunteering Data Standard Working Group", "Calum MacÙisdean" ;
     dc:title "Volunteering and Social Action Ontology"@en ;
     dc:description "Defines a vocabulary to describe volunteering activities, volunteer-involving organisations and volunteering management systems."@en ;
     dc:issued "2025-11-20"^^xsd:date ;
     owl:versionIRI <https://ns.volunteeringdata.io/> ;
-    owl:versionInfo "2026-03-12" ;
+    owl:versionInfo "2026-03-23" ;
     vann:preferredNamespacePrefix "volunteering" ;
     vann:preferredNamespaceUri "https://ns.volunteeringdata.io/"^^xsd:anyURI ;
     rdfs:seeAlso <https://standard.volunteeringdata.io/ontology/> ;
@@ -121,6 +124,14 @@ prefix vann:            <http://purl.org/vocab/vann/>
     rdfs:comment "Free text description of the expected commitment to the role (e.g. 4 hours per week)."@en ;
 .
 
+:conformsTo
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf dc:conformsTo ;
+    rdfs:comment "The standard to which the data about volunteering activities and volunteer involving organisations conforms."@en ;
+    rdfs:label "conforms to"@en ;
+.
+
 :description
     a owl:DatatypeProperty ;
     rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
@@ -155,6 +166,14 @@ prefix vann:            <http://purl.org/vocab/vann/>
     rdfs:seeAlso <https://www.w3.org/2003/01/geo/wgs84_pos> ;
 .
 
+:license
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf spdx:licenseId ;
+    rdfs:comment "The SPDX license identifier for the license associated with data about volunteering activities and volunteer involving organisations."@en ;
+    rdfs:label "has license"@en ;
+.
+
 :longitude
     a owl:DatatypeProperty ;
     rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
@@ -176,10 +195,26 @@ prefix vann:            <http://purl.org/vocab/vann/>
     rdfs:label "has minimum age"@en ;
 .
 
+:modified
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf dc:modified ;
+    rdfs:label "has modified date"@en ;
+    rdfs:comment "The date when the data about volunteering activities and volunteer involving organisations was last modified."@en ;
+.
+
 :name
     a owl:DatatypeProperty ;
     rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
     rdfs:label "has name"@en ;
+.
+
+:publisher
+    a owl:DatatypeProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf dc:publisher ;
+    rdfs:label "has publisher"@en ;
+    rdfs:comment "The publisher of the data about volunteering activities and volunteer involving organisations."@en ;
 .
 
 :requiresEmergencyParticipation
