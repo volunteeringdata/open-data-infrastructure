@@ -1,10 +1,10 @@
 ﻿PREFIX : <https://ns.volunteeringdata.io/>
 PREFIX text: <http://jena.apache.org/text#>
 
-SELECT ?activity_id ?activity_label ?search_match ?search_score
+SELECT ?activity_id ?activity_title ?search_match ?search_score
 WHERE {
-  (?activity_id ?search_score ?search_match) text:query (:activityDescription :activityLabel $query "highlight:s:<mark>|e:</mark>") .
+  (?activity_id ?search_score ?search_match) text:query (:activityDescription :activityTitle $query "highlight:s:<mark>|e:</mark>") .
   
-  ?activity_id :activityLabel ?activity_label .
+  ?activity_id :activityTitle ?activity_title .
 }
 ORDER BY DESC(?search_score)
