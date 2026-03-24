@@ -3,8 +3,6 @@ PREFIX : <https://ns.volunteeringdata.io/>
 PREFIX text: <http://jena.apache.org/text#>
 
 CONSTRUCT {
-    <Organisations> :organisations ?organisation .
-
     ?organisation
         :organisationName ?name ;
         :indexMatchingScore ?score ;
