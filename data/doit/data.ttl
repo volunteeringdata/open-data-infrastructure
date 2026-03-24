@@ -9,20 +9,20 @@ id:64093b512eed5dcadba50889 :cause id:64093b542eed5dcadba50897;
                             :organisationImage <https://s3.eu-west-2.amazonaws.com/doit2.0-production-uploads/OrganizationPicture/4868792e-a31b-4bed-a43c-c209ea90a813_2024-10-15T17:57:01.299Z.jpeg>;
                             :organisationName "Do it";
                             :organisationWebsite <https://doit.life/>.
-id:64093b532eed5dcadba50895 :label "Older people".
-id:64093b542eed5dcadba50897 :label "Community".
-id:64093b542eed5dcadba50899 :label "Crisis and Welfare".
-id:64093b542eed5dcadba5089b :label "Animal welfare".
-id:64093b552eed5dcadba5089d :label "Art and culture".
-id:64093b552eed5dcadba5089f :label "Young People & Children".
-id:64093b552eed5dcadba508a1 :label "Health and social care".
-id:64093b552eed5dcadba508a3 :label "Sustainability, heritage and environment".
-id:64093b562eed5dcadba508a5 :label "+14".
-id:64093b562eed5dcadba508a7 :label "+16".
-id:64093b562eed5dcadba508a9 :label "+18".
-id:64093b572eed5dcadba508ab :label "Own Transport".
-id:64093b572eed5dcadba508ad :label "Must live or work locally".
-id:64093b572eed5dcadba508af :label "Will require references".
+id:64093b532eed5dcadba50895 <http://www.w3.org/2004/02/skos/core#prefLabel> "Older people".
+id:64093b542eed5dcadba50897 <http://www.w3.org/2004/02/skos/core#prefLabel> "Community".
+id:64093b542eed5dcadba50899 <http://www.w3.org/2004/02/skos/core#prefLabel> "Crisis and Welfare".
+id:64093b542eed5dcadba5089b <http://www.w3.org/2004/02/skos/core#prefLabel> "Animal welfare".
+id:64093b552eed5dcadba5089d <http://www.w3.org/2004/02/skos/core#prefLabel> "Art and culture".
+id:64093b552eed5dcadba5089f <http://www.w3.org/2004/02/skos/core#prefLabel> "Young People & Children".
+id:64093b552eed5dcadba508a1 <http://www.w3.org/2004/02/skos/core#prefLabel> "Health and social care".
+id:64093b552eed5dcadba508a3 <http://www.w3.org/2004/02/skos/core#prefLabel> "Sustainability, heritage and environment".
+id:64093b562eed5dcadba508a5 <http://www.w3.org/2004/02/skos/core#prefLabel> "+14".
+id:64093b562eed5dcadba508a7 <http://www.w3.org/2004/02/skos/core#prefLabel> "+16".
+id:64093b562eed5dcadba508a9 <http://www.w3.org/2004/02/skos/core#prefLabel> "+18".
+id:64093b572eed5dcadba508ab <http://www.w3.org/2004/02/skos/core#prefLabel> "Own Transport".
+id:64093b572eed5dcadba508ad <http://www.w3.org/2004/02/skos/core#prefLabel> "Must live or work locally".
+id:64093b572eed5dcadba508af <http://www.w3.org/2004/02/skos/core#prefLabel> "Will require references".
 id:640eda6bbd46497fd3bfe070 :cause id:64093b532eed5dcadba50895;
                             :organisationDescription "Choir";
                             :organisationName "The Dukeries Singers";
@@ -7454,7 +7454,7 @@ id:65b7befedcc4366de5311230 :cause id:64093b532eed5dcadba50895,
                             :organisationDescription "";
                             :organisationImage <https://s3.eu-west-2.amazonaws.com/doit2.0-production-uploads/OrganizationPicture/b2d94adc-ddb7-4955-8438-bda27725e964_2024-04-19T10:11:06.426Z.png>;
                             :organisationName "Mitie ".
-id:65b83004defe4a058207b6a8 :label "Sports".
+id:65b83004defe4a058207b6a8 <http://www.w3.org/2004/02/skos/core#prefLabel> "Sports".
 id:65b8d056381db807e5fb1584 :cause id:64093b552eed5dcadba5089f;
                             :organisationDescription "Girlguiding is the UK’s largest youth organisation dedicated completely to girls.";
                             :organisationImage <https://s3.eu-west-2.amazonaws.com/doit2.0-production-uploads/OrganizationPicture/64bc4cd8-4c62-4877-96b8-919b0847103c_2024-01-30T12:29:24.333Z.png>;
@@ -11197,8 +11197,8 @@ This role requires a DBS check and references.""";
 id:661d7a8b48a32b3f859685af :latitude "53.09"^^xsd:double;
                             :longitude "-3.81"^^xsd:double;
                             :name "North Wales".
-id:661dbb2fc8ab0cb083e72ebe :label "None".
-id:661dbb6ac8ab0cb083e72ebf :label "Background checks".
+id:661dbb2fc8ab0cb083e72ebe <http://www.w3.org/2004/02/skos/core#prefLabel> "None".
+id:661dbb6ac8ab0cb083e72ebf <http://www.w3.org/2004/02/skos/core#prefLabel> "Background checks".
 id:661dbca3d7fe09f499d24ab1 :activityDescription """Job description:
 
 We are seeking passionate and empathetic individuals to join our team as a volunteer Been There mentor. In this online chat-based role, you will have the unique opportunity to make a positive impact on the lives of people struggling with body image issues.
@@ -17877,8 +17877,8 @@ Our activity groups give people 75 and over the chance to do gentle exercise as 
                             :organisationImage <https://s3.eu-west-2.amazonaws.com/doit2.0-production-uploads/OrganizationPicture/f27bf1c7-0e66-4efa-b602-41c02b0c4e78_2024-09-02T08:18:17.041Z.jpeg>;
                             :organisationName "Re-engage";
                             :organisationWebsite <https://reengage.org.uk/>.
-id:66982ffbbf338eca22aa267b :label "Animal welfare".
-id:66982ffbbf338eca22aa267d :label "Community".
+id:66982ffbbf338eca22aa267b <http://www.w3.org/2004/02/skos/core#prefLabel> "Animal welfare".
+id:66982ffbbf338eca22aa267d <http://www.w3.org/2004/02/skos/core#prefLabel> "Community".
 id:66990f590e029152d33e16da :activityDescription """We’re looking for positive and enthusiastic volunteers to support our runners at the Richmond Runfest in Richmond, London on Sunday 14th September. 
 
 As an event day volunteer, you’ll be at our cheer point giving our runners a vital boost by cheering them on.

@@ -12,6 +12,6 @@ public class Concept : GraphWrapperNode
 
     internal static Concept Create(string uri, IGraph g) => Wrap(g.CreateUriNode(g.UriFactory.Create(Vocabulary.InstanceBaseUri, uri)), g);
 
-    internal string Title { set => this.Overwrite(Vocabulary.Label, value); }
-    internal string Description { set => this.Overwrite(Vocabulary.Description, value); }
+    internal string Title { set => this.Overwrite(Vocabulary.SkosPrefLabel, value); }
+    internal string Description { set => this.Overwrite(Vocabulary.SkosDefinition, value); }
 }

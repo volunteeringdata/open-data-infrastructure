@@ -3,6 +3,7 @@
 internal class Vocabulary
 {
     internal const string VocabularyBaseUri = "https://ns.volunteeringdata.io/";
+    internal const string SkosBaseUri = "http://www.w3.org/2004/02/skos/core#";
     internal static Uri InstanceBaseUri => new("https://id.volunteeringdata.io/");
 
     private static readonly NodeFactory Factory = new();
@@ -29,6 +30,8 @@ internal class Vocabulary
     internal static IUriNode ActivityTitle { get; } = Node("activityTitle");
     internal static IUriNode ActivityDescription { get; } = Node("activityDescription");
     internal static IUriNode Website { get; } = Node("website");
+    internal static IUriNode SkosDefinition { get; } = AnyNode($"{SkosBaseUri}definition");
+    internal static IUriNode SkosPrefLabel { get; } = AnyNode($"{SkosBaseUri}prefLabel");
 
     private static IUriNode Node(string name) => AnyNode($"{VocabularyBaseUri}{name}");
 
