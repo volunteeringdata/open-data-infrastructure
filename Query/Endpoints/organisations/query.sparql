@@ -1,38 +1,38 @@
-﻿BASE <https://id.volunteeringdata.io/>
-PREFIX : <https://ns.volunteeringdata.io/>
-PREFIX id: <https://id.volunteeringdata.io/>
+﻿BASE            <https://id.volunteeringdata.io/>
+PREFIX :        <https://ns.volunteeringdata.io/>
+PREFIX id:      <https://id.volunteeringdata.io/>
+prefix skos:    <http://www.w3.org/2004/02/skos/core#>
 
 CONSTRUCT {
-    <Organisations> :organisations ?organisation .
-
     ?organisation
         a :Organisation ;
         :name ?organisation_name ;
         :description ?organisation_description ;
         :website ?organisation_website ;
         :charityNumber ?organisation_charity_number ;
+        :image ?organisation_image ;
         :cause ?cause  ;
         :activity ?activity ;
     .
 
-    ?cause :label ?cause_label .
+    ?cause skos:prefLabel ?cause_label .
 
     ?activity :title ?activity_title .
 }
 WHERE {
     ?organisation
-        a :Organisation ;
-        :name ?organisation_name ;
-        :activity ?activity ;
+        :organisationName ?organisation_name ;
+        :organisationActivity ?activity ;
     .
 
-    OPTIONAL { ?organisation :description ?organisation_description . }
-    OPTIONAL { ?organisation :website ?organisation_website . }
-    OPTIONAL { ?organisation :charityNumber ?organisation_charity_number . }
+    OPTIONAL { ?organisation :organisationDescription ?organisation_description . }
+    OPTIONAL { ?organisation :organisationWebsite ?organisation_website . }
+    OPTIONAL { ?organisation :organisationCharityNumber ?organisation_charity_number . }
+    OPTIONAL { ?organisation :organisationImage ?organisation_image . }
 
     OPTIONAL {
-        ?organisation :cause ?cause .
-        ?cause :label ?cause_label .
+        ?organisation :organisationCause ?cause .
+        ?cause skos:prefLabel ?cause_label .
     }
 
     ?activity :title ?activity_title .

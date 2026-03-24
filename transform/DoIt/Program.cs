@@ -24,6 +24,10 @@ foreach (var source in activities!)
     {
         activity.Organization.Website = websiteLink;
     }
+    if (source.Details.Organization.Logo is Uri logo)
+    {
+        activity.Organization.Image = logo;
+    }
     activity.Organization.Cause.UnionWith(source.Details.Organization.Causes.Select(c =>
     {
         var option = Concept.Create(c.Id.Value, targetGraph);
