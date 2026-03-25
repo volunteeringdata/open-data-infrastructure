@@ -23,6 +23,8 @@ internal class Parameter : GraphWrapperNode
 
     internal string? Example { get => this.Singular(Vocabulary.Example, ValueMappings.As<string>); }
 
+    internal bool Required { get => this.Singular(Vocabulary.Required, ValueMappings.As<bool>, throwWhenMissing: true); }
+
     internal JsonSchemaType JsonSchemaType => DatatypeInternal?.ToString() switch
     {
         null or

@@ -19,7 +19,7 @@ public class DefaultController(QueryService queryService) : ControllerBase
             return NotFound();
         }
 
-        foreach (var item in endpoint.Parameters.Select(p => p.Name).Where(n => !Request.Query.ContainsKey(n)))
+        foreach (var item in endpoint.Parameters.Where(n => n.Required).Select(p => p.Name).Where(n => !Request.Query.ContainsKey(n)))
         {
             ModelState.AddModelError(item, "This query string parameter is required");
         }

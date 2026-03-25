@@ -20,7 +20,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	:parameter [
 		:parameterName "id" ;
 		:parameterDescription "The identifier of the activity to retrieve. Should be the local part of the full URI of the activity. E.g. for an activity with URI http://example.com/1234, use just the last part: 1234" ;
-		:example "68f792b0bf48f6d5969d0ead"
+		:example "68f792b0bf48f6d5969d0ead" ;
+		:required true ;
 	] ;
 ] .
 
@@ -32,19 +33,22 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		:parameterName "lat" ;
 		:parameterDescription "The latitude of the point to search around" ;
 		:datatype xsd:double ;
-		:example "51.509"
+		:example "51.509" ;
+		:required true ;
 	] ;
 	:parameter [
 		:parameterName "lon" ;
 		:parameterDescription "The longitude of the point to search around" ;
 		:datatype xsd:double ;
-		:example "-0.118"
+		:example "-0.118" ;
+		:required true ;
 	] ;
 	:parameter [
 		:parameterName "distance" ;
 		:parameterDescription "The distance radius from the search location in which to search (in metres)" ;
 		:datatype xsd:integer ;
-		:example "1000"
+		:example "1000" ;
+		:required true ;
 	] ;
 ] .
 
@@ -55,7 +59,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	:parameter [
 		:parameterName "name" ;
 		:parameterDescription "The search query to match activity labels against. A Lucene query string." ;
-		:example "Childbirth"
+		:example "Childbirth" ;
+		:required true ;
 	] ;
 ] .
 
@@ -78,7 +83,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	:parameter [
 		:parameterName "query" ;
 		:parameterDescription "The search query to match activities against. A Lucene query string." ;
-		:example "biodiversity"
+		:example "biodiversity" ;
+		:required true ;
 	] ;
 ] .
 
@@ -119,7 +125,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	:parameter [
 		:parameterName "id" ;
 		:parameterDescription "The identifier of something in the system" ;
-		:example "68f5406090268edd4a86435a"
+		:example "68f5406090268edd4a86435a" ;
+		:required true ;
 	] ;
 ] .
 
@@ -130,7 +137,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	:parameter [
 		:parameterName "id" ;
 		:parameterDescription "The identifier of the organisation to retrieve. Can be the local part or the full URI of the organisation. E.g. for an organisation with URI http://example.com/1234, use just the last part: 1234" ;
-		:example "684059665d271835a2253c9d"
+		:example "684059665d271835a2253c9d" ;
+		:required true ;
 	] ;
 ] .
 
@@ -147,7 +155,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	:parameter [
 		:parameterName "name" ;
 		:parameterDescription "The name of the organisation to find" ;
-		:example "green~"
+		:example "green~" ;
+		:required true ;
 	] ;
 ] .
 
@@ -170,7 +179,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 	:parameter [
 		:parameterName "query" ;
 		:parameterDescription "The query to search organisations by" ;
-		:example "network"
+		:example "network" ;
+		:required true ;
 	] ;
 ] .
 
@@ -200,12 +210,14 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		:parameterName "activityQuery" ;
 		:parameterDescription "The search query for activities" ;
 		:datatype xsd:string ;
-		:example "training"
+		:example "training" ;
+		:required true ;
 	] ;
 	:parameter [
 		:parameterName "organisationQuery" ;
 		:parameterDescription "The search query for organisations" ;
 		:datatype xsd:string ;
-		:example "community"
+		:example "community" ;
+		:required true ;
 	] ;
 ] .

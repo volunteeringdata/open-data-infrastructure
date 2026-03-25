@@ -16,6 +16,7 @@ internal class Vocabulary
     internal static IUriNode ParameterDescription { get; } = Node("parameterDescription");
     internal static IUriNode Example { get; } = Node("example");
     internal static IUriNode Datatype { get; } = Node("datatype");
+    internal static IUriNode Required { get; } = Node("required");
 
     private static IUriNode Node(string name) => AnyNode($"{VocabularyBaseUri}{name}");
 

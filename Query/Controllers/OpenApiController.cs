@@ -93,7 +93,7 @@ public partial class OpenApiController() : ControllerBase
                                 Schema = new OpenApiSchema {
                                     Type = p.JsonSchemaType,
                                 },
-                                Required = true,
+                                Required = p.Required,
                                 Example = JsonValue.Create(p.Example),
                             })],
                         Responses = responses
