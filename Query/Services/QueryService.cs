@@ -35,10 +35,12 @@ public class QueryService(HttpClient httpClient, IOptions<QueryServiceOptions> o
 
         foreach (var parameter in endpoint.Parameters)
         {
-            var value = parameters[parameter.Name];
-            var valueNode = factory.CreateLiteralNode(value, parameter.Datatype);
+            if (parameters.TryGetValue(parameter.Name, out var value))
+            {
+                var valueNode = factory.CreateLiteralNode(value, parameter.Datatype);
 
-            sparql.SetVariable(parameter.Name, valueNode);
+                sparql.SetVariable(parameter.Name, valueNode);
+            }
         }
 
         return sparql.ToString();
