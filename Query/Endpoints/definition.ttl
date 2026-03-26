@@ -138,7 +138,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		:parameterName "id" ;
 		:parameterDescription "The identifier of the organisation to retrieve. Can be the local part or the full URI of the organisation. E.g. for an organisation with URI http://example.com/1234, use just the last part: 1234" ;
 		:example "684059665d271835a2253c9d" ;
-		:required true ;
+		:required false ;
 	] ;
 ] .
 

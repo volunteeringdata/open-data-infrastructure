@@ -48,7 +48,7 @@ CONSTRUCT {
     ?requirement skos:prefLabel ?requirement_label .
 }
 WHERE {
-    FILTER(?organisation = IRI($id))
+    BIND(IRI($id) as ?organisation)
 
     ?organisation
         :organisationName ?organisation_name ;
