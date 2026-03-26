@@ -16,6 +16,8 @@ public class ActivityDefinitionSubDocument : Identified
 
     [JsonPropertyName("type")] public required string Type { get; set; }
 
+    [JsonPropertyName("coverImage")] public Uri? CoverImage { get; set; }
+
     [JsonPropertyName("eventType")] public string? EventType { get; set; }
 
     [JsonPropertyName("causeOptions")] public required IEnumerable<OptionItem> Causes { get; set; }

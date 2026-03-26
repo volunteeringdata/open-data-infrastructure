@@ -23,4 +23,6 @@ public class Activity : GraphWrapperNode
     internal string Title { set => this.Overwrite(Vocabulary.ActivityTitle, value); }
 
     internal string? Description { set => this.OverwriteNullable(Vocabulary.ActivityDescription, value); }
+  
+    internal Uri? Image { set => this.OverwriteNullable(Vocabulary.ActivityImage, value); }
 }

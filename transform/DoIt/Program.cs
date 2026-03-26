@@ -28,6 +28,13 @@ foreach (var source in activities!)
     {
         activity.Organization.Image = logo;
     }
+    if (source.Details.CoverImage is Uri coverImage)
+    {
+        if (coverImage.IsAbsoluteUri is true)
+        {
+            activity.Image = coverImage;
+        }
+    }
     activity.Organization.Cause.UnionWith(source.Details.Organization.Causes.Select(c =>
     {
         var option = Concept.Create(c.Id.Value, targetGraph);

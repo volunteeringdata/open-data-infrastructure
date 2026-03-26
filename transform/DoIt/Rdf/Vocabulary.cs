@@ -29,6 +29,7 @@ internal class Vocabulary
     internal static IUriNode RoleActivity { get; } = Node("roleActivity");
     internal static IUriNode ActivityTitle { get; } = Node("activityTitle");
     internal static IUriNode ActivityDescription { get; } = Node("activityDescription");
+    internal static IUriNode ActivityImage { get; } = Node("activityImage");
     internal static IUriNode Website { get; } = Node("website");
     internal static IUriNode SkosDefinition { get; } = AnyNode($"{SkosBaseUri}definition");
     internal static IUriNode SkosPrefLabel { get; } = AnyNode($"{SkosBaseUri}prefLabel");
