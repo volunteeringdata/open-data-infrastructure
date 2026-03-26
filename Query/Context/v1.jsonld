@@ -15,6 +15,7 @@
         "website": { "@type": "@id" },
         "latitude": { "@type": "http://www.w3.org/2001/XMLSchema#double" },
         "longitude": { "@type": "http://www.w3.org/2001/XMLSchema#double" },
+        "geosparql:asWKT": { "@type": "http://www.opengis.net/ont/geosparql#wktLiteral" },
         "organisation": { "@type": "@id" },
         "activity": { "@container": "@set", "@type": "@id" },
         "role": { "@container": "@set", "@type": "@id" },
