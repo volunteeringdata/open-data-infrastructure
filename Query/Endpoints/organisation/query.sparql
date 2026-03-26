@@ -20,6 +20,7 @@ CONSTRUCT {
     ?activity
         :title ?activity_title ;
         :description ?activity_description ;
+        :image ?activity_image ;
         :session ?session ;
         :role ?role ;
     .
@@ -51,6 +52,7 @@ WHERE {
     BIND(IRI($id) as ?organisation)
 
     ?organisation
+        a :Organisation ;
         :organisationName ?organisation_name ;
         :organisationActivity ?activity ;
     .
@@ -68,6 +70,8 @@ WHERE {
     ?activity :title ?activity_title .
 
     OPTIONAL { ?activity :description ?activity_description . }
+
+    OPTIONAL { ?activity :image ?activity_image . }
 
     OPTIONAL {
         ?activity :session ?session .
