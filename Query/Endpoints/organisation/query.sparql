@@ -20,9 +20,10 @@ CONSTRUCT {
     ?activity
         :title ?activity_title ;
         :description ?activity_description ;
+        :requiresEmergencyParticipation ?activity_requires_emergency_participation ;
         :image ?activity_image ;
-        :session ?session ;
         :role ?role ;
+        :session ?session ;
     .
 
     ?session
@@ -70,37 +71,36 @@ WHERE {
     ?activity :title ?activity_title .
 
     OPTIONAL { ?activity :description ?activity_description . }
-
+    OPTIONAL { ?activity :requiresEmergencyParticipation ?activity_requires_emergency_participation . }
     OPTIONAL { ?activity :image ?activity_image . }
 
+    ?activity :role ?role .
+
+    OPTIONAL { ?role :title ?role_title . }
+    OPTIONAL { ?role :description ?role_description . }
+    OPTIONAL { ?role :applyLink ?role_apply_link . }
     OPTIONAL {
-        ?activity :session ?session .
-        OPTIONAL {
-            ?session :location ?location .
+        ?role :requirement ?requirement .
+        ?requirement skos:prefLabel ?requirement_label .
+    }
 
-            ?location 
-                :latitude ?activity_latitude ;
-                :longitude ?activity_longitude ;
-            .
+    ?activity :session ?session .
 
-            OPTIONAL { ?location :name ?location_name . }
-            OPTIONAL { ?location :address ?location_address . }
-        }
-        OPTIONAL {
-            ?session :time ?time .
+    OPTIONAL {
+        ?session :location ?location .
 
-            OPTIONAL { ?time :label ?time_label . }
-        }
+        ?location 
+            :latitude ?activity_latitude ;
+            :longitude ?activity_longitude ;
+        .
+
+        OPTIONAL { ?location :name ?location_name . }
+        OPTIONAL { ?location :address ?location_address . }
     }
 
     OPTIONAL {
-        ?activity :role ?role .
-        OPTIONAL { ?role :title ?role_title . }
-        OPTIONAL { ?role :description ?role_description . }
-        OPTIONAL { ?role :applyLink ?role_apply_link . }
-        OPTIONAL {
-            ?role :requirement ?requirement .
-            ?requirement skos:prefLabel ?requirement_label .
-        }
+        ?session :time ?time .
+
+        OPTIONAL { ?time :label ?time_label . }
     }
 }
