@@ -1,0 +1,335 @@
+# Volunteering vocabulary
+
+## Namespaces
+### Ontology Base URI
+prefix :                <https://ns.volunteeringdata.io/>
+
+### Core W3C ontologies (OWL 2 reserved vocabulary)
+prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#>
+prefix owl:             <http://www.w3.org/2002/07/owl#>
+prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
+
+### Other namespaces used
+prefix dc:              <http://purl.org/dc/terms/>
+prefix skos:            <http://www.w3.org/2004/02/skos/core#>
+prefix time:            <http://www.w3.org/2006/time#>
+prefix vcard:           <http://www.w3.org/2006/vcard/ns#>
+prefix vann:            <http://purl.org/vocab/vann/>
+
+
+## Taxonomy top concept
+:Requirement
+    a skos:Concept ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    skos:topConceptOf :Taxonomy ;
+    skos:prefLabel "Requirement"@en ;
+    skos:definition "Any requirement related to volunteering activities."@en ;
+.
+
+
+## Requirement Category Concepts
+### Assets & Equipment Category
+:AssetsEquipment
+    a skos:Concept ;
+    skos:prefLabel "Assets & Equipment"@en ;
+    skos:definition "Physical items, equipment, vehicles, and assets needed for volunteering activities."@en ;
+    skos:broader :Requirement ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:PersonalEquipment
+    a skos:Concept ;
+    skos:prefLabel "Personal Equipment"@en ;
+    skos:definition "Personal protective equipment and personal items for volunteering."@en ;
+    skos:broader :AssetsEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:SturgyFootwear
+    a skos:Concept ;
+    skos:prefLabel "Sturdy footwear (e.g., boots)"@en ;
+    skos:broader :PersonalEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:WaterproofsWarmLayers
+    a skos:Concept ;
+    skos:prefLabel "Waterproofs and warm layers"@en ;
+    skos:broader :PersonalEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:Gloves
+    a skos:Concept ;
+    skos:prefLabel "Gloves (work gloves, waterproof gloves)"@en ;
+    skos:broader :PersonalEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:HighVisibilityVest
+    a skos:Concept ;
+    skos:prefLabel "High-visibility vest"@en ;
+    skos:broader :PersonalEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:HeadtorchFlashlight
+    a skos:Concept ;
+    skos:prefLabel "Headtorch or flashlight"@en ;
+    skos:broader :PersonalEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:PhonePowerBank
+    a skos:Concept ;
+    skos:prefLabel "Phone + power bank"@en ;
+    skos:broader :PersonalEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:FirstAidKit
+    a skos:Concept ;
+    skos:prefLabel "Small personal first aid kit"@en ;
+    skos:broader :PersonalEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:WaterBottle
+    a skos:Concept ;
+    skos:prefLabel "Water bottle"@en ;
+    skos:broader :PersonalEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:TransportMobilityAssets
+    a skos:Concept ;
+    skos:prefLabel "Transport & Mobility Assets"@en ;
+    skos:definition "Vehicles and transportation capabilities for volunteering."@en ;
+    skos:broader :AssetsEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:FourByFourVehicle
+    a skos:Concept ;
+    skos:prefLabel "4x4 vehicle (personal or organisational)"@en ;
+    skos:broader :TransportMobilityAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:SUVOffRoad
+    a skos:Concept ;
+    skos:prefLabel "SUV or off-road capable vehicle"@en ;
+    skos:broader :TransportMobilityAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:VehicleTowCapability
+    a skos:Concept ;
+    skos:prefLabel "Vehicle with tow capability"@en ;
+    skos:broader :TransportMobilityAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:VanOrPeopleCarrier
+    a skos:Concept ;
+    skos:prefLabel "Access to a van or people-carrier"@en ;
+    skos:broader :TransportMobilityAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:TransportEquipmentSupplies
+    a skos:Concept ;
+    skos:prefLabel "Ability to transport equipment or supplies"@en ;
+    skos:broader :TransportMobilityAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:BicyclesCargoBikes
+    a skos:Concept ;
+    skos:prefLabel "Access to bicycles or cargo bikes"@en ;
+    skos:broader :TransportMobilityAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:Boat
+    a skos:Concept ;
+    skos:prefLabel "Boat"@en ;
+    skos:broader :TransportMobilityAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:Hovercraft
+    a skos:Concept ;
+    skos:prefLabel "Hovercraft"@en ;
+    skos:broader :TransportMobilityAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:SpecialistUsefulAssets
+    a skos:Concept ;
+    skos:prefLabel "Specialist or Useful Assets"@en ;
+    skos:definition "Specialized tools and equipment for specific volunteering activities."@en ;
+    skos:broader :AssetsEquipment ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:WalkieTalkiesRadios
+    a skos:Concept ;
+    skos:prefLabel "Walkie-talkies or radios"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:PortableGenerator
+    a skos:Concept ;
+    skos:prefLabel "Portable generator or power station"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:WaterPump
+    a skos:Concept ;
+    skos:prefLabel "Water pump (for localised flooding help)"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:Tools
+    a skos:Concept ;
+    skos:prefLabel "Tools (shovel, rake, chainsaw, basic toolkit)"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:PortableShelterGazebo
+    a skos:Concept ;
+    skos:prefLabel "Portable shelter/gazebo"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:ThermalBlankets
+    a skos:Concept ;
+    skos:prefLabel "Thermal blankets"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:PPE
+    a skos:Concept ;
+    skos:prefLabel "PPE such as masks, goggles, or waterproof gloves"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:MapsWaterproofMapCases
+    a skos:Concept ;
+    skos:prefLabel "Maps / waterproof map cases"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:LifeJacket
+    a skos:Concept ;
+    skos:prefLabel "Life jacket (for trained flood volunteers)"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:Venue
+    a skos:Concept ;
+    skos:prefLabel "Venue"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:Kitchen
+    a skos:Concept ;
+    skos:prefLabel "Kitchen"@en ;
+    skos:broader :SpecialistUsefulAssets ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+### Community & Environment Knowledge Category
+:CommunityEnvironmentKnowledge
+    a skos:Concept ;
+    skos:prefLabel "Community & Environment Knowledge"@en ;
+    skos:definition "Knowledge and awareness of local community, environment, and support systems."@en ;
+    skos:broader :Requirement ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:LocalRoadsFacilitiesKnowledge
+    a skos:Concept ;
+    skos:prefLabel "Knowledge of local roads, facilities, and resources"@en ;
+    skos:broader :CommunityEnvironmentKnowledge ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:DiverseNeedsAwareness
+    a skos:Concept ;
+    skos:prefLabel "Understanding diverse needs within the community"@en ;
+    skos:broader :CommunityEnvironmentKnowledge ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:LocalSupportServicesAwareness
+    a skos:Concept ;
+    skos:prefLabel "Awareness of local support services"@en ;
+    skos:broader :CommunityEnvironmentKnowledge ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+### Legal Category
+:Legal
+    a skos:Concept ;
+    skos:prefLabel "Legal"@en ;
+    skos:definition "Legal requirements and compliance checks for volunteering."@en ;
+    skos:broader :Requirement ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:IDCheck
+    a skos:Concept ;
+    skos:prefLabel "ID Check"@en ;
+    skos:broader :Legal ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:DBSCheck
+    a skos:Concept ;
+    skos:prefLabel "DBS Check"@en ;
+    skos:broader :Legal ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+### Physical & Practical Readiness Category
+:PhysicalPracticalReadiness
+    a skos:Concept ;
+    skos:prefLabel "Physical & Practical Readiness"@en ;
+    skos:definition "Physical capability and practical preparation requirements for volunteering."@en ;
+    skos:broader :Requirement ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:PhysicalStamina
+    a skos:Concept ;
+    skos:prefLabel "Physical stamina for standing, walking, carrying"@en ;
+    skos:broader :PhysicalPracticalReadiness ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:OutdoorWorkAbility
+    a skos:Concept ;
+    skos:prefLabel "Ability to work outdoors in varied conditions"@en ;
+    skos:broader :PhysicalPracticalReadiness ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.
+
+:PersonalPreparedness
+    a skos:Concept ;
+    skos:prefLabel "Personal preparedness (water, snacks, medication)"@en ;
+    skos:broader :PhysicalPracticalReadiness ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+.

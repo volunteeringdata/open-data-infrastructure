@@ -38,7 +38,7 @@ Both Data and API are continuously deployed via [GitHub actions](./github/workfl
 #### Run automated data transformation for DoIt Data sample
 
 ```zsh
-dotnet run ./data/doit/activities.json ./data/doit/data.ttl --project ./transform/DoIt/
+dotnet run ./transform/DoIt/activities.json ./data/doit-data.ttl --project ./transform/DoIt/
 ```
 
 

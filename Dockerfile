@@ -133,56 +133,12 @@ ENV \
     FUSEKI_DIR="${FUSEKI_DIR}"          \
     JENA_HOME="${JENA_DIR}"
 
-ADD ./data/teamkinetic/organisations.jsonld .
+# Load data
+ADD ./data/*.ttl ./data/
+RUN for file in ./data/*.ttl; do $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE "$file"; done
 
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE organisations.jsonld
-
-ADD ./data/teamkinetic/activities.jsonld .
-
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE activities.jsonld
-
-ADD ./data/doit/data.ttl .
-
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE data.ttl
-
-ADD ./vocabulary/accessibility.ttl .
-ADD ./vocabulary/activity.ttl .
-ADD ./vocabulary/cause.ttl .
-ADD ./vocabulary/geometry_scottish_local_authority.ttl .
-ADD ./vocabulary/location.ttl .
-ADD ./vocabulary/ontology.ttl .
-ADD ./vocabulary/organisation.ttl .
-ADD ./vocabulary/requirement.ttl .
-ADD ./vocabulary/reward.ttl .
-ADD ./vocabulary/role.ttl .
-ADD ./vocabulary/session.ttl .
-ADD ./vocabulary/shapes.ttl .
-ADD ./vocabulary/skill.ttl .
-ADD ./vocabulary/skos.ttl .
-ADD ./vocabulary/taxonomy_scottish_local_authority.ttl .
-ADD ./vocabulary/taxonomy.ttl .
-ADD ./vocabulary/time.ttl .
-
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE accessibility.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE activity.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE cause.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE geometry_scottish_local_authority.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE location.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE ontology.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE organisation.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE requirement.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE reward.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE role.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE session.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE shapes.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE skill.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE skos.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE taxonomy_scottish_local_authority.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE taxonomy.ttl
-RUN $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE time.ttl
-
+# Load indexer config
 ADD ./fuseki/config.ttl .
-
 RUN "$JAVA_HOME/bin/java" -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" jena.textindexer --desc config.ttl
 
 EXPOSE 3030
