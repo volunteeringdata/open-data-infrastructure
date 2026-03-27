@@ -14,6 +14,8 @@
         "image": { "@type": "@id" },
         "website": { "@type": "@id" },
         "registrar": { "@type": "@id" },
+        "publishStart": { "@type": "http://www.w3.org/2001/XMLSchema#date" },
+        "publishEnd": { "@type": "http://www.w3.org/2001/XMLSchema#date" },
         "latitude": { "@type": "http://www.w3.org/2001/XMLSchema#double" },
         "longitude": { "@type": "http://www.w3.org/2001/XMLSchema#double" },
         "geosparql:asWKT": { "@type": "http://www.opengis.net/ont/geosparql#wktLiteral" },
