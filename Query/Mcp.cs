@@ -49,6 +49,7 @@ public static class Mcp
                                     """,
                                     
                                 } as JsonNode)!),
+                            required = endpoint.Parameters.Where(p => p.Required).Select(p => p.Name).ToArray()
                         })
                     }
                 )
