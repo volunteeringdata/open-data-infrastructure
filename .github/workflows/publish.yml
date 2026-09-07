@@ -27,5 +27,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - run: |
-          docker build . -t ghcr.io/open-data-infrastructure/data:latest
-          docker push ghcr.io/open-data-infrastructure/data:latest
+          docker build . -t ghcr.io/${{ github.repository_owner }}/data:latest
+          docker push ghcr.io/${{ github.repository_owner }}/data:latest
