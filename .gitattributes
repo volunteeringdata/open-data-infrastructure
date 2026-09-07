@@ -1,1 +1,21 @@
-Dockerfile text=auto eol=lf
+# Normalize everything to LF in the repo and in the working tree
+# * text=auto eol=lf
+
+# Explicit LF for files that run on Linux (self-documenting, guards edge cases)
+*.json          text eol=lf
+*.jsonld        text eol=lf
+*.md            text eol=lf
+*.properties    text eol=lf
+*.sh            text eol=lf
+*.tfvars        text eol=lf
+*.ttl           text eol=lf
+*.yml           text eol=lf
+.*              text eol=lf
+Dockerfile      text eol=lf
+
+# Windows-native scripts keep CRLF (cmd.exe can choke on LF in labels/goto)
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.cs        text eol=crlf
+*.cshtml    text eol=crlf
+.sln        text eol=crlf
