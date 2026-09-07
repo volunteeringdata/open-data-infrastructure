@@ -3,7 +3,7 @@ name: Build and deploy Data to GitHub Container Registry
 on:
   push:
     branches:
-      - bicep
+      - main
     paths:
       - data/**
       - fuseki/**
