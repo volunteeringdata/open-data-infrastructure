@@ -1,0 +1,48 @@
+name: Build and deploy Query API to Azure Web App
+
+env:
+  AZURE_WEBAPP_NAME: 'volunteeringapitest'
+  AZURE_WEBAPP_PACKAGE_PATH: 'Query/published'
+  DOTNET_VERSION: '10.x'
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - Query/**
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read # This is required for actions/checkout
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Build with dotnet
+        run: dotnet build Query --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish Query --configuration Release --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D41AD83BB7CB4D3A9730E6B1468838E5 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A6500D50CB29447A829054748CA8F425 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_944A9770849E4A38AFEEC66D5A7AF156 }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
