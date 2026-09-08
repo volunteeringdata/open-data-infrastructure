@@ -1,4 +1,4 @@
-name: Build and deploy Query API to Azure Web App
+name: Test Build and deploy Query API to Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: 'volunteeringapitest'
