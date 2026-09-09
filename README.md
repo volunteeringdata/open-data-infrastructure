@@ -91,8 +91,16 @@ The `secrets.json` file should look like this:
 
 ```json
 {
-  "QueryService": {
-    "SparqlEndpointUri": "https://sparql.volunteeringdata.io/sparql"
+  "Proxy": {
+    "Clusters": {
+      "1": {
+        "Destinations": {
+          "1": {
+            "Address": "https://sparql.volunteeringdata.io/"
+          }
+        }
+      }
+    }
   }
 }
 ```
