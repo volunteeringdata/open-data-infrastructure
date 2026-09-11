@@ -36,7 +36,7 @@ public partial class OpenApiController() : ControllerBase
                         .Where(d => d.CanWriteRdfDatasets || d.CanWriteRdf)
                         .Select(d => d.CanonicalMimeType)
                         .Distinct()
-                        .ToDictionary(d => d, d => new OpenApiMediaType()),
+                        .ToDictionary(d => d, d => (IOpenApiMediaType)new OpenApiMediaType()),
                 },
                 [nonGraphResponse] = new OpenApiResponse
                 {
@@ -45,7 +45,7 @@ public partial class OpenApiController() : ControllerBase
                         .Where(d => d.CanWriteSparqlResults)
                         .Select(d => d.CanonicalMimeType)
                         .Distinct()
-                        .ToDictionary(d => d, d => new OpenApiMediaType { }),
+                        .ToDictionary(d => d, d => (IOpenApiMediaType)new OpenApiMediaType { }),
                 },
             },
         },
