@@ -43,6 +43,8 @@ builder.Services.AddOptions<QueryServiceOptions>().BindConfiguration("QueryServi
 
 builder.Services.AddRazorPages();
 
+builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSection("Proxy"));
+
 var app = builder.Build();
 
 app.MapControllers();
@@ -53,5 +55,6 @@ app.UseCors(builder => builder
      .AllowAnyMethod()
      .AllowAnyHeader());
 app.MapRazorPages();
+app.MapReverseProxy();
 
 app.Run();
