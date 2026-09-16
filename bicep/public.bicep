@@ -52,7 +52,11 @@ resource apiSite 'Microsoft.Web/sites@2024-11-01' = {
       appSettings: [
         {
           name: 'QueryService__SparqlEndpointUri'
-          value: 'https://volunteeringtest.azurewebsites.net/sparql'
+          value: 'https://${apiSiteName}.azurewebsites.net/sparql'
+        }
+        {
+          name: 'Proxy__Clusters__1__Destinations__1__Address'
+         value: 'https://${dataSiteName}.azurewebsites.net/'
         }
       ]
     }
