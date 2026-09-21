@@ -1,4 +1,4 @@
-name: Create private infrastructure in Azure
+name: Full private infra desployment
 
 on:
   workflow_dispatch:
