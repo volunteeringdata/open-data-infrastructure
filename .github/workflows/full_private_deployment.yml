@@ -4,11 +4,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    permissions:
-      id-token: write
-      contents: read
-    runs-on: ubuntu-latest
   infra-workflow:
     uses: ./.github/workflows/private_infra.yml
   api-workflow:  
