@@ -1,4 +1,4 @@
-name: Full private infra desployment
+name: Full private infra deployment
 
 on:
   workflow_dispatch:
