@@ -5,13 +5,15 @@ on:
 
 jobs:
   infra-workflow:
+    permissions:
+      id-token: write
+      contents: read
     uses: ./.github/workflows/private_infra.yml
-    permissions:
-      id-token: write
-      contents: read
+    secrets: inherit
   api-workflow:  
-    uses: ./.github/workflows/Test_API_CD.yml
     permissions:
       id-token: write
       contents: read
+    uses: ./.github/workflows/Test_API_CD.yml
+    secrets: inherit
       
