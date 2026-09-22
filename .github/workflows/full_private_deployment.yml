@@ -6,6 +6,12 @@ on:
 jobs:
   infra-workflow:
     uses: ./.github/workflows/private_infra.yml
+    permissions:
+      id-token: write
+      contents: read
   api-workflow:  
     uses: ./.github/workflows/Test_API_CD.yml
+    permissions:
+      id-token: write
+      contents: read
       
