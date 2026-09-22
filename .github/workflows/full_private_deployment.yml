@@ -13,7 +13,8 @@ jobs:
     - uses: actions/checkout@main
 
     - name: Create infrastructure
-      uses: $/.github/workflows/private_infra.yml
+      uses: ./.github/workflows/private_infra.yml
     
     - name: Build and deploy API
-      uses: $/.github/workflows/Test_API_CD.yml
+      uses: ./.github/workflows/Test_API_CD.yml
+      
