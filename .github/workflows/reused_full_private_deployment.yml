@@ -1,0 +1,19 @@
+name: Reused full private infra deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+
+    - name: Create infrastructure
+      uses: $/.github/workflows/private_infra.yml@main
+    
+    - name: Build and deploy API
+      uses: $/.github/workflows/Test_API_CD.yml@main

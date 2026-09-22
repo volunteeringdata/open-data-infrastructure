@@ -2,6 +2,7 @@ name: Create private infrastructure in Azure
 
 on:
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   build-and-deploy:
