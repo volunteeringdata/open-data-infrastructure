@@ -1,5 +1,10 @@
 name: Full private infra deployment
 
+env:
+  AZURE_WEBAPP_NAME: 'volunteeringapitest'
+  AZURE_WEBAPP_PACKAGE_PATH: 'Query/published'
+  DOTNET_VERSION: '10.x'
+
 on:
   workflow_dispatch:
 
