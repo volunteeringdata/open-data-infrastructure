@@ -1,0 +1,104 @@
+﻿BASE            <https://id.volunteeringdata.io/>
+PREFIX :        <https://ns.volunteeringdata.io/>
+PREFIX id:      <https://id.volunteeringdata.io/>
+prefix skos:    <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT {
+    ?organisation
+        a :Organisation ;
+        :name ?organisation_name ;
+        :description ?organisation_description ;
+        :website ?organisation_website ;
+        :charityNumber ?organisation_charity_number ;
+        :image ?organisation_image ;
+        :cause ?cause  ;
+        :activity ?activity ;
+    .
+
+    ?cause skos:prefLabel ?cause_label .
+
+    ?activity
+        :title ?activity_title ;
+        :description ?activity_description ;
+        :requiresEmergencyParticipation ?activity_requires_emergency_participation ;
+        :image ?activity_image ;
+        :role ?role ;
+        :session ?session ;
+    .
+
+    ?session
+        :location ?location ;
+        :time ?time ;
+    .
+
+    ?location
+        :name ?location_name ;
+        :address ?location_address ;
+        :latitude ?activity_latitude ;
+        :longitude ?activity_longitude ;
+    .
+
+    ?time :label ?time_label .
+
+    ?role
+        :title ?role_title ;
+        :description ?role_description ;
+        :applyLink ?role_apply_link ;
+        :requirement ?requirement ;
+    .
+
+    ?requirement skos:prefLabel ?requirement_label .
+}
+WHERE {
+    ?organisation
+        a :Organisation ;
+        :organisationName ?organisation_name ;
+        :organisationActivity ?activity ;
+    .
+
+    OPTIONAL { ?organisation :organisationDescription ?organisation_description . }
+    OPTIONAL { ?organisation :organisationWebsite ?organisation_website . }
+    OPTIONAL { ?organisation :organisationCharityNumber ?organisation_charity_number . }
+    OPTIONAL { ?organisation :organisationImage ?organisation_image . }
+
+    OPTIONAL {
+        ?organisation :organisationCause ?cause .
+        ?cause skos:prefLabel ?cause_label .
+    }
+
+    ?activity :title ?activity_title .
+
+    OPTIONAL { ?activity :description ?activity_description . }
+    OPTIONAL { ?activity :requiresEmergencyParticipation ?activity_requires_emergency_participation . }
+    OPTIONAL { ?activity :image ?activity_image . }
+
+    ?activity :role ?role .
+
+    OPTIONAL { ?role :title ?role_title . }
+    OPTIONAL { ?role :description ?role_description . }
+    OPTIONAL { ?role :applyLink ?role_apply_link . }
+    OPTIONAL {
+        ?role :requirement ?requirement .
+        ?requirement skos:prefLabel ?requirement_label .
+    }
+
+    ?activity :session ?session .
+
+    OPTIONAL {
+        ?session :location ?location .
+
+        ?location 
+            :latitude ?activity_latitude ;
+            :longitude ?activity_longitude ;
+        .
+
+        OPTIONAL { ?location :name ?location_name . }
+        OPTIONAL { ?location :address ?location_address . }
+    }
+
+    OPTIONAL {
+        ?session :time ?time .
+
+        OPTIONAL { ?time :label ?time_label . }
+    }
+}
