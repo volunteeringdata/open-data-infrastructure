@@ -137,7 +137,7 @@ See for example [Claude's Documentation](https://modelcontextprotocol.io/docs/de
 ## Endpoints Examples
 
 Organisations:
-- https://api.volunteeringdata.io/organisation
+- https://api.volunteeringdata.io/organisation?id=684059665d271835a2253c9d
 - https://api.volunteeringdata.io/organisation_all
 - https://api.volunteeringdata.io/organisation_count.html
 - https://api.volunteeringdata.io/organisation_by_name?name=green~
