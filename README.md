@@ -85,7 +85,7 @@ Example Query (URI encode the query and use it as parameter to http://localhost:
 
 #### Configuring User Secrets
 
-Manage user secrets (right click Query.csproj > Manage User Secrets) and set the SparqlEndpointUri.
+Manage user secrets (right click Query.csproj > Manage User Secrets) and set the SPARQL proxy destination.
 
 The `secrets.json` file should look like this:
 
@@ -106,6 +106,12 @@ The `secrets.json` file should look like this:
 ```
 
 #### Running the Project
+
+The API is built on [NamedQuery](https://github.com/theodi/NamedQuery), a git submodule, so check it out first:
+
+```zsh
+git submodule update --init
+```
 
 ```zsh
 dotnet run --project Query
@@ -139,19 +145,19 @@ See for example [Claude's Documentation](https://modelcontextprotocol.io/docs/de
 Organisations:
 - https://api.volunteeringdata.io/organisation?id=684059665d271835a2253c9d
 - https://api.volunteeringdata.io/organisation_all
-- https://api.volunteeringdata.io/organisation_count.html
+- https://api.volunteeringdata.io/organisation_count?format=html
 - https://api.volunteeringdata.io/organisation_by_name?name=green~
 - https://api.volunteeringdata.io/organisation_by_id?id=68764a5c8e328c6f50449046
-- https://api.volunteeringdata.io/organisation_list.html
-- https://api.volunteeringdata.io/organisation_by_location.html?lat=51.509&lon=-0.118&distance=10
-- https://api.volunteeringdata.io/organisation_search.html?query=technology
+- https://api.volunteeringdata.io/organisation_list?format=html
+- https://api.volunteeringdata.io/organisation_by_location?lat=51.509&lon=-0.118&distance=10&format=html
+- https://api.volunteeringdata.io/organisation_search?query=technology&format=html
 
 Activities:
-- https://api.volunteeringdata.io/activity_count.html
+- https://api.volunteeringdata.io/activity_count?format=html
 - https://api.volunteeringdata.io/activity_by_name?name=green~
 - https://api.volunteeringdata.io/activity_by_id?id=670d3d31919ca4dbd11aa03d
-- https://api.volunteeringdata.io/activity_by_location.html?lat=51.509&lon=-0.118&distance=10
-- https://api.volunteeringdata.io/activity_search.html?query=technology
+- https://api.volunteeringdata.io/activity_by_location?lat=51.509&lon=-0.118&distance=10&format=html
+- https://api.volunteeringdata.io/activity_search?query=technology&format=html
 
 Taxonomy:
 - https://api.volunteeringdata.io/cause
