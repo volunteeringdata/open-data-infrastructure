@@ -1,22 +1,3 @@
-## Licensed to the Apache Software Foundation (ASF) under one or more
-## contributor license agreements.  See the NOTICE file distributed with
-## this work for additional information regarding copyright ownership.
-## The ASF licenses this file to You under the Apache License, Version 2.0
-## (the "License"); you may not use this file except in compliance with
-## the License.  You may obtain a copy of the License at
-##
-##     http://www.apache.org/licenses/LICENSE-2.0
-##
-## Unless required by applicable law or agreed to in writing, software
-## distributed under the License is distributed on an "AS IS" BASIS,
-## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-## See the License for the specific language governing permissions and
-## limitations under the License.
-
-## Apache Jena Fuseki server Dockerfile.
-
-## This Dockefile builds a reduced footprint container.
-
 ARG JAVA_VERSION=21
 ARG ALPINE_VERSION=3
 ARG JENA_VERSION=6.2.0
@@ -27,7 +8,6 @@ ARG FUSEKI_DIR=/fuseki
 ARG FUSEKI_JAR=jena-fuseki-server-${JENA_VERSION}.jar
 ## Jena (for TDB2 CLI tools)
 ARG JENA_DIR=/apache-jena-${JENA_VERSION}
-ARG JENA_TAR=apache-jena-${JENA_VERSION}.tar.gz
 ## Java
 ARG JAVA_MINIMAL=/opt/java-minimal
 
@@ -40,10 +20,9 @@ ARG FUSEKI_DIR
 ARG FUSEKI_JAR
 ARG REPO=https://repo1.maven.org/maven2
 ARG FUSEKI_JAR_URL=${REPO}/org/apache/jena/jena-fuseki-server/${JENA_VERSION}/${FUSEKI_JAR}
-ARG JENA_DOWNLOAD=https://dlcdn.apache.org/jena/binaries/
 ARG JENA_DIR
-ARG JENA_TAR
-ARG JENA_TAR_URL=${JENA_DOWNLOAD}${JENA_TAR}
+ARG JENA_TAR=apache-jena-${JENA_VERSION}.tar.gz
+ARG JENA_TAR_URL=https://dlcdn.apache.org/jena/binaries/${JENA_TAR}
 
 RUN [ "${JENA_VERSION}" != "" ] || { echo -e '\n**** Set JENA_VERSION ****\n' ; exit 1 ; }
 RUN echo && echo "==== Docker build for Apache Jena Fuseki ${JENA_VERSION} ====" && echo
@@ -83,6 +62,35 @@ RUN tar -xvzf "$JENA_TAR" --directory /
 RUN rm download.sh
 RUN rm apache-jena*
 
+## ---- Stage: Load data and build index.
+FROM base AS base-loaded
+
+ARG JAVA_MINIMAL
+ARG JENA_DIR
+ARG FUSEKI_DIR
+ARG FUSEKI_JAR
+ARG DATABASE=./db
+
+ENV JAVA_HOME=${JAVA_MINIMAL} \
+    JENA_HOME=${JENA_DIR}
+
+WORKDIR ${FUSEKI_DIR}
+
+COPY ./data/*.ttl ./data/
+COPY ./fuseki/config.ttl ./config.ttl
+
+# Create database directory
+RUN mkdir -p $DATABASE
+
+# Load data
+ADD ./data/*.ttl ./data/
+RUN for file in ./data/*.ttl; do $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE "$file"; done
+
+# Load indexer config
+ADD ./fuseki/config.ttl .
+RUN "$JAVA_HOME/bin/java" -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" jena.textindexer --desc config.ttl
+
+
 ## ---- Stage: Build runtime
 FROM alpine:${ALPINE_VERSION}
 
@@ -92,18 +100,6 @@ ARG JAVA_MINIMAL
 ARG FUSEKI_DIR
 ARG FUSEKI_JAR
 ARG JENA_DIR
-
-COPY --from=base /opt/java-minimal /opt/java-minimal
-COPY --from=base ${FUSEKI_DIR} ${FUSEKI_DIR}
-COPY --from=base ${JENA_DIR} ${JENA_DIR}
-
-WORKDIR $FUSEKI_DIR
-
-ARG LOGS=${FUSEKI_DIR}/logs
-ARG DATABASE=./db
-
-RUN mkdir -p $DATABASE
-
 ARG JENA_USER=fuseki
 ARG JENA_GROUP=$JENA_USER
 ARG JENA_GID=1000
@@ -115,10 +111,23 @@ ARG JENA_UID=1000
 RUN addgroup -g "${JENA_GID}" "${JENA_GROUP}" && \
     adduser "${JENA_USER}" -G "${JENA_GROUP}" -s /bin/ash -u "${JENA_UID}" -H -D
 
+COPY --from=base /opt/java-minimal /opt/java-minimal
+COPY --from=base ${FUSEKI_DIR} ${FUSEKI_DIR}
+COPY --from=base-loaded --chown=${JENA_USER}:${JENA_GROUP} \
+    ${FUSEKI_DIR}/db/ ${FUSEKI_DIR}/db/
+COPY --from=base-loaded --chown=${JENA_USER}:${JENA_GROUP} \
+    ${FUSEKI_DIR}/fts-index/ ${FUSEKI_DIR}/fts-index/
+
+COPY ./fuseki/config.ttl ${FUSEKI_DIR}/config.ttl
+
+WORKDIR $FUSEKI_DIR
+
 RUN mkdir --parents "${FUSEKI_DIR}" && \
     chown -R $JENA_USER ${FUSEKI_DIR}
 
 USER $JENA_USER
+
+ARG LOGS=${FUSEKI_DIR}/logs
 
 RUN \
     mkdir -p $LOGS && \
@@ -132,14 +141,6 @@ ENV \
     FUSEKI_JAR="${FUSEKI_JAR}"          \
     FUSEKI_DIR="${FUSEKI_DIR}"          \
     JENA_HOME="${JENA_DIR}"
-
-# Load data
-ADD ./data/*.ttl ./data/
-RUN for file in ./data/*.ttl; do $JENA_HOME/bin/tdb2.tdbloader --loc $DATABASE "$file"; done
-
-# Load indexer config
-ADD ./fuseki/config.ttl .
-RUN "$JAVA_HOME/bin/java" -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" jena.textindexer --desc config.ttl
 
 EXPOSE 3030
 
