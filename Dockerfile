@@ -1,4 +1,4 @@
-ARG JAVA_VERSION=21
+ARG JAVA_VERSION=25
 ARG ALPINE_VERSION=3
 ARG JENA_VERSION=6.2.0
 
@@ -62,6 +62,8 @@ FROM base AS base-loaded
 
 ARG JAVA_MINIMAL
 ARG JENA_DIR
+ARG FUSEKI_DIR
+ARG FUSEKI_JAR
 ARG DATABASE=./db
 
 ENV JAVA_HOME=${JAVA_MINIMAL} \
@@ -69,16 +71,15 @@ ENV JAVA_HOME=${JAVA_MINIMAL} \
 
 WORKDIR ${FUSEKI_DIR}
 
+# Load database
 COPY ./data/*.ttl ./data/
-COPY ./fuseki/config.ttl ./config.ttl
-
-# Create database
 RUN mkdir -p "$DATABASE" && \
     for file in ./data/*.ttl; do \
         "$JENA_HOME/bin/tdb2.tdbloader" --loc "$DATABASE" "$file" || exit 1; \
     done
 
 # Load indexer config
+COPY ./fuseki/config.ttl ./config.ttl
 RUN "$JAVA_HOME/bin/java" --add-modules jdk.incubator.vector \
     -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" jena.textindexer --desc config.ttl
 
