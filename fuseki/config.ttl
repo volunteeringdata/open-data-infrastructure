@@ -71,6 +71,7 @@ PREFIX text: <http://jena.apache.org/text#>
     text:entityField "uri" ;
     text:defaultField "activityTitle" ;
     text:uidField "uid" ;
+    text:langField "lang" ;
     text:map (
         [
             text:field "activityTitle" ;
