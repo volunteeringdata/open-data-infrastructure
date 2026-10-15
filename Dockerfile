@@ -1,93 +1,84 @@
 ARG JAVA_VERSION=25
 ARG ALPINE_VERSION=3
 ARG JENA_VERSION=6.2.0
+ARG FUSEKI_SHA1=d3490295a2b95677c1227d25bca8564d40f993a7
+
 
 # Internal, passed between stages.
 ## Fuseki
 ARG FUSEKI_DIR=/fuseki
 ARG FUSEKI_JAR=jena-fuseki-server-${JENA_VERSION}.jar
-## Jena (for TDB2 CLI tools)
-ARG JENA_DIR=/apache-jena-${JENA_VERSION}
 ## Java
 ARG JAVA_MINIMAL=/opt/java-minimal
 
 
-## ---- Stage: Download and build java.
-FROM eclipse-temurin:${JAVA_VERSION}-alpine AS base
+## ---- Stage: download Fuseki JAR
+FROM alpine:${ALPINE_VERSION} AS fuseki-download
 
-ARG JAVA_MINIMAL
 ARG JENA_VERSION
 ARG FUSEKI_DIR
+ARG FUSEKI_SHA1
 ARG FUSEKI_JAR
 ARG REPO=https://repo1.maven.org/maven2
 ARG FUSEKI_JAR_URL=${REPO}/org/apache/jena/jena-fuseki-server/${JENA_VERSION}/${FUSEKI_JAR}
-ARG JENA_TAR=apache-jena-${JENA_VERSION}.tar.gz
-ARG JENA_TAR_URL=https://dlcdn.apache.org/jena/binaries/${JENA_TAR}
 
-# Alpine: For objcopy used in jlink
-RUN apk add --no-cache curl binutils
+RUN apk add --no-cache curl
 
-## -- Fuseki installed and runs in /fuseki.
-WORKDIR $FUSEKI_DIR
+WORKDIR ${FUSEKI_DIR}
 
-## -- Download Fuseki JAR and check SHA1
 RUN curl -fsSL "$FUSEKI_JAR_URL" -o "$FUSEKI_JAR" && \
-    curl -fsSL "${FUSEKI_JAR_URL}.sha1" -o "${FUSEKI_JAR}.sha1" && \
-    printf '%s  %s\n' \
-        "$(cut -d' ' -f1 "${FUSEKI_JAR}.sha1")" \
-        "$FUSEKI_JAR" | sha1sum -c - && \
-    rm "${FUSEKI_JAR}.sha1"
+    echo "${FUSEKI_SHA1}  ${FUSEKI_JAR}" | sha1sum -c -
 
-## -- Make reduced Java JDK
-ARG JDEPS_EXTRA="jdk.crypto.cryptoki,jdk.crypto.ec,jdk.incubator.vector"
-RUN \
-  JDEPS="$(jdeps --multi-release base --print-module-deps --ignore-missing-deps ${FUSEKI_JAR})"  && \
-  jlink \
-        --compress 2 --strip-debug --no-header-files --no-man-pages \
+
+## ---- Stage: build minimal Java runtime
+FROM eclipse-temurin:${JAVA_VERSION}-alpine AS jre
+
+ARG JAVA_MINIMAL
+ARG FUSEKI_DIR
+ARG FUSEKI_JAR
+
+# Alpine: objcopy is needed by jlink --strip-debug
+RUN apk add --no-cache binutils
+
+WORKDIR ${FUSEKI_DIR}
+COPY --from=fuseki-download ${FUSEKI_DIR}/${FUSEKI_JAR} ./
+
+ARG JDEPS_EXTRA="jdk.incubator.vector"
+RUN JDEPS="$(jdeps --multi-release base --print-module-deps --ignore-missing-deps "${FUSEKI_JAR}")" && \
+    jlink \
+        --compress=zip-6 --strip-debug --no-header-files --no-man-pages \
         --output "${JAVA_MINIMAL}" \
         --add-modules "${JDEPS},${JDEPS_EXTRA}"
 
-# Download Jena, with check of the SHA512 checksum.
-RUN curl -fsSL "$JENA_TAR_URL" -o "$JENA_TAR" && \
-    curl -fsSL "${JENA_TAR_URL}.sha512" -o "${JENA_TAR}.sha512" && \
-    printf '%s  %s\n' \
-        "$(cut -d' ' -f1 "${JENA_TAR}.sha512")" \
-        "$JENA_TAR" | sha512sum -c - && \
-    tar -xzf "$JENA_TAR" --directory / && \
-    rm "$JENA_TAR" "${JENA_TAR}.sha512"
 
-
-## ---- Stage: Load data and build index.
-FROM base AS base-loaded
+## ---- Stage: load data and build text index
+FROM jre AS loader
 
 ARG JAVA_MINIMAL
-ARG JENA_DIR
 ARG FUSEKI_DIR
 ARG FUSEKI_JAR
 ARG DATABASE=./db
 
-ENV JAVA_HOME=${JAVA_MINIMAL} \
-    JENA_HOME=${JENA_DIR}
+ENV JAVA_HOME=${JAVA_MINIMAL}
 
 WORKDIR ${FUSEKI_DIR}
 
-# Load database
+# Load data
 COPY ./data/*.ttl ./data/
-RUN mkdir -p "$DATABASE" && \
-    for file in ./data/*.ttl; do \
-        "$JENA_HOME/bin/tdb2.tdbloader" --loc "$DATABASE" "$file" || exit 1; \
-    done
-
-# Load indexer config
-COPY ./fuseki/config.ttl ./config.ttl
 RUN "$JAVA_HOME/bin/java" --add-modules jdk.incubator.vector \
-    -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" jena.textindexer --desc config.ttl
+        -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" \
+        tdb2.tdbloader --loader=parallel --loc "$DATABASE" ./data/*.ttl
+
+COPY ./fuseki/config.ttl ./config.ttl
+
+RUN "$JAVA_HOME/bin/java" --add-modules jdk.incubator.vector \
+        -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" \
+        jena.textindexer --desc config.ttl
 
 
-## ---- Stage: Build runtime
+## ---- Stage: runtime
 FROM alpine:${ALPINE_VERSION}
 
-## Import ARGs
 ARG JENA_VERSION
 ARG JAVA_MINIMAL
 ARG FUSEKI_DIR
@@ -97,39 +88,31 @@ ARG JENA_GROUP=$JENA_USER
 ARG JENA_GID=1000
 ARG JENA_UID=1000
 
-WORKDIR $FUSEKI_DIR
+WORKDIR ${FUSEKI_DIR}
 
-# Run as this user
-# -H : no home directory
-# -D : no password
+# -H : no home directory, -D : no password
 RUN addgroup -g "${JENA_GID}" "${JENA_GROUP}" && \
-    adduser "${JENA_USER}" -G "${JENA_GROUP}" -s /bin/ash -u "${JENA_UID}" -H -D
+    adduser "${JENA_USER}" -G "${JENA_GROUP}" -s /bin/ash -u "${JENA_UID}" -H -D && \
+    mkdir -p run && \
+    chown "${JENA_USER}:${JENA_GROUP}" run
 
-COPY --from=base /opt/java-minimal /opt/java-minimal
-COPY --from=base --chown=${JENA_USER}:${JENA_GROUP} \
-    ${FUSEKI_DIR} ${FUSEKI_DIR}
-COPY --from=base-loaded --chown=${JENA_USER}:${JENA_GROUP} \
-    ${FUSEKI_DIR}/db/ ${FUSEKI_DIR}/db/
-COPY --from=base-loaded --chown=${JENA_USER}:${JENA_GROUP} \
-    ${FUSEKI_DIR}/fts-index/ ${FUSEKI_DIR}/fts-index/
+# Least-frequently changing layers first; data last.
+# JRE, JAR and config stay root-owned (read-only for the service user).
+COPY --from=jre ${JAVA_MINIMAL} ${JAVA_MINIMAL}
+COPY --from=fuseki-download ${FUSEKI_DIR}/${FUSEKI_JAR} ./
+COPY ./fuseki/config.ttl ./fuseki/log4j2.properties ./
+COPY --from=loader --chown=${JENA_USER}:${JENA_GROUP} ${FUSEKI_DIR}/db/ ./db/
+COPY --from=loader --chown=${JENA_USER}:${JENA_GROUP} ${FUSEKI_DIR}/fts-index/ ./fts-index/
 
-## Load Fuseki and Log4j config
-COPY --chown=${JENA_USER}:${JENA_GROUP} \
-    ./fuseki/config.ttl .
-COPY --chown=${JENA_USER}:${JENA_GROUP} \
-    ./fuseki/log4j2.properties .
+USER ${JENA_USER}
 
-RUN mkdir -p "${FUSEKI_DIR}/run" && \
-    chown "${JENA_USER}:${JENA_GROUP}" "${FUSEKI_DIR}/run"
-
-USER $JENA_USER
-
-## Default environment variables.
+# Heap sized from the container memory limit. TDB2 uses memory-mapped files
+# outside the heap, so leave headroom rather than giving the heap everything.
 ENV \
-    JAVA_HOME=${JAVA_MINIMAL}           \
-    JAVA_OPTIONS="--enable-native-access=ALL-UNNAMED --add-modules=jdk.incubator.vector -Xmx2048m -Xms2048m"  \
-    JENA_VERSION=${JENA_VERSION}        \
-    FUSEKI_JAR="${FUSEKI_JAR}"          \
+    JAVA_HOME=${JAVA_MINIMAL} \
+    JAVA_OPTIONS="--enable-native-access=ALL-UNNAMED --add-modules=jdk.incubator.vector -XX:MaxRAMPercentage=50 -XX:InitialRAMPercentage=50" \
+    JENA_VERSION=${JENA_VERSION} \
+    FUSEKI_JAR="${FUSEKI_JAR}" \
     FUSEKI_DIR="${FUSEKI_DIR}"
 
 EXPOSE 3030
