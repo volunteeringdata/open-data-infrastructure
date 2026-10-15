@@ -1,0 +1,238 @@
+PREFIX : <http://example.org/namedquery/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+[
+	:name "OpenVolunteering Hackathon API" ;
+	:endpoint
+		[
+			:path "activity" ;
+			:sparql "./activity/query.sparql"^^xsd:anyURI ;
+			:frame "./activity/frame.jsonld"^^xsd:anyURI ;
+			:name "All activities" ;
+			:description "List of volunteering activity identifiers and their labels" ;
+		],
+		[
+			:path "activity_all" ;
+			:sparql "./activity_all/query.sparql"^^xsd:anyURI ;
+			:frame "./activity_all/frame.jsonld"^^xsd:anyURI ;
+			:name "All activities data" ;
+			:description "List of all volunteering activities with all available details, that is, all the data associated with volunteering activities" ;
+		],
+		[
+			:path "activity_by_id" ;
+			:sparql "./activity_by_id/query.sparql"^^xsd:anyURI ;
+			:frame "./activity_by_id/frame.jsonld"^^xsd:anyURI ;
+			:name "Specific identified activity with details" ;
+			:description "A single volunteering activity with all available details" ;
+			:parameter [
+				:name "id" ;
+				:description "The identifier of the activity to retrieve. Should be the local part of the full URI of the activity. E.g. for an activity with URI http://example.com/1234, use just the last part: 1234" ;
+				:example "68f792b0bf48f6d5969d0ead" ;
+			] ;
+		],
+		[
+			:path "activity_by_location" ;
+			:sparql "./activity_by_location/query.sparql"^^xsd:anyURI ;
+			:frame "./activity_by_location/frame.jsonld"^^xsd:anyURI ;
+			:name "Activities near location" ;
+			:description "List of volunteering activities with sessions that are located within a certain distance from a certain geographical point" ;
+			:parameter [
+				:name "lat" ;
+				:description "The latitude of the point to search around" ;
+				:datatype xsd:double ;
+				:example "51.509" ;
+			] ;
+			:parameter [
+				:name "lon" ;
+				:description "The longitude of the point to search around" ;
+				:datatype xsd:double ;
+				:example "-0.118" ;
+			] ;
+			:parameter [
+				:name "distance" ;
+				:description "The distance radius from the search location in which to search (in metres)" ;
+				:datatype xsd:integer ;
+				:example "1000" ;
+			] ;
+		],
+		[
+			:path "activity_by_name" ;
+			:sparql "./activity_by_name/query.sparql"^^xsd:anyURI ;
+			:frame "./activity_by_name/frame.jsonld"^^xsd:anyURI ;
+			:name "Activities with matching names" ;
+			:description "List of volunteering activities whose label matches the given name" ;
+			:parameter [
+				:name "name" ;
+				:description "The search query to match activity labels against. A Lucene query string." ;
+				:example "Childbirth" ;
+			] ;
+		],
+		[
+			:path "activity_count" ;
+			:sparql "./activity_count/query.sparql"^^xsd:anyURI ;
+			:name "Activity count" ;
+			:description "Number of volunteering activities in the system" ;
+		],
+		[
+			:path "activity_list" ;
+			:sparql "./activity_list/query.sparql"^^xsd:anyURI ;
+			:name "Activity list" ;
+			:description "Simple list of all volunteering activity identifiers" ;
+		],
+		[
+			:path "activity_search" ;
+			:sparql "./activity_search/query.sparql"^^xsd:anyURI ;
+			:name "Activity search" ;
+			:description "List of identifiers and labels of activity whose label or description match the given search query, sorted by descending order of relevance" ;
+			:parameter [
+				:name "query" ;
+				:description "The search query to match activities against. A Lucene query string." ;
+				:example "biodiversity" ;
+			] ;
+		],
+		# [
+		# 	:path "all_apps" ;
+		# 	:sparql "./all_apps/query.sparql"^^xsd:anyURI ;
+		# 	:name "All apps" ;
+		# 	:description "" ;
+		# ],
+		# [
+		# 	:path "all_measurement_units" ;
+		# 	:sparql "./all_measurement_units/query.sparql"^^xsd:anyURI ;
+		# 	:name "All measurment units" ;
+		# 	:description "" ;
+		# ],
+		# [
+		# 	:path "all_options" ;
+		# 	:sparql "./all_options/query.sparql"^^xsd:anyURI ;
+		# 	:name "All options" ;
+		# 	:description "" ;
+		# ],
+		[
+			:path "cause" ;
+			:sparql "./cause/query.sparql"^^xsd:anyURI ;
+			:frame "./cause/frame.jsonld"^^xsd:anyURI ;
+			:name "Cause" ;
+			:description "List of charitable causes that can be linked to volunteering activities and volunteer involving organisations" ;
+		],
+		# [
+		# 	:path "croissant" ;
+		# 	:sparql "./croissant/query.sparql"^^xsd:anyURI ;
+		# 	:frame "./croissant/frame.jsonld"^^xsd:anyURI ;
+		# 	:name "Croissant" ;
+		# 	:description "" ;
+		# ],
+		[
+			:path "describe" ;
+			:sparql "./describe/query.sparql"^^xsd:anyURI ;
+			:frame "./describe/frame.jsonld"^^xsd:anyURI ;
+			:name "Describe resource" ;
+			:description "Gives a concise bounded description of a single identified thing, that is, all the details attached to one identifier, without traversing to details of other linked identifiers" ;
+			:parameter [
+				:name "id" ;
+				:description "The identifier of something in the system" ;
+				:example "68f5406090268edd4a86435a" ;
+			] ;
+		],
+		[
+			:path "organisation" ;
+			:sparql "./organisation/query.sparql"^^xsd:anyURI ;
+			:frame "./organisation/frame.jsonld"^^xsd:anyURI ;
+			:name "Organisation by identifier" ;
+			:description "Gives details about an organisation" ;
+			:parameter [
+				:name "id" ;
+				:description "The identifier of the organisation to retrieve. Can be the local part or the full URI of the organisation. E.g. for an organisation with URI http://example.com/1234, use just the last part: 1234" ;
+				:example "684059665d271835a2253c9d" ;
+			] ;
+		],
+		[
+			:path "organisation_all" ;
+			:sparql "./organisation_all/query.sparql"^^xsd:anyURI ;
+			:frame "./organisation/frame.jsonld"^^xsd:anyURI ;
+			:name "All organisations data" ;
+			:description "List of all volunteer-involving organisations with all available details" ;
+		],
+		[
+			:path "organisations" ;
+			:sparql "./organisations/query.sparql"^^xsd:anyURI ;
+			:frame "./organisations/frame.jsonld"^^xsd:anyURI ;
+			:name "All organisations" ;
+			:description "List of volunteer-involving organisations identifiers and their activities identifier and title" ;
+		],
+		[
+			:path "organisation_by_name" ;
+			:sparql "./organisation_by_name/query.sparql"^^xsd:anyURI ;
+			:frame "./organisation_by_name/frame.jsonld"^^xsd:anyURI ;
+			:name "Organisation by name" ;
+			:description "List of volunteering involving organisations whose label matches the given name" ;
+			:parameter [
+				:name "name" ;
+				:description "The name of the organisation to find" ;
+				:example "green~" ;
+			] ;
+		],
+		[
+			:path "organisation_count" ;
+			:sparql "./organisation_count/query.sparql"^^xsd:anyURI ;
+			:name "Count of organisations" ;
+			:description "Number of volunteering involving organisations in the system" ;
+		],
+		[
+			:path "organisation_list" ;
+			:sparql "./organisation_list/query.sparql"^^xsd:anyURI ;
+			:name "List of all organisations" ;
+			:description "Simple list of all volunteer involving organisations identifiers" ;
+		],
+		[
+			:path "organisation_search" ;
+			:sparql "./organisation_search/query.sparql"^^xsd:anyURI ;
+			:name "Organisation search" ;
+			:description "List of identifiers and labels of organisations whose label, description or purpose match the given search query, sorted by descending order of relevance" ;
+			:parameter [
+				:name "query" ;
+				:description "The query to search organisations by" ;
+				:example "network" ;
+			] ;
+		],
+		[
+			:path "requirement" ;
+			:sparql "./requirement/query.sparql"^^xsd:anyURI ;
+			:frame "./requirement/frame.jsonld"^^xsd:anyURI ;
+			:name "Requirement" ;
+			:description "List of requirements that can be linked to volunteering activities and volunteer involving organisations" ;
+		],
+		[
+			:path "schema" ;
+			:sparql "./schema/query.sparql"^^xsd:anyURI ;
+			:frame "./schema/frame.jsonld"^^xsd:anyURI ;
+			:name "Schema" ;
+			:description "The Volunteering and Social Action Data Model / Ontology. A vocabulary to describe volunteering activities, volunteer-involving organisations and volunteering management systems." ;
+		],
+		[
+			:path "taxonomy" ;
+			:sparql "./taxonomy/query.sparql"^^xsd:anyURI ;
+			:frame "./taxonomy/frame.jsonld"^^xsd:anyURI ;
+			:name "Taxonomy" ;
+			:description "Categories and concepts related to volunteering activities." ;
+		],
+		[
+			:path "search" ;
+			:sparql "./search/query.sparql"^^xsd:anyURI ;
+			:frame "./search/frame.jsonld"^^xsd:anyURI ;
+			:name "Search" ;
+			:description "Free text search in activities and organisations" ;
+			:parameter [
+				:name "activityQuery" ;
+				:description "The search query for activities" ;
+				:datatype xsd:string ;
+				:example "training" ;
+			] ;
+			:parameter [
+				:name "organisationQuery" ;
+				:description "The search query for organisations" ;
+				:datatype xsd:string ;
+				:example "community" ;
+			] ;
+		] ;
+] .

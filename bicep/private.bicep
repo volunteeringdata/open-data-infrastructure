@@ -63,7 +63,7 @@ resource apiSite 'Microsoft.Web/sites@2024-11-01' = {
       linuxFxVersion: apiStack
       appSettings: [
         {
-          name: 'QueryService__SparqlEndpointUri'
+          name: 'NamedQuery__SparqlEndpoint'
           value: 'https://${apiSiteName}.azurewebsites.net/sparql'
         }
         {
