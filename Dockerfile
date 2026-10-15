@@ -22,11 +22,11 @@ ARG FUSEKI_JAR
 ARG REPO=https://repo1.maven.org/maven2
 ARG FUSEKI_JAR_URL=${REPO}/org/apache/jena/jena-fuseki-server/${JENA_VERSION}/${FUSEKI_JAR}
 
-RUN apk add --no-cache curl
-
 WORKDIR ${FUSEKI_DIR}
 
-RUN curl -fsSL "$FUSEKI_JAR_URL" -o "$FUSEKI_JAR" && \
+# BusyBox wget (with ssl_client) ships in the Alpine base image, so there is
+# no need to install curl. Integrity is enforced by the checksum either way.
+RUN wget -q -O "$FUSEKI_JAR" "$FUSEKI_JAR_URL" && \
     echo "${FUSEKI_SHA1}  ${FUSEKI_JAR}" | sha1sum -c -
 
 
@@ -96,13 +96,13 @@ RUN addgroup -g "${JENA_GID}" "${JENA_GROUP}" && \
     mkdir -p run && \
     chown "${JENA_USER}:${JENA_GROUP}" run
 
-# Least-frequently changing layers first; data last.
 # JRE, JAR and config stay root-owned (read-only for the service user).
-COPY --from=jre ${JAVA_MINIMAL} ${JAVA_MINIMAL}
-COPY --from=fuseki-download ${FUSEKI_DIR}/${FUSEKI_JAR} ./
-COPY ./fuseki/config.ttl ./fuseki/log4j2.properties ./
-COPY --from=loader --chown=${JENA_USER}:${JENA_GROUP} ${FUSEKI_DIR}/db/ ./db/
-COPY --from=loader --chown=${JENA_USER}:${JENA_GROUP} ${FUSEKI_DIR}/fts-index/ ./fts-index/
+COPY --link --from=jre ${JAVA_MINIMAL} ${JAVA_MINIMAL}
+COPY --link --from=fuseki-download ${FUSEKI_DIR}/${FUSEKI_JAR} ./
+COPY --link ./fuseki/log4j2.properties ./
+COPY --link --from=loader --chown=${JENA_UID}:${JENA_GID} ${FUSEKI_DIR}/db/ ./db/
+COPY --link --from=loader --chown=${JENA_UID}:${JENA_GID} ${FUSEKI_DIR}/fts-index/ ./fts-index/
+COPY --link ./fuseki/config.ttl ./
 
 USER ${JENA_USER}
 
