@@ -46,7 +46,7 @@ COPY --from=fuseki-download ${FUSEKI_DIR}/${FUSEKI_JAR} ./
 ARG JDEPS_EXTRA="jdk.incubator.vector"
 RUN JDEPS="$(jdeps --multi-release base --print-module-deps --ignore-missing-deps "${FUSEKI_JAR}")" && \
     jlink \
-        --compress=zip-6 --strip-debug --no-header-files --no-man-pages \
+        --compress=zip-6 --strip-debug --no-header-files --no-man-pages --generate-cds-archive \
         --output "${JAVA_MINIMAL}" \
         --add-modules "${JDEPS},${JDEPS_EXTRA}"
 
