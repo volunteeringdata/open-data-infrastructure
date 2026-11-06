@@ -8,5 +8,4 @@
   </Folder>
   <Project Path="Query/Query.csproj" />
   <Project Path="transform/DoIt/DoIt.csproj" />
-  <Project Path="Wrapping/Wrapping.csproj" />
 </Solution>
