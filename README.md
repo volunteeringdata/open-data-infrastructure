@@ -107,11 +107,7 @@ The `secrets.json` file should look like this:
 
 #### Running the Project
 
-The API is built on [NamedQuery](https://github.com/theodi/NamedQuery), a git submodule, so check it out first:
-
-```zsh
-git submodule update --init
-```
+The API is built on [NamedQuery](https://github.com/theodi/NamedQuery), referenced as the [TheODI.NamedQuery](https://www.nuget.org/packages/TheODI.NamedQuery) NuGet package.
 
 ```zsh
 dotnet run --project Query

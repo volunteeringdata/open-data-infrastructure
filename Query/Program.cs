@@ -1,5 +1,4 @@
 using Microsoft.Extensions.FileProviders;
-using Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
