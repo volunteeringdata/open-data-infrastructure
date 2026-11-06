@@ -1,7 +1,4 @@
 <Solution>
-  <Folder Name="/NamedQuery/">
-    <Project Path="NamedQuery/Web/Web.csproj" />
-  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path="README.md" />
