@@ -18,4 +18,3 @@ Dockerfile      text eol=lf
 *.cmd       text eol=crlf
 *.cs        text eol=crlf
 *.cshtml    text eol=crlf
-.sln        text eol=crlf
