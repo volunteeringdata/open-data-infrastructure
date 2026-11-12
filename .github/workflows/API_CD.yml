@@ -11,7 +11,6 @@ on:
       - main
     paths:
       - Query/**
-      - NamedQuery
   workflow_dispatch:
 
 jobs:
@@ -23,8 +22,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-        with:
-          submodules: true
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v5
