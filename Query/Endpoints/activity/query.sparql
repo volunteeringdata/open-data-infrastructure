@@ -6,5 +6,5 @@ CONSTRUCT {
     ?activity :label ?activityLabel .
 }
 WHERE {
-    ?activity :activityLabel ?activityLabel .
+    ?activity :title ?activityLabel .
 }

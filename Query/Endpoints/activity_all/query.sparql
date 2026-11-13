@@ -1,5 +1,6 @@
 ﻿BASE <https://id.volunteeringdata.io/>
 PREFIX : <https://ns.volunteeringdata.io/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX id: <https://id.volunteeringdata.io/>
 
 CONSTRUCT {
@@ -38,11 +39,11 @@ CONSTRUCT {
 WHERE {
     ?activity
         a :Activity ;
-        :label ?activityLabel ;
+        :title ?activityLabel ;
         :organisation ?activityOrganisation ;
     .
 
-    ?activityOrganisation :label ?activityOrganisationLabel .
+    ?activityOrganisation :name ?activityOrganisationLabel .
 
     OPTIONAL { ?activity :description ?activityDescription . }
     OPTIONAL { ?activity :applyLink ?activityApplyLink . }
@@ -63,6 +64,6 @@ WHERE {
     }
     OPTIONAL {
         ?activity :cause ?activityCause .
-        ?activityCause :label ?causeLabel .
+        ?activityCause skos:prefLabel ?causeLabel .
     }
 }

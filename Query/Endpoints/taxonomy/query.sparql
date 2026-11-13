@@ -1,14 +1,20 @@
 ﻿BASE <https://id.volunteeringdata.io/>
 PREFIX : <https://ns.volunteeringdata.io/>
+PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 CONSTRUCT {
-    :ConceptScheme
+    :Taxonomy
+        a :ConceptScheme ;
         :label ?label ;
         :description ?description ;
         :topConcept ?topConcept ;
     .
 
-    ?topConcept :label ?topConceptLabel .
+    ?topConcept
+        :label ?topConceptLabel ;
+        :narrower ?concept ;
+    .
 
     ?concept
         a ?topConcept ;
@@ -16,16 +22,19 @@ CONSTRUCT {
     .
 }
 WHERE {
-    :ConceptScheme
-        :label ?label ;
-        :description ?description ;
-        :topConcept ?topConcept ;
+    :Taxonomy
+        dc:title ?label ;
+        dc:description ?description ;
+        skos:hasTopConcept ?topConcept ;
     .
 
-    ?topConcept :label ?topConceptLabel .
+    ?topConcept skos:prefLabel ?topConceptLabel .
 
-    ?concept
-        a ?topConcept ;
-        :label ?conceptLabel ;
-    .
+    OPTIONAL {
+        { ?concept a ?topConcept . }
+        UNION
+        { ?concept skos:broader+ ?topConcept . }
+
+        ?concept skos:prefLabel ?conceptLabel .
+    }
 }

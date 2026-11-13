@@ -11,6 +11,6 @@ CONSTRUCT {
     .
 }
 WHERE {
-    (?activity ?score ?value) text:query (:activityLabel $name) .
-    ?activity :label ?label .
+    (?activity ?score ?value) text:query (:activityTitle $name) .
+    ?activity :title ?label .
 }
