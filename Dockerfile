@@ -64,10 +64,16 @@ ENV JAVA_HOME=${JAVA_MINIMAL}
 WORKDIR ${FUSEKI_DIR}
 
 # Load data
-COPY ./data/*.ttl ./data/
+COPY ./data/*.ttl ./data/*.jsonld ./data/
 RUN "$JAVA_HOME/bin/java" --add-modules jdk.incubator.vector \
         -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" \
-        tdb2.tdbloader --loader=parallel --loc "$DATABASE" ./data/*.ttl
+        tdb2.tdbloader --loader=parallel --loc "$DATABASE" ./data/*.ttl ./data/*.jsonld
+
+# Materialise the ontology inference rules (before text indexing, so inferred titles and names are searchable)
+COPY ./data/ontology_rules.ru ./data/
+RUN "$JAVA_HOME/bin/java" --add-modules jdk.incubator.vector \
+        -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" \
+        tdb2.tdbupdate --loc "$DATABASE" --update=./data/ontology_rules.ru
 
 COPY ./fuseki/config.ttl ./config.ttl
 

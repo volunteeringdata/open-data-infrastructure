@@ -1,0 +1,149 @@
+BASE                    <https://id.volunteeringdata.io/>
+
+PREFIX id:              <https://id.volunteeringdata.io/>
+PREFIX :                <https://ns.volunteeringdata.io/>
+
+PREFIX skos:            <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo:             <http://www.opengis.net/ont/geosparql#>
+PREFIX geof:            <http://www.opengis.net/def/function/geosparql/>
+PREFIX spatialF:        <http://jena.apache.org/function/spatial#>
+prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
+
+
+CONSTRUCT {
+    <Activities> :activities ?activity .
+
+    ?activity
+        a :Activity ;
+        :title ?activity_title ;
+        :description ?activity_description ;
+        :requiresEmergencyParticipation ?activity_requires_emergency_participation ;
+        :organisation ?organisation ;
+        :session ?session ;
+        :role ?role ;
+    .
+
+    ?organisation
+        a :Organisation ;
+        :name ?organisation_name ;
+        :description ?organisation_description ;
+        :website ?organisation_website ;
+        :charityNumber ?organisation_charity_number ;
+        :image ?organisation_image ;
+        :cause ?cause ;
+    .
+
+    ?cause
+        a :Cause ;
+        :label ?cause_label ;
+    .
+
+    ?session
+        a :Session ;
+        :location ?location ;
+        :time ?time ;
+    .
+
+    ?location
+        a :Location ;
+        :name ?location_name ;
+        :address ?location_address ;
+        :latitude ?activity_latitude ;
+        :longitude ?activity_longitude ;
+    .
+
+    ?time 
+        a :Time ;
+        :label ?time_label ;
+    .
+
+    ?role
+        a :Role ;
+        :title ?role_title ;
+        :description ?role_description ;
+        :allowsRemoteParticipation ?role_allows_remote_participation ;
+        :applyLink ?role_apply_link ;
+        :requirement ?requirement ;
+    .
+
+    ?requirement
+        a :Requirement ;
+        :label ?requirement_label ;
+    .
+
+    ?skill
+         a :Skill ;
+         :label ?skill_label ;
+    .
+}
+WHERE
+{
+    # The local authority, identified by the local part of its IRI, e.g. Midlothian
+    BIND(IRI(CONCAT(STR(:), $la)) AS ?local_authority)
+
+    ?local_authority
+        skos:broader :ScotlandLocalAuthority ;
+        :geometry/geo:asWKT ?local_authority_area ;
+    .
+
+    ?session
+        :location ?location ;
+    .
+
+    ?location 
+        :latitude ?activity_latitude ;
+        :longitude ?activity_longitude ;
+    .
+
+    FILTER(geof:sfWithin(spatialF:convertLatLon(?activity_latitude, ?activity_longitude), ?local_authority_area))
+
+    OPTIONAL { ?location :name ?location_name . }
+    OPTIONAL { ?location :address ?location_address . }
+
+    ?activity
+        :session ?session ;
+        :title ?activity_title ;
+        :organisation ?organisation ;
+    .
+
+    ?organisation :name ?organisation_name .
+
+    OPTIONAL { ?organisation :description ?organisation_description . }
+    OPTIONAL { ?organisation :website ?organisation_website . }
+    OPTIONAL { ?organisation :charityNumber ?organisation_charity_number . }
+    OPTIONAL { ?organisation :organisationImage ?organisation_image . }
+
+    OPTIONAL {
+        ?organisation :cause ?cause .
+        ?cause :label ?cause_label .
+    }
+
+    OPTIONAL { ?activity :description ?activity_description . }
+
+    OPTIONAL { ?activity :requiresEmergencyParticipation ?activity_requires_emergency_participation . }
+
+    OPTIONAL { ?location :name ?location_name . }
+    OPTIONAL { ?location :address ?location_address . }
+
+    OPTIONAL {
+        ?session :time ?time .
+
+        OPTIONAL { ?time :label ?time_label . }
+    }
+
+    OPTIONAL {
+        ?activity :role ?role .
+        OPTIONAL { ?role :title ?role_title . }
+        OPTIONAL { ?role :description ?role_description . }
+        OPTIONAL { ?role :allowsRemoteParticipation ?role_allows_remote_participation . }
+        OPTIONAL { ?role :applyLink ?role_apply_link . }
+        OPTIONAL {
+            ?role :requirement ?requirement .
+            ?requirement :label ?requirement_label .
+        }
+        OPTIONAL {
+            ?role :skill ?skill .
+            ?skill :label ?skill_label .
+        }
+    }
+}
