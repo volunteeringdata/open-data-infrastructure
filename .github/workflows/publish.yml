@@ -19,9 +19,9 @@ jobs:
       packages: write # This is required for publishing packages
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       
-      - uses: docker/login-action@v1
+      - uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
