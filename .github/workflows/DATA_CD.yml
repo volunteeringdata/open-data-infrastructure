@@ -1,4 +1,4 @@
-name: Build and deploy Data to Azure Container Registry
+name: Build and deploy Data to container registries
 
 on:
   push:
@@ -14,18 +14,42 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write # This is required for requesting the JWT
-      contents: read # This is required for actions/checkout
+      id-token: write # Required for requesting the JWT
+      contents: read # Required for actions/checkout
+      packages: write # Required for publishing to GitHub Container Registry
+
+    strategy:
+      fail-fast: false # A failing registry doesn't cancel pushes to others
+      matrix:
+        # One entry per registry to publish to.
+        #   registry:         registry host to log in to
+        #   image:            image name to push (without tag)
+        #   username:         username, or
+        #   username_secret:  name of the secret holding the username
+        #   password_secret:  name of the secret holding the password or token
+        include:
+          - registry: ghcr.io
+            image: ghcr.io/${{ github.repository_owner }}/data
+            username: ${{ github.actor }}
+            password_secret: GITHUB_TOKEN
+          - registry: openvolunteering.azurecr.io
+            image: openvolunteering.azurecr.io/data
+            username_secret: AZURE_CONTAINER_REGISTRY_USERNAME
+            password_secret: AZURE_CONTAINER_REGISTRY_PASSWORD
+
+    name: Publish to ${{ matrix.registry }}
 
     steps:
       - uses: actions/checkout@v7
-      
-      - uses: azure/docker-login@v2
+
+      - uses: docker/login-action@v4
         with:
-          login-server: openvolunteering.azurecr.io/data:latest
-          username: ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}
-          password: ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
+          registry: ${{ matrix.registry }}
+          username: ${{ matrix.username || secrets[matrix.username_secret] }}
+          password: ${{ secrets[matrix.password_secret] }}
 
       - run: |
-          docker build . -t openvolunteering.azurecr.io/data:latest
-          docker push openvolunteering.azurecr.io/data:latest
+          docker build . -t "$IMAGE:latest"
+          docker push "$IMAGE:latest"
+        env:
+          IMAGE: ${{ matrix.image }}
