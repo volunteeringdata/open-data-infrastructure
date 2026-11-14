@@ -23,7 +23,8 @@
         "activity": { "@container": "@set", "@type": "@id" },
         "role": { "@container": "@set", "@type": "@id" },
         "session": { "@container": "@set", "@type": "@id" },
-        "time": { "@context": { "time": "http://www.w3.org/2006/time#" }, "@container": "@set", "@type": "@id" },
+        "time": { "@container": "@set", "@type": "@id" },
+        "inXSDDateTimeStamp": { "@id": "http://www.w3.org/2006/time#inXSDDateTimeStamp", "@type": "http://www.w3.org/2001/XMLSchema#dateTimeStamp" },
         "location": { "@container": "@set", "@type": "@id" },
         "accessibility": { "@container": "@set", "@type": "@id" },
         "cause": { "@container": "@set", "@type": "@id" },
@@ -244533,11 +244534,11 @@
                         "time": [
                             {
                                 "type": "Time",
-                                "time:hasBeginning": {
-                                    "time:inXSDDateTimeStamp": "2026-11-19T00:00:00.000Z"
+                                "hasBeginning": {
+                                    "inXSDDateTimeStamp": "2026-11-19T00:00:00.000Z"
                                 },
-                                "time:hasEnd": {
-                                    "time:inXSDDateTimeStamp": "2026-11-21T00:00:00.000Z"
+                                "hasEnd": {
+                                    "inXSDDateTimeStamp": "2026-11-21T00:00:00.000Z"
                                 }
                             }
                         ]

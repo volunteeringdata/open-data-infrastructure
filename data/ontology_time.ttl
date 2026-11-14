@@ -46,6 +46,26 @@ prefix vann:            <http://purl.org/vocab/vann/>
     rdfs:label "time has session"@en ;
 .
 
+:hasBeginning
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf time:hasBeginning ;
+    rdfs:domain :Time ;
+    rdfs:range time:Instant ;
+    rdfs:label "has beginning"@en ;
+    rdfs:comment "Beginning of a volunteering time."@en ;
+.
+
+:hasEnd
+    a owl:ObjectProperty ;
+    rdfs:isDefinedBy <https://ns.volunteeringdata.io/> ;
+    rdfs:subPropertyOf time:hasEnd ;
+    rdfs:domain :Time ;
+    rdfs:range time:Instant ;
+    rdfs:label "has end"@en ;
+    rdfs:comment "End of a volunteering time."@en ;
+.
+
 
 ## Predefined Temporal Entities
 :MondayMorning

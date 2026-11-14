@@ -3,6 +3,9 @@ BASE                    <https://id.volunteeringdata.io/>
 PREFIX id:              <https://id.volunteeringdata.io/>
 PREFIX :                <https://ns.volunteeringdata.io/>
 
+PREFIX rdfs:            <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:            <http://www.w3.org/2004/02/skos/core#>
+
 PREFIX units:           <http://www.opengis.net/def/uom/OGC/1.0/>
 PREFIX spatialF:        <http://jena.apache.org/function/spatial#>
 prefix xsd:             <http://www.w3.org/2001/XMLSchema#>
@@ -111,7 +114,7 @@ WHERE
 
     OPTIONAL {
         ?organisation :cause ?cause .
-        ?cause :label ?cause_label .
+        ?cause skos:prefLabel ?cause_label .
     }
 
     OPTIONAL { ?activity :description ?activity_description . }
@@ -124,7 +127,7 @@ WHERE
     OPTIONAL {
         ?session :time ?time .
 
-        OPTIONAL { ?time :label ?time_label . }
+        OPTIONAL { ?time rdfs:label ?time_label . }
     }
 
     OPTIONAL {
@@ -135,11 +138,11 @@ WHERE
         OPTIONAL { ?role :applyLink ?role_apply_link . }
         OPTIONAL {
             ?role :requirement ?requirement .
-            ?requirement :label ?requirement_label .
+            ?requirement skos:prefLabel ?requirement_label .
         }
         OPTIONAL {
             ?role :skill ?skill .
-            ?skill :label ?skill_label .
+            ?skill skos:prefLabel ?skill_label .
         }
     }
 }

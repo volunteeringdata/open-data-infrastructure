@@ -2,6 +2,7 @@
 PREFIX :        <https://ns.volunteeringdata.io/>
 PREFIX id:      <https://id.volunteeringdata.io/>
 prefix skos:    <http://www.w3.org/2004/02/skos/core#>
+prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
 
 CONSTRUCT {
     ?organisation
@@ -99,6 +100,6 @@ WHERE {
     OPTIONAL {
         ?session :time ?time .
 
-        OPTIONAL { ?time :label ?time_label . }
+        OPTIONAL { ?time rdfs:label ?time_label . }
     }
 }
