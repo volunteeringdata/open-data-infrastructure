@@ -187,7 +187,7 @@ Validator service:
 
 Data Portal endpoints:
 - DCAT
-- Croissant (TODO: Fix endpoint !important)
+- Croissant
 - DCAT-AP
 - MLDCAT-AP
 

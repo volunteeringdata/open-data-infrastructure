@@ -1,45 +1,263 @@
-﻿BASE <https://id.volunteeringdata.io/>
+﻿BASE <https://api.volunteeringdata.io/croissant>
 PREFIX : <https://ns.volunteeringdata.io/>
 PREFIX cr: <http://mlcommons.org/croissant/>
-PREFIX schema: <https://schema.org/>
 PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX schema: <https://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
+# MLCommons Croissant description of the API endpoints
+# See: https://docs.mlcommons.org/croissant/docs/croissant-spec.html
+#
+# Each parameterless endpoint is a distribution (cr:FileObject).
+# Record sets describe the endpoints whose output shape is stable:
+# CSV columns for SELECT endpoints and JSON paths for framed JSON-LD endpoints.
+# Cause and requirement labels are not described as fields because they are
+# served inconsistently (some language-tagged objects, some plain strings).
 CONSTRUCT {
-    [
+    <>
         a schema:Dataset ;
-        cr:recordSet [
-            a cr:RecordSet ;
-            cr:dataType :Activity ;
-            cr:field :activityDescription ;
-            cr:field :activityTitle ;
-        ] ;
-
-        cr:recordSet [
-            a cr:RecordSet ;
-            cr:dataType :Organisation ;
-            cr:field :organisationDescription ;
-            cr:field :organisationName ;
-        ] ;
-
         dc:conformsTo "http://mlcommons.org/croissant/1.0"@en ;
-        schema:creator "Open Volunteering"@en ;
-        schema:datePublished "2025-11-07"@en ;
-        schema:description "Volunteering and social action opportunities in the UK"@en ;
-        schema:distribution [
-            a cr:FileObject ;
-            schema:contentUrl "https://api.volunteeringdata.io/activity_all.csv"@en ;
-            schema:encodingFormat "text/csv"@en ;
-            schema:name "activity_all.csv"@en ;
-        ] ;
-
-        schema:license "https://creativecommons.org/licenses/by/4.0/"@en ;
+        cr:isLiveDataset true ;
+        cr:citeAs "Open Volunteering. Volunteering and social action opportunities in the UK. https://api.volunteeringdata.io/"@en ;
         schema:name "Volunteering and social action opportunities in the UK"@en ;
+        schema:description "Volunteering and social action opportunities in the UK, and the volunteer-involving organisations offering them, as served by the Open Volunteering API endpoints"@en ;
+        schema:creator <#creator> ;
+        schema:datePublished "2025-11-07"@en ;
+        schema:license "https://creativecommons.org/licenses/by/4.0/"@en ;
         schema:url "https://api.volunteeringdata.io/"@en ;
-    ] .
+        schema:distribution
+            <#activity_list.csv>,
+            <#activity_count.csv>,
+            <#activity_all.jsonld>,
+            <#organisation_list.csv>,
+            <#organisation_count.csv>,
+            <#organisations.jsonld>,
+            <#organisation_all.jsonld>,
+            <#cause.jsonld>,
+            <#requirement.jsonld>,
+            <#taxonomy.jsonld>,
+            <#schema.ttl> ;
+        cr:recordSet
+            <#activity_list>,
+            <#activity_count>,
+            <#organisation_list>,
+            <#organisation_count>,
+            <#cause>,
+            <#requirement> ;
+    .
 
-    :activityDescription a cr:Field .
-    :activityTitle a cr:Field .
-    :organisationDescription a cr:Field .
-    :organisationName a cr:Field .
+    <#creator>
+        a schema:Organization ;
+        schema:name "Open Volunteering"@en ;
+        schema:url "https://volunteeringdata.io/"@en ;
+    .
+
+
+    # Distributions
+
+    <#activity_list.csv>
+        a cr:FileObject ;
+        schema:name "activity_list.csv"@en ;
+        schema:description "Simple list of all volunteering activity identifiers"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/activity_list?format=csv"@en ;
+        schema:encodingFormat "text/csv"@en ;
+    .
+
+    <#activity_count.csv>
+        a cr:FileObject ;
+        schema:name "activity_count.csv"@en ;
+        schema:description "Number of volunteering activities in the system"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/activity_count?format=csv"@en ;
+        schema:encodingFormat "text/csv"@en ;
+    .
+
+    <#activity_all.jsonld>
+        a cr:FileObject ;
+        schema:name "activity_all.jsonld"@en ;
+        schema:description "List of all volunteering activities with all available details"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/activity_all?format=jsonld"@en ;
+        schema:encodingFormat "application/json"@en ;
+    .
+
+    <#organisation_list.csv>
+        a cr:FileObject ;
+        schema:name "organisation_list.csv"@en ;
+        schema:description "Simple list of all volunteer involving organisations identifiers"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/organisation_list?format=csv"@en ;
+        schema:encodingFormat "text/csv"@en ;
+    .
+
+    <#organisation_count.csv>
+        a cr:FileObject ;
+        schema:name "organisation_count.csv"@en ;
+        schema:description "Number of volunteering involving organisations in the system"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/organisation_count?format=csv"@en ;
+        schema:encodingFormat "text/csv"@en ;
+    .
+
+    <#organisations.jsonld>
+        a cr:FileObject ;
+        schema:name "organisations.jsonld"@en ;
+        schema:description "List of volunteer-involving organisations identifiers and their activities identifier and title"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/organisations?format=jsonld"@en ;
+        schema:encodingFormat "application/json"@en ;
+    .
+
+    <#organisation_all.jsonld>
+        a cr:FileObject ;
+        schema:name "organisation_all.jsonld"@en ;
+        schema:description "List of all volunteer-involving organisations with all available details"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/organisation_all?format=jsonld"@en ;
+        schema:encodingFormat "application/json"@en ;
+    .
+
+    <#cause.jsonld>
+        a cr:FileObject ;
+        schema:name "cause.jsonld"@en ;
+        schema:description "List of charitable causes that can be linked to volunteering activities and volunteer involving organisations"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/cause?format=jsonld"@en ;
+        schema:encodingFormat "application/json"@en ;
+    .
+
+    <#requirement.jsonld>
+        a cr:FileObject ;
+        schema:name "requirement.jsonld"@en ;
+        schema:description "List of requirements that can be linked to volunteering activities and volunteer involving organisations"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/requirement?format=jsonld"@en ;
+        schema:encodingFormat "application/json"@en ;
+    .
+
+    <#taxonomy.jsonld>
+        a cr:FileObject ;
+        schema:name "taxonomy.jsonld"@en ;
+        schema:description "Categories and concepts related to volunteering activities"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/taxonomy?format=jsonld"@en ;
+        schema:encodingFormat "application/json"@en ;
+    .
+
+    <#schema.ttl>
+        a cr:FileObject ;
+        schema:name "schema.ttl"@en ;
+        schema:description "The Volunteering and Social Action Data Model / Ontology"@en ;
+        schema:contentUrl "https://api.volunteeringdata.io/schema?format=ttl"@en ;
+        schema:encodingFormat "text/turtle"@en ;
+    .
+
+
+    # Record sets
+
+    <#activity_list>
+        a cr:RecordSet ;
+        schema:name "activity_list"@en ;
+        schema:description "Volunteering activity identifiers"@en ;
+        cr:key <#activity_list/activity_id> ;
+        cr:field <#activity_list/activity_id> ;
+    .
+
+    <#activity_list/activity_id>
+        a cr:Field ;
+        schema:name "activity_id"@en ;
+        schema:description "Identifier of the volunteering activity"@en ;
+        cr:dataType schema:URL ;
+        cr:source [
+            cr:fileObject <#activity_list.csv> ;
+            cr:extract [ cr:column "activity_id"@en ] ;
+        ] ;
+    .
+
+    <#activity_count>
+        a cr:RecordSet ;
+        schema:name "activity_count"@en ;
+        schema:description "Number of volunteering activities"@en ;
+        cr:field <#activity_count/activity_count> ;
+    .
+
+    <#activity_count/activity_count>
+        a cr:Field ;
+        schema:name "activity_count"@en ;
+        schema:description "Number of volunteering activities in the system"@en ;
+        cr:dataType schema:Integer ;
+        cr:source [
+            cr:fileObject <#activity_count.csv> ;
+            cr:extract [ cr:column "activity_count"@en ] ;
+        ] ;
+    .
+
+    <#organisation_list>
+        a cr:RecordSet ;
+        schema:name "organisation_list"@en ;
+        schema:description "Volunteer-involving organisation identifiers"@en ;
+        cr:key <#organisation_list/organisation_id> ;
+        cr:field <#organisation_list/organisation_id> ;
+    .
+
+    <#organisation_list/organisation_id>
+        a cr:Field ;
+        schema:name "organisation_id"@en ;
+        schema:description "Identifier of the volunteer-involving organisation"@en ;
+        cr:dataType schema:URL ;
+        cr:source [
+            cr:fileObject <#organisation_list.csv> ;
+            cr:extract [ cr:column "organisation_id"@en ] ;
+        ] ;
+    .
+
+    <#organisation_count>
+        a cr:RecordSet ;
+        schema:name "organisation_count"@en ;
+        schema:description "Number of volunteer-involving organisations"@en ;
+        cr:field <#organisation_count/organisation_count> ;
+    .
+
+    <#organisation_count/organisation_count>
+        a cr:Field ;
+        schema:name "organisation_count"@en ;
+        schema:description "Number of volunteering involving organisations in the system"@en ;
+        cr:dataType schema:Integer ;
+        cr:source [
+            cr:fileObject <#organisation_count.csv> ;
+            cr:extract [ cr:column "organisation_count"@en ] ;
+        ] ;
+    .
+
+    <#cause>
+        a cr:RecordSet ;
+        schema:name "cause"@en ;
+        schema:description "Charitable causes"@en ;
+        cr:key <#cause/id> ;
+        cr:field <#cause/id> ;
+    .
+
+    <#cause/id>
+        a cr:Field ;
+        schema:name "id"@en ;
+        schema:description "Identifier of the cause"@en ;
+        cr:dataType schema:Text ;
+        cr:source [
+            cr:fileObject <#cause.jsonld> ;
+            cr:extract [ cr:jsonPath "$.causes[*].id"@en ] ;
+        ] ;
+    .
+
+
+    <#requirement>
+        a cr:RecordSet ;
+        schema:name "requirement"@en ;
+        schema:description "Requirements of volunteering activities"@en ;
+        cr:key <#requirement/id> ;
+        cr:field <#requirement/id> ;
+    .
+
+    <#requirement/id>
+        a cr:Field ;
+        schema:name "id"@en ;
+        schema:description "Identifier of the requirement"@en ;
+        cr:dataType schema:Text ;
+        cr:source [
+            cr:fileObject <#requirement.jsonld> ;
+            cr:extract [ cr:jsonPath "$.requirements[*].id"@en ] ;
+        ] ;
+    .
+
 }
 WHERE {}

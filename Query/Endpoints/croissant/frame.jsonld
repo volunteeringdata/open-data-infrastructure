@@ -2,11 +2,11 @@
   "@context": {
     "@language": "en",
     "@vocab": "https://schema.org/",
-    "volunteering": "https://ns.volunteeringdata.io/",
-    "sc": "https://schema.org/",
     "cr": "http://mlcommons.org/croissant/",
-    "rai": "http://mlcommons.org/croissant/RAI/",
     "dct": "http://purl.org/dc/terms/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "sc": "https://schema.org/",
+    "volunteering": "https://ns.volunteeringdata.io/",
     "citeAs": "cr:citeAs",
     "column": "cr:column",
     "conformsTo": "dct:conformsTo",
@@ -18,18 +18,22 @@
       "@id": "cr:dataType",
       "@type": "@vocab"
     },
+    "equivalentProperty": "cr:equivalentProperty",
     "examples": {
       "@id": "cr:examples",
       "@type": "@json"
     },
     "extract": "cr:extract",
     "field": "cr:field",
-    "fileProperty": "cr:fileProperty",
     "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
     "fileSet": "cr:fileSet",
     "format": "cr:format",
     "includes": "cr:includes",
-    "isLiveDataset": "cr:isLiveDataset",
+    "isLiveDataset": {
+      "@id": "cr:isLiveDataset",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
     "jsonPath": "cr:jsonPath",
     "key": "cr:key",
     "md5": "cr:md5",
@@ -40,10 +44,35 @@
     "regex": "cr:regex",
     "repeated": "cr:repeated",
     "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
     "separator": "cr:separator",
     "source": "cr:source",
     "subField": "cr:subField",
     "transform": "cr:transform"
   },
-  "@type": "sc:Dataset"
+  "@type": "sc:Dataset",
+  "creator": {
+    "@embed": "@always"
+  },
+  "distribution": {
+    "@embed": "@always"
+  },
+  "recordSet": {
+    "@embed": "@always",
+    "key": {
+      "@embed": "@never"
+    },
+    "field": {
+      "@embed": "@always",
+      "source": {
+        "@embed": "@always",
+        "extract": {
+          "@embed": "@always"
+        },
+        "fileObject": {
+          "@embed": "@never"
+        }
+      }
+    }
+  }
 }

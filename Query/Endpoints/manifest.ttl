@@ -109,13 +109,13 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
             :name "Cause" ;
             :description "List of charitable causes that can be linked to volunteering activities and volunteer involving organisations" ;
         ],
-        # [
-        #     :path "croissant" ;
-        #     :sparql "./croissant/query.sparql"^^xsd:anyURI ;
-        #     :frame "./croissant/frame.jsonld"^^xsd:anyURI ;
-        #     :name "Croissant" ;
-        #     :description "" ;
-        # ],
+        [
+            :path "croissant" ;
+            :sparql "./croissant/query.sparql"^^xsd:anyURI ;
+            :frame "./croissant/frame.jsonld"^^xsd:anyURI ;
+            :name "Croissant" ;
+            :description "MLCommons Croissant description of the API endpoints as a machine learning dataset. Request it as JSON (or JSON-LD) to get a Croissant 1.0 JSON-LD document." ;
+        ],
         [
             :path "describe" ;
             :sparql "./describe/query.sparql"^^xsd:anyURI ;
