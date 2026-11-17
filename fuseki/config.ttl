@@ -61,6 +61,16 @@ PREFIX text: <http://jena.apache.org/text#>
                     tdb2:location "./db" ;
                 ] ;
             ] ;
+
+            # The ontology and its taxonomies, without inferencing
+            ja:namedGraph [
+                ja:graphName schema: ;
+                ja:graph [
+                    a tdb2:GraphTDB2 ;
+                    tdb2:location "./db" ;
+                    tdb2:graphName schema: ;
+                ] ;
+            ] ;
         ] ;
     ] ;
 ] .

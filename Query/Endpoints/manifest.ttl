@@ -3,6 +3,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 [
     :name "OpenVolunteering Hackathon API" ;
+    :description "Volunteering activities and organisations in the UK; start with search or activity_by_location" ;
     :endpoint
         [
             :path "activity" ;

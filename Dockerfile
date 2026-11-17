@@ -69,6 +69,19 @@ RUN "$JAVA_HOME/bin/java" --add-modules jdk.incubator.vector \
         -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" \
         tdb2.tdbloader --loader=parallel --loc "$DATABASE" ./data/*.ttl ./data/*.jsonld
 
+# Also load the ontology and its taxonomies into their own named graph, served by the schema endpoint.
+# They stay in the default graph too, where the OWL reasoner and the other queries use them.
+ARG ONTOLOGY_GRAPH=https://ns.volunteeringdata.io/
+RUN "$JAVA_HOME/bin/java" --add-modules jdk.incubator.vector \
+        -cp "${FUSEKI_DIR}/${FUSEKI_JAR}" \
+        tdb2.tdbloader --loc "$DATABASE" --graph="$ONTOLOGY_GRAPH" \
+            ./data/ontology*.ttl \
+            ./data/taxonomy_accessibility.ttl \
+            ./data/taxonomy_cause.ttl \
+            ./data/taxonomy_requirement.ttl \
+            ./data/taxonomy_reward.ttl \
+            ./data/taxonomy_skill.ttl
+
 # Materialise the ontology inference rules (before text indexing, so inferred titles and names are searchable)
 COPY ./data/ontology_rules.ru ./data/
 RUN "$JAVA_HOME/bin/java" --add-modules jdk.incubator.vector \
